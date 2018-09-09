@@ -1,0 +1,138 @@
+{
+	"id": "e86b9f6c-2e05-b2fa-834f-58f0a33283b3",
+	"name": "betext",
+	"description": "",
+	"order": [
+		"c1f62317-1542-ef79-2b82-e9e670a20d4c",
+		"60162101-24c2-a666-0b6e-3986a4658bfe",
+		"8326f62e-767a-b35e-f388-3ad048e33237",
+		"598fb04d-0f79-cb94-bda1-b814ac5d1506"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1513925579106,
+	"owner": "1200664",
+	"public": false,
+	"requests": [
+		{
+			"id": "598fb04d-0f79-cb94-bda1-b814ac5d1506",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://192.168.0.43:3000/extract",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1521616092132,
+			"name": "keyword",
+			"description": "",
+			"collectionId": "e86b9f6c-2e05-b2fa-834f-58f0a33283b3",
+			"responses": [],
+			"rawModeData": "{\n\"text\":\"ศุภฤกษ์  โทรไปธนาคารกรุงเทพด้วยเบอร์ ๐๘๓ ๔๗๗ ๓๒๑ ที่ห้วยขวางในวันจันทร์ที่\"\n}"
+		},
+		{
+			"id": "60162101-24c2-a666-0b6e-3986a4658bfe",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://192.168.0.43:3000/tokenized",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1521615570040,
+			"name": "tokenized",
+			"description": "",
+			"collectionId": "e86b9f6c-2e05-b2fa-834f-58f0a33283b3",
+			"responses": [],
+			"rawModeData": "{\n\"text\":\"ฉันไปเที่ยวสยาม\"\n}"
+		},
+		{
+			"id": "8326f62e-767a-b35e-f388-3ad048e33237",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://192.168.0.43:3000/ner",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1521615659014,
+			"name": "Ner",
+			"description": "",
+			"collectionId": "e86b9f6c-2e05-b2fa-834f-58f0a33283b3",
+			"responses": [],
+			"rawModeData": "{\n\"text\":\"ศุภฤกษ์  โทรไปธนาคารกรุงเทพด้วยเบอร์ ๐๘๓ ๔๗๗ ๓๒๑ ที่ห้วยขวางในวันจันทร์ที่\"\n}"
+		},
+		{
+			"id": "c1f62317-1542-ef79-2b82-e9e670a20d4c",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://192.168.0.43:3000/sentiment",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1521615519943,
+			"name": "sentiment",
+			"description": "",
+			"collectionId": "e86b9f6c-2e05-b2fa-834f-58f0a33283b3",
+			"responses": [],
+			"rawModeData": "{\n\t\"text\":\"ดีมากก\"\n}"
+		}
+	]
+}
