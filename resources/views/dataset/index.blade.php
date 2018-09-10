@@ -65,7 +65,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success">Search</button>
+                        <button type="submit" class="btn btn-success">Search2</button>
                     </div>
                 </div>
             </div>
