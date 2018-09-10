@@ -9,22 +9,22 @@
             <div>
                 <div class="panel panel-primary">
                     <div class="panel-heading" style="padding-top: 10px;padding-bottom: 10px;">
-                        <h3><i class="fa fa-bars" aria-hidden="true"></i> Organizations</h3>
+                        <h3><i class="fa fa-bars" aria-hidden="true"></i> Organizations </h3>
                     </div>
                     <ul class="list-group" style="list-style: none;">
                         @foreach($ogz as $k => $v)
-                        @php
-                            $url = "?slug=".$v->url;
-                            $blank_url = "/dataset";
-                        @endphp
-                        <a  href="{{ ($slug_sec)? $blank_url : $url }}" class="list-group-item">
-                            <li class="">
-                                {{$v->title}} <span class="badge-primary badge-pill">({{$v->num}})</span>
-                                @if($slug_sec)
-                                    <span class="badge" style="float: right;"><i class="fa fa-window-close" aria-hidden="true"></i></span>
-                                @endif
-                            </li>
-                        </a>
+                            @if($slug_sec)
+                                <a  href="" class="list-group-item">
+                            @else
+                                <a  href="{{ '?slug='.$v->url }}" class="list-group-item">
+                            @endif
+                                <li class="">
+                                    {{$v->title}} <span class="badge-primary badge-pill">({{$v->num}})</span>
+                                    @if($slug_sec)
+                                        <span class="badge" style="float: right;"><i class="fa fa-window-close" aria-hidden="true"></i></span>
+                                    @endif
+                                </li>
+                            </a>
                         @endforeach
                     </ul>
                 </div>
@@ -57,11 +57,10 @@
             </div>
             @endif
             {!! Form::open(['url' => url()->current(),'class' => 'form-auth-small', 'method' => 'get']) !!}
-            @csrf
             <div class="row">
                 <div class="col-md-9">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="" name="" value="" placeholder="" required>
+                        <input type="text" class="form-control" id="title" name="title" value="" placeholder="ค้นหา" required>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -72,12 +71,32 @@
             </div>
             {!! Form::close() !!}
             <div class="row">
+                <div class="col-md-2 col-xs-3">
+                    <p>Search : </p>
+                </div>
+                <div class="col-md-10 col-xs-9">
+                    @foreach($param as $k => $v)
+                        @if($v != "")
+                            <span class="label label-default">{{$v}}</span>&nbsp;
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12 featured-responsive">
                     <div class="list-group">
                         @foreach($get_dts as $k => $v)
                             <a href="{{ url('/dataset/page/'.$v->url) }}" class="list-group-item list-group-item-action">
-                                <h5> <span class="badge badge-secondary">{{ ($v->status == "pb")?"Public":"Private" }}</span> {{$v->title}} </h5>
+                                <h5>
+                                    @if($is_login)
+                                        <span class="badge badge-secondary">{{ ($v->status == "pb")?"Public":"Private" }}
+                                        </span> {{$v->title}} 
+                                    @endif
+                                </h5>
                                 <p>{{ $v->description }}</p>
+                                @foreach(explode(",",$v->format) as $f)
+                                    <span class="label label-primary">{{$f}}</span>
+                                @endforeach
                             </a>
                         @endforeach
                     </div>

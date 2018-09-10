@@ -49,10 +49,21 @@ Route::post('/dataset/set_status', 'DatasetController@set_status');
 // ลบ dts
 Route::delete('/dataset/delete/{slug}', 'DatasetController@delete');
 
-// res ของ data set
+////////////////////////////////////////////////////////////////////////////////////
+
+// preivew res ของ data set
 Route::get('/dataset/page/{slug}/resource/{res_slug}', 'ResourceController@preview');
 
-////////////////////////////////////////////////////////////////////
+// edit res
+Route::get('/dataset/page/{slug}/resource_edit/{res_slug}', 'ResourceController@edit');
+
+// update res
+Route::put('/resource/update', 'ResourceController@update');
+
+// ลบ res
+Route::delete('/resource/delete/{res_id}', 'ResourceController@delete');
+
+////////////////////////////////////////////////////////////////////////////////////
 
 // index ogz
 Route::get('/organization', 'OrganizationController@index');
@@ -86,6 +97,9 @@ Route::post('/chk_login', 'IndexController@chk_login');
 Route::get('/logout', function () {
     return redirect('/')->withCookie(Cookie::forget('token'));
 });
+
+Route::get('/is-login', 'IndexController@is_login');
+Route::post('/user-download', 'IndexController@user_download');
 
 // Route::get('/cookie', function () {
 //     dd(Cookie::get('token'));

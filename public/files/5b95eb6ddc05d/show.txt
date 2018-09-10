@@ -1,0 +1,30 @@
+https://digitalchumchon.org
+
+https://marketplace.digitalchumchon.org/login
+
+username : usertest01 - usertest20
+password : P@ssw0rd
+
+wifi : VEC
+password : vec12345
+
+
+
+
+
+ร้าน LatPhrao
+
+administrator
+P@ssw0rd
+
+
+
+
+
+
+test/setting/mict-vec
+
+ตัวอย่าง
+
+http://jjvec007.lnwshop.com/test/setting/mict-vec
+

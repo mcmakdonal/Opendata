@@ -6,7 +6,7 @@
 
     <div class="text-right">
         <a href="{{url('/dataset/page/'.$slug_url)}}">
-            <button type="submit" class="btn btn-primary"><span class="lnr lnr-eye"></span> View Dataset</button>
+            <button type="button" class="btn btn-primary"><span class="lnr lnr-eye"></span> View Dataset</button>
         </a>
     </div>
 
@@ -69,7 +69,6 @@
                         <div class="form-group">
                             <label for="" class="control-label">Organization : </label>
                             <select class="form-control use-select2" name="ogz_id" id="ogz_id" required>
-                                <option value="">Organization</option>
                                 @foreach($get_ogz as $k => $v)
                                     <option value="{{ $v->ogz_id }}" {{ ($tbl_dataset[0]->ogz_id == $v->ogz_id)? "selected" : "" }} >{{ $v->title }}</option>
                                 @endforeach
@@ -102,7 +101,7 @@
         <div id="resouce" class="tab-pane fade"><br>
             <div class="row">
                 <div class="col-md-12 featured-responsive">
-                    <?=link_to('/dataset/new_resource/' . $slug_url, $title = 'Add New Dataset', ['class' => 'btn btn-primary'], $secure = null);?>
+                    <?=link_to('/dataset/new_resource/' . $slug_url, $title = 'Add New Resource', ['class' => 'btn btn-primary'], $secure = null);?>
                     <div class="list-group" style="margin-top: 10px;">
                         @foreach($resource as $k => $v)
                         <div class="list-group-item list-group-item-action">

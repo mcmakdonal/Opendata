@@ -31,7 +31,7 @@
         <div class="col-md-4 featured-responsive">
             <div class="featured-place-wrap">
                 <a href="{{ url('/organization/page/'.$v->url) }}">
-                    <img src="{{$v->image}}" class="img-responsive" alt="#" style="height: 200px;">
+                    <img src="{{ url($v->image) }}" class="img-responsive" alt="#" style="height: 200px;">
                     <div class="featured-title-box">
                         <h5 style="word-break: break-all">{{ str_limit($v->title,30) }}</h5>
                     </div>

@@ -10,21 +10,21 @@ class Customlib extends ServiceProvider
     public static function get_id($type, $slug)
     {
         if ($type == "ogz") {
-            $result = DB::table('tbl_organization')->select('ogz_id')->where('url', $slug)->get();
+            $result = DB::table('tbl_organization')->select('ogz_id')->where('url', $slug)->get()->toArray();
             if ($result) {
                 return $result[0]->ogz_id;
             } else {
                 return false;
             }
         } elseif ($type == "dts") {
-            $result = DB::table('tbl_dataset')->select('dts_id')->where('url', $slug)->get();
+            $result = DB::table('tbl_dataset')->select('dts_id')->where('url', $slug)->get()->toArray();
             if ($result) {
                 return $result[0]->dts_id;
             } else {
                 return false;
             }
         } elseif ($type == "res") {
-            $result = DB::table('tbl_resource')->select('res_id')->where('file_slug', $slug)->get();
+            $result = DB::table('tbl_resource')->select('res_id')->where('file_slug', $slug)->get()->toArray();
             if ($result) {
                 return $result[0]->res_id;
             } else {
@@ -56,19 +56,23 @@ class Customlib extends ServiceProvider
         }
     }
 
-    public static function get_dts($ogz_slug = "", $format = "")
+    public static function get_dts($ogz_slug = "", $format = "", $title = "")
     {
         $matchThese = [];
         if ($ogz_slug != "") {
             $ogz_id = Customlib::get_id("ogz", $ogz_slug);
-            $matchThese['tbl_dataset.ogz_id'] = $ogz_id;
+            $matchThese[] = ['tbl_dataset.ogz_id', '=', $ogz_id];
         }
         if ($format != "") {
-            $matchThese['tbl_resource.file_format'] = $format;
+            $matchThese[] = ['tbl_resource.file_format', '=', $format];
         }
+        if ($title != "") {
+            $matchThese[] = ['tbl_dataset.title', 'like', "%$title%"];
+        }
+        // return $matchThese;
         $select = ['tbl_dataset.dts_id', 'tbl_dataset.title', 'tbl_dataset.url', 'tbl_dataset.status', 'tbl_dataset.description'];
         $tbl_dataset = DB::table('tbl_dataset')
-            ->select($select)
+            ->select('tbl_dataset.dts_id', 'tbl_dataset.title', 'tbl_dataset.url', 'tbl_dataset.status', 'tbl_dataset.description', DB::raw('group_concat(tbl_resource.file_format) format'))
             ->join('tbl_organization', 'tbl_organization.ogz_id', '=', 'tbl_dataset.ogz_id')
             ->leftJoin('tbl_resource', 'tbl_resource.dts_id', '=', 'tbl_dataset.dts_id')
             ->where($matchThese)
@@ -79,10 +83,24 @@ class Customlib extends ServiceProvider
 
     }
 
-    public static function get_ogz()
+    public static function get_ogz($slug = "")
     {
-        $tbl_organization = DB::table('tbl_organization')->get()->toArray();
+        $matchThese = [];
+        if ($slug != "") {
+            $matchThese['tbl_organization.url'] = $slug;
+        }
+        $tbl_organization = DB::table('tbl_organization')->where($matchThese)->get()->toArray();
         return $tbl_organization;
+    }
+
+    public static function get_res($res_id = "")
+    {
+        $matchThese = [];
+        if ($res_id != "") {
+            $matchThese['tbl_resource.res_id'] = $res_id;
+        }
+        $tbl_resource = DB::table('tbl_resource')->where($matchThese)->get()->toArray();
+        return $tbl_resource;
     }
 
     public static function get_lcs()
@@ -114,6 +132,7 @@ class Customlib extends ServiceProvider
         $res = DB::table('tbl_resource')
             ->select('file_format', DB::raw('count(tbl_resource.file_format) num'))
             ->distinct()
+            ->join('tbl_dataset', 'tbl_dataset.dts_id', '=', 'tbl_resource.dts_id')
             ->groupBy('file_format')
             ->get()
             ->toArray();

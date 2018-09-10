@@ -24,7 +24,7 @@
                 <div class="col-md-12" style="margin-bottom: 10px;">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="active"><a data-toggle="tab" href="#dataset">Home</a></li>
-                        <li><a data-toggle="tab" href="#groups">Groups 1</a></li>
+                        <li><a data-toggle="tab" href="#groups">Groups</a></li>
                         <li><a data-toggle="tab" href="#activity">Activity Stream</a></li>
                     </ul>
 
@@ -56,9 +56,9 @@
                                                     Explore <span class="caret"></span></button>
                                                     <ul class="dropdown-menu" role="menu">
                                                         <li><a href="{{ url('/dataset/page/'.$slug_url.'/resource/'.$v->file_slug) }}"><span class="lnr lnr-picture"></span> Preview</a></li>
-                                                        <li><a href="{{ url($v->file_path) }}" target="_blank"><span class="lnr lnr-download"></span> Download</a></li>
+                                                        <li><a href="javascript:void(0)" class="download-file" data="{{ url($v->file_path) }}" data-id="{{ $v->res_id }}"><span class="lnr lnr-download"></span> Download</a></li>
                                                         @if($is_login)
-                                                            <li><a href="#"><span class="lnr lnr-pencil"></span> Edit</a></li>
+                                                            <li><a href="{{ url('/dataset/page/'.$slug_url.'/resource_edit/'.$v->file_slug) }}"><span class="lnr lnr-pencil"></span> Edit</a></li>
                                                         @endif
                                                     </ul>
                                                 </div>
@@ -83,5 +83,6 @@
             </div>
         </div>
     </div>
-    </section>
+</section>
+@include('shared.modal-download')
 @endsection

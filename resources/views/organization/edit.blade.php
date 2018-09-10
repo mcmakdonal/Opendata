@@ -64,6 +64,14 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
+                        <label for="Image" class="control-label">Image : </label>
+                        <img src="{{ url($content[0]->image) }}" class="img-responsive" style="width: 120px;">
+                        <input type="hidden" value="{{$content[0]->image}}" name="old_image">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
                         <label for="" class="control-label">สถานะ : </label>
                         <select class="form-control use-select2" name="status" id="status">
                             <option value="pb" {{ ($content[0]->status == "pb")? "selected" : "" }} >Public</option>

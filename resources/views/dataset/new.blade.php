@@ -63,7 +63,6 @@
                 <div class="form-group">
                     <label for="" class="control-label">Organization : </label>
                     <select class="form-control use-select2" name="ogz_id" id="ogz_id" required>
-                        <option value="">Organization</option>
                         @foreach($get_ogz as $k => $v)
                             <option value="{{ $v->ogz_id }}" {{ ($v->url == $lock_ogz)? "selected" : "" }} >{{ $v->title }}</option>
                         @endforeach

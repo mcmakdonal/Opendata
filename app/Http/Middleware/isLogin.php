@@ -15,10 +15,8 @@ class isLogin
      */
     public function handle($request, Closure $next)
     {
-        if ((\Cookie::get('token') !== null)) {
+        if (!(\Cookie::get('token') !== null)) {
             return response('Unauthorized.', 401);
-        } else {
-            return redirect('/login');
         }
         return $next($request);
     }

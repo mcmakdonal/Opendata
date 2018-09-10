@@ -11,7 +11,7 @@ class DatasetController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['islogin'], ['except' => [
+        $this->middleware('islogin', ['except' => [
             'index',
             'page',
         ]]);
@@ -21,8 +21,11 @@ class DatasetController extends Controller
     {
         $slug = $request->slug;
         $format = $request->format;
-        $get_dts = Customlib::get_dts($slug, $format);
-        $ogz = Customlib::get_ogz_count($request->slug);
+        $title = $request->title;
+        $ogz = Customlib::get_ogz_count($slug);
+        $get_dts = Customlib::get_dts($slug, $format, $title);
+        // exit();
+        // dd($get_dts);
         $file_format = Customlib::file_has();
         // dd($file_format);
         return view('dataset.index', [
@@ -30,9 +33,14 @@ class DatasetController extends Controller
             'header' => 'Dataset',
             'get_dts' => $get_dts,
             'ogz' => $ogz,
-            'slug_sec' => ($request->slug) ? true : false,
+            'slug_sec' => ($request->slug) ? "?slug=" . $slug : false,
             'file_format' => $file_format,
             'is_login' => Customlib::is_login(),
+            'param' => [
+                ($slug) ? "Organization : $slug" : "",
+                ($format) ? "Format : $format" : "",
+                ($title) ? "Title : $title" : "",
+            ],
         ]);
     }
 
@@ -135,7 +143,11 @@ class DatasetController extends Controller
                     }
 
                     $file = $request->file('file');
-                    $name = $file->getClientOriginalName();
+
+                    $find = array(" ", "/", "@", "_");
+                    $replace = array("-");
+                    $name = strtolower(str_replace($find, $replace, $file->getClientOriginalName()));
+
                     $file->move(public_path('/files/' . $path) . '/', $name);
                     $file_arg['file_path'] = '/files/' . $path . '/' . $name;
                     $file_arg['file_ext'] = $file->getClientOriginalExtension();
@@ -195,7 +207,11 @@ class DatasetController extends Controller
                 }
 
                 $file = $request->file('file');
-                $name = $file->getClientOriginalName();
+
+                $find = array(" ", "/", "@", "_");
+                $replace = array("-");
+                $name = strtolower(str_replace($find, $replace, $file->getClientOriginalName()));
+
                 $file->move(public_path('/files/' . $path) . '/', $name);
                 $file_arg['file_path'] = '/files/' . $path . '/' . $name;
                 $file_arg['file_ext'] = $file->getClientOriginalExtension();
@@ -354,11 +370,6 @@ class DatasetController extends Controller
                 'status' => true,
             ]);
         }
-    }
-
-    public function res_detail(string $slug_url, string $slug_file)
-    {
-
     }
 
 }

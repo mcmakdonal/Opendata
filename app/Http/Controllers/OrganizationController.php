@@ -11,7 +11,7 @@ class OrganizationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['islogin'], ['except' => [
+        $this->middleware('islogin', ['except' => [
             'index',
             'page',
         ]]);
@@ -55,7 +55,7 @@ class OrganizationController extends Controller
                 $file = $request->file('image');
                 $name = date('YmdHis') . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path() . '/files/og_image/', $name);
-                $image = url('files/og_image/' . $name);
+                $image = 'files/og_image/' . $name;
             }
         }
 
@@ -110,9 +110,8 @@ class OrganizationController extends Controller
     public function edit(string $slug_url)
     {
         if ($slug_url != "") {
-            $tbl_organization = DB::table('tbl_organization')->where('url', $slug_url)->get()->toArray();
-            // dd($data);
-            $ogz_id = $tbl_organization[0]->ogz_id;
+            $get_ogz = Customlib::get_ogz($slug_url);
+            $ogz_id = $get_ogz[0]->ogz_id;
             if ($ogz_id == "") {
                 return redirect("/organization")->with('status', 'Success');
                 exit();
@@ -121,7 +120,7 @@ class OrganizationController extends Controller
             return view('organization.edit', [
                 'title' => 'Manage Organization',
                 'header' => 'Manage Organization',
-                'content' => $tbl_organization,
+                'content' => $get_ogz,
                 'dataset' => $tbl_dataset,
                 'slug_url' => $slug_url,
             ]);
@@ -141,13 +140,13 @@ class OrganizationController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $image = "";
+        $image =  $request->old_image;
         if ($request->hasfile('image')) {
             if ($request->file('image')) {
                 $file = $request->file('image');
                 $name = date('YmdHis') . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path() . '/files/og_image/', $name);
-                $image = url('files/og_image/' . $name);
+                $image = 'files/og_image/' . $name;
             }
         }
 
@@ -155,6 +154,7 @@ class OrganizationController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'status' => $request->status,
+            'image' => $image,
             'update_date' => date('Y-m-d H:i:s'),
             'update_by' => 1,
             'record_status' => 'A',
