@@ -4,6 +4,11 @@
 
 @section('content')
 <section class="">
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="row">
         <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
             <div style="">
@@ -33,7 +38,7 @@
                             @foreach($content as $k => $v)
                                 <div class="row">
                                     <div class="col-md-6 col-xs-12"><h3>{{ $v->title }}</h3></div>
-                                    @if($v->status == "pv")
+                                    @if(($is_login) && $v->status == "pv")
                                         <div class="col-md-6 col-xs-12 "><h3 class="text-right"> <span class="label label-primary"> <span class="lnr lnr-lock"></span> Private </span> </h3></div>
                                     @endif
                                 </div>
@@ -46,7 +51,15 @@
                                 <div class="list-group-item list-group-item-action">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <h5> <span class="badge badge-secondary">{{ strtoupper($v->file_format) }}</span> {{ $v->file_name }} </h5>
+                                        @php
+                                            $file_format = $v->file_format;
+                                            if($v->file_format == "txt" || $v->file_format == "json"){
+                                                $file_format = "text";
+                                            }elseif($v->file_format == "png" || $v->file_format == "jpeg" || $v->file_format == "jpg"){
+                                                $file_format = "image";
+                                            }
+                                        @endphp
+                                            <h5> <i class="fa fa-file-{{ $file_format }}-o" aria-hidden="true"></i> {{ $v->file_name }} </h5>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="text-right">

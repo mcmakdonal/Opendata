@@ -274,7 +274,7 @@ $(".last-download").click(function (e) {
     var file = $(this).attr('data');
     var res_id = $(this).attr('data-id');
     if (first_name == "" || last_name == "" || description == "") {
-        swal("Informnation !", "กรุณากรอก ชื่อ และ นามสกุล และรายละเอียดการ Download", "warning");
+        swal("Information !", "กรุณากรอก ชื่อ และ นามสกุล และรายละเอียดการ Download", "warning");
         return false;
     } else {
         $.ajax({

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Libs\Customlib;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Image;
 use Validator;
 
 class OrganizationController extends Controller
@@ -17,9 +18,11 @@ class OrganizationController extends Controller
         ]]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $get_ogz = Customlib::get_ogz();
+        $title = $request->title;
+
+        $get_ogz = Customlib::get_ogz("", $title);
         // dd($paginatedItems);
         return view('organization.index', [
             'title' => 'Organization',
@@ -55,13 +58,14 @@ class OrganizationController extends Controller
                 $file = $request->file('image');
                 $name = date('YmdHis') . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path() . '/files/og_image/', $name);
+                $image_resize = Image::make(public_path() . '/files/og_image/' . $name);
+                $image_resize->resize(300, 300);
+                $image_resize->save(public_path() . '/files/og_image/' . $name);
                 $image = 'files/og_image/' . $name;
             }
         }
 
-        $find = array(" ", "/", "@", ".", "_");
-        $replace = array("-");
-        $url = strtolower(str_replace($find, $replace, $request->url));
+        $url = Customlib::make_slug("url", $request->url);
         if (Customlib::get_url("ogz", $url)) {
             return redirect()->back()->withErrors("Url ถูกใช้ไปแล้ว กรุณาเปลี่ยน url ใหม่");
         }
@@ -88,21 +92,23 @@ class OrganizationController extends Controller
         }
     }
 
-    public function page(string $slug_url)
+    public function page(string $slug_url, Request $request)
     {
         if ($slug_url != "") {
             $ogz_id = Customlib::get_id("ogz", $slug_url);
-            if ($ogz_id == "") {
-                return redirect("/organization")->with('status', 'Error');
-                exit();
+            if ($ogz_id == false) {
+                abort(404);
             }
-            $tbl_dataset = DB::table('tbl_dataset')->where('ogz_id', $ogz_id)->get();
+            $title = $request->title;
+            $tbl_dataset = Customlib::get_dts($ogz_id, $title);
             return view('organization.page', [
                 'title' => 'Organization',
                 'header' => 'Organization',
                 'content' => $tbl_dataset,
                 'slug_url' => $slug_url,
+                'real_url' => url('/organization/page/' . $slug_url),
                 'is_login' => Customlib::is_login(),
+                'search' => $title,
             ]);
         }
     }
@@ -111,11 +117,10 @@ class OrganizationController extends Controller
     {
         if ($slug_url != "") {
             $get_ogz = Customlib::get_ogz($slug_url);
-            $ogz_id = $get_ogz[0]->ogz_id;
-            if ($ogz_id == "") {
-                return redirect("/organization")->with('status', 'Success');
-                exit();
+            if (!(count($get_ogz) > 0)) {
+                abort(404);
             }
+            $ogz_id = $get_ogz[0]->ogz_id;
             $tbl_dataset = DB::table('tbl_dataset')->where('ogz_id', $ogz_id)->get();
             return view('organization.edit', [
                 'title' => 'Manage Organization',
@@ -140,12 +145,15 @@ class OrganizationController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $image =  $request->old_image;
+        $image = $request->old_image;
         if ($request->hasfile('image')) {
             if ($request->file('image')) {
                 $file = $request->file('image');
                 $name = date('YmdHis') . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path() . '/files/og_image/', $name);
+                $image_resize = Image::make(public_path() . '/files/og_image/' . $name);
+                $image_resize->resize(300, 300);
+                $image_resize->save(public_path() . '/files/og_image/' . $name);
                 $image = 'files/og_image/' . $name;
             }
         }

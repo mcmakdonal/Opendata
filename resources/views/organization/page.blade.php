@@ -4,7 +4,11 @@
 
 @section('content')
 <section class="">
-
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="row">
         @if($is_login)
             <div class="col-md-12">
@@ -33,16 +37,16 @@
                             </div>
                         @endif
                         {!! Form::open(['url' => url()->current(),'class' => 'form-auth-small', 'method' => 'get']) !!}
-                        @csrf
                         <div class="row">
                             <div class="col-md-9">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="" name="" value="" placeholder="" required>
+                                    <input type="text" class="form-control" id="title" name="title" value="{{$search}}" placeholder="คำค้นหา" required>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-block">Search</button>
+                                    <button type="submit" class="btn btn-success">Search</button>
+                                    <a href="{{ $real_url }} "><button type="button" class="btn btn-warning">Reset</button></a>
                                 </div>
                             </div>
                         </div>
@@ -52,8 +56,13 @@
                             <h3> {{count($content)}} Datasets found</h3>
                                 <div class="list-group">
                                     @foreach($content as $k => $v)
-                                        <a href="{{ url('/dataset/page/'.$v->url) }}" class="list-group-item list-group-item-action"> 
-                                            <h5> <span class="badge badge-secondary">{{ ($v->status == "pb")?"Public":"Private" }}</span> {{$v->title}} </h5>
+                                        <a href="{{ url('/dataset/page/'.$v->url) }}" class="list-group-item list-group-item-action">
+                                            <h5> 
+                                                @if($is_login) 
+                                                    <span class="badge badge-secondary">{{ ($v->status == "pb")?"Public":"Private" }}</span>
+                                                @endif 
+                                            {{$v->title}} 
+                                            </h5>
                                             <p>{{ $v->description }}</p> 
                                         </a>
                                     @endforeach       

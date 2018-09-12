@@ -2495,3 +2495,7 @@ ul.breadcrumb li a:hover {
     background-color: #DDD;
     border-color: #DDD;
 }
+.list-group-item li
+{
+  font-size: 12px;
+}

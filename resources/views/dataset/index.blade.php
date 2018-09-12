@@ -47,6 +47,23 @@
                 </div>
             </div>
 
+            <div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading" style="padding-top: 10px;padding-bottom: 10px;">
+                        <h3><i class="fa fa-filter" aria-hidden="true"></i> Licenses</h3>
+                    </div>
+                    <ul class="list-group" style="list-style: none;">
+                        @foreach($get_lcs as $k => $v)
+                        <a  href="?lcs={{$v->license}}"  class="list-group-item">
+                            <li class="">
+                                {{$v->license}} <span class="badge-primary badge-pill">({{$v->num}})</span>
+                            </li>
+                        </a>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
         </div>
         <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
             @if($is_login)
@@ -58,14 +75,15 @@
             @endif
             {!! Form::open(['url' => url()->current(),'class' => 'form-auth-small', 'method' => 'get']) !!}
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <div class="form-group">
                         <input type="text" class="form-control" id="title" name="title" value="" placeholder="ค้นหา" required>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">Search</button>
+                        <a href="/dataset"><button type="button" class="btn btn-warning">Reset</button></a>
                     </div>
                 </div>
             </div>
@@ -85,7 +103,7 @@
             <div class="row">
                 <div class="col-md-12 featured-responsive">
                     <div class="list-group">
-                        @foreach($get_dts as $k => $v)
+                        @foreach($get_join_dts as $k => $v)
                             <a href="{{ url('/dataset/page/'.$v->url) }}" class="list-group-item list-group-item-action">
                                 <h5>
                                     @if($is_login)

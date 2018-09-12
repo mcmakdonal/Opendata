@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Libs\Customlib;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
-use App\Libs\Customlib;
 use Validator;
+use App\userdownload;
 
 class IndexController extends Controller
 {
@@ -47,9 +48,10 @@ class IndexController extends Controller
         }
     }
 
-    public function is_login(){
+    public function is_login()
+    {
         return response()->json([
-            'status' => Customlib::is_login()
+            'status' => Customlib::is_login(),
         ]);
     }
 
@@ -67,7 +69,7 @@ class IndexController extends Controller
             'record_status' => 'A',
         ];
 
-        $result = DB::table('tbl_userdownlaod')->insert($args);
+        $result = DB::table('tbl_userdownload')->insert($args);
         if ($result) {
             return response()->json([
                 'status' => true,
@@ -78,5 +80,25 @@ class IndexController extends Controller
             ]);
         }
 
+    }
+
+    public function list_user()
+    {
+
+        userdownload::create(['name' => 'Flight 10']);
+
+        // $userdownload = userdownload::find(2);
+
+        // $userdownload->res_id = 3;
+        // $userdownload->first_name = "first_name2";
+        // $userdownload->last_name = "last_name2";
+        // $userdownload->description = "description2";
+        // $userdownload->update_by = 1;
+        // $userdownload->record_status = "A";
+
+        // $userdownload->save();
+
+
+        dd($userdownload);
     }
 }

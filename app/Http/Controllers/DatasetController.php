@@ -22,24 +22,27 @@ class DatasetController extends Controller
         $slug = $request->slug;
         $format = $request->format;
         $title = $request->title;
+        $license = $request->lcs;
+
         $ogz = Customlib::get_ogz_count($slug);
-        $get_dts = Customlib::get_dts($slug, $format, $title);
-        // exit();
-        // dd($get_dts);
+        $get_join_dts = Customlib::get_join_dts($slug, $format, $title, $license);
         $file_format = Customlib::file_has();
-        // dd($file_format);
+        $get_lcs = Customlib::get_lcs();
+
         return view('dataset.index', [
             'title' => 'Dataset',
             'header' => 'Dataset',
-            'get_dts' => $get_dts,
+            'get_join_dts' => $get_join_dts,
             'ogz' => $ogz,
             'slug_sec' => ($request->slug) ? "?slug=" . $slug : false,
             'file_format' => $file_format,
+            'get_lcs' => $get_lcs,
             'is_login' => Customlib::is_login(),
             'param' => [
                 ($slug) ? "Organization : $slug" : "",
                 ($format) ? "Format : $format" : "",
                 ($title) ? "Title : $title" : "",
+                ($license) ? "Linsense : $license" : "",
             ],
         ]);
     }
@@ -71,9 +74,7 @@ class DatasetController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $find = array(" ", "/", "@", ".", "_");
-        $replace = array("-");
-        $url = strtolower(str_replace($find, $replace, $request->url));
+        $url = Customlib::make_slug("url", $request->url);
         if (Customlib::get_url("dts", $url)) {
             return redirect()->back()->withErrors("Url ถูกใช้ไปแล้ว กรุณาเปลี่ยน url ใหม่");
         }
@@ -143,11 +144,7 @@ class DatasetController extends Controller
                     }
 
                     $file = $request->file('file');
-
-                    $find = array(" ", "/", "@", "_");
-                    $replace = array("-");
-                    $name = strtolower(str_replace($find, $replace, $file->getClientOriginalName()));
-
+                    $name = Customlib::make_slug("img", $file->getClientOriginalName());
                     $file->move(public_path('/files/' . $path) . '/', $name);
                     $file_arg['file_path'] = '/files/' . $path . '/' . $name;
                     $file_arg['file_ext'] = $file->getClientOriginalExtension();
@@ -172,7 +169,7 @@ class DatasetController extends Controller
                 $result = DB::table('tbl_resource')->insertGetId($file_arg);
                 if ($result) {
                     \Session::forget('new_dataset');
-                    return redirect('/dataset/page/' . $new_dataset['url']);
+                    return redirect('/dataset/page/' . $new_dataset['url'])->with('status', 'Success');
                 } else {
                     return redirect('/dataset/new');
                 }
@@ -207,11 +204,7 @@ class DatasetController extends Controller
                 }
 
                 $file = $request->file('file');
-
-                $find = array(" ", "/", "@", "_");
-                $replace = array("-");
-                $name = strtolower(str_replace($find, $replace, $file->getClientOriginalName()));
-
+                $name = Customlib::make_slug("img", $file->getClientOriginalName());
                 $file->move(public_path('/files/' . $path) . '/', $name);
                 $file_arg['file_path'] = '/files/' . $path . '/' . $name;
                 $file_arg['file_ext'] = $file->getClientOriginalExtension();
@@ -235,7 +228,7 @@ class DatasetController extends Controller
             $file_arg['record_status'] = "A";
             $result = DB::table('tbl_resource')->insertGetId($file_arg);
             if ($result) {
-                return redirect('/dataset/page/' . $request->slug_url);
+                return redirect('/dataset/page/' . $request->slug_url)->with('status', 'Success');
             } else {
                 return redirect('/dataset/new');
             }
@@ -246,9 +239,12 @@ class DatasetController extends Controller
     public function page(string $slug_url)
     {
         if ($slug_url != "") {
-            $tbl_dataset = DB::table('tbl_dataset')->where('url', $slug_url)->get();
+            $tbl_dataset = Customlib::get_dts("", "", $slug_url);
+            if (!(count($tbl_dataset) > 0)) {
+                abort(404);
+            }
             $dts_id = $tbl_dataset[0]->dts_id;
-            $tbl_resource = DB::table('tbl_resource')->where('dts_id', $dts_id)->get();
+            $tbl_resource = Customlib::get_res("",$dts_id);
             // dd($tbl_resource);
             return view('dataset.page', [
                 'title' => 'Dataset',
@@ -265,6 +261,9 @@ class DatasetController extends Controller
     {
         if ($slug_url != "") {
             $tbl_dataset = DB::table('tbl_dataset')->where('url', $slug_url)->get()->toArray();
+            if (!(count($tbl_dataset) > 0)) {
+                abort(404);
+            }
             $dts_id = $tbl_dataset[0]->dts_id;
             $tbl_resource = DB::table('tbl_resource')->where('dts_id', $dts_id)->get();
             $get_ogz = Customlib::get_ogz();

@@ -3,7 +3,11 @@
 
 @section('content')
 <section class="">
-
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="text-right">
         <a href="{{url('/dataset/page/'.$slug_url)}}">
             <button type="button" class="btn btn-primary"><span class="lnr lnr-eye"></span> View Dataset</button>
@@ -106,8 +110,16 @@
                         @foreach($resource as $k => $v)
                         <div class="list-group-item list-group-item-action">
                             <div class="row">
-                                <div class="col">
-                                    <h5 style="margin-left: 5px;"> <span class="badge badge-secondary">{{ strtoupper($v->file_format) }}</span> {{ $v->file_name }} </h5>
+                                <div class="col-md-12">
+                                    @php
+                                        $file_format = $v->file_format;
+                                        if($v->file_format == "txt" || $v->file_format == "json"){
+                                            $file_format = "text";
+                                        }elseif($v->file_format == "png" || $v->file_format == "jpeg" || $v->file_format == "jpg"){
+                                            $file_format = "image";
+                                        }
+                                    @endphp
+                                    <h5> <i class="fa fa-file-{{ $file_format }}-o" aria-hidden="true"></i> {{ $v->file_name }} </h5>
                                 </div>
                             </div>
                         </div>

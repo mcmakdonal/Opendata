@@ -101,6 +101,8 @@ Route::get('/logout', function () {
 Route::get('/is-login', 'IndexController@is_login');
 Route::post('/user-download', 'IndexController@user_download');
 
+Route::get('/list-user', 'IndexController@list_user');
+
 // Route::get('/cookie', function () {
 //     dd(Cookie::get('token'));
 // });

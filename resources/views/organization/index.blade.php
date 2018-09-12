@@ -12,16 +12,16 @@
         </div>
     @endif
     {!! Form::open(['url' => url()->current(),'class' => 'form-auth-small', 'method' => 'get']) !!}
-    @csrf
     <div class="row">
         <div class="col-md-9">
             <div class="form-group">
-                <input type="text" class="form-control" id="" name="" value="" placeholder="" required>
+                <input type="text" class="form-control" id="title" name="title" value="" placeholder="คำค้นหา" required>
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <button type="submit" class="btn btn-success btn-block">Search</button>
+                <button type="submit" class="btn btn-success">Search</button>
+                <a href="/organization"><button type="button" class="btn btn-warning">Reset</button></a>
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
         <div class="col-md-4 featured-responsive">
             <div class="featured-place-wrap">
                 <a href="{{ url('/organization/page/'.$v->url) }}">
-                    <img src="{{ url($v->image) }}" class="img-responsive" alt="#" style="height: 200px;">
+                    <img src="{{ url($v->image) }}" class="img-responsive" alt="#">
                     <div class="featured-title-box">
                         <h5 style="word-break: break-all">{{ str_limit($v->title,30) }}</h5>
                     </div>

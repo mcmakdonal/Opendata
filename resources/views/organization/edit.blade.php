@@ -4,6 +4,12 @@
 
 @section('content')
 <section class="">
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+    
     <div class="text-right">
         <a href="{{url('/organization/page/'.$slug_url)}}">
             <button type="submit" class="btn btn-primary"><span class="lnr lnr-eye"></span> View Organization</button>

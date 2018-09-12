@@ -16,7 +16,7 @@ class isLogin
     public function handle($request, Closure $next)
     {
         if (!(\Cookie::get('token') !== null)) {
-            return response('Unauthorized.', 401);
+            abort(404);
         }
         return $next($request);
     }

@@ -13,8 +13,12 @@
         </ul>
     </div>
     @endif
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
     {!! Form::open(['url' => '/resource/update','class' => 'form-auth-small', 'method' => 'put','files' => true]) !!}
-    @csrf
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
