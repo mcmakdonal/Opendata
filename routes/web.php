@@ -17,6 +17,9 @@ Route::get('/', 'IndexController@index')->name('index');
 // index dts
 Route::get('/dataset', 'DatasetController@index');
 
+// ajax index
+Route::post('/list-data', 'IndexController@list_data');
+
 // หน้า แรก new
 Route::get('/dataset/new', 'DatasetController@new');
 
@@ -26,13 +29,8 @@ Route::post('/dataset/pre_new_resource','DatasetController@pre_new_resource');
 // หน้าตอจาก new เอา session มาใช้
 Route::get('/dataset/new_resource', 'DatasetController@new_resource');
 
-// สำหรับเพิ่ม res ตัวอื่นๆ
-Route::get('/dataset/new_resource/{slug}', 'DatasetController@add_new_resource');
-
+// สำหรับ save resource ปกติ
 Route::post('/dataset/save', 'DatasetController@save');
-
-// สำหรับ save res ใหม่
-Route::post('/dataset/save_res', 'DatasetController@save_res');
 
 // หน้า detail แต่ละ dts
 Route::get('/dataset/page/{slug}', 'DatasetController@page');
@@ -53,6 +51,12 @@ Route::delete('/dataset/delete/{slug}', 'DatasetController@delete');
 
 // preivew res ของ data set
 Route::get('/dataset/page/{slug}/resource/{res_slug}', 'ResourceController@preview');
+
+// สำหรับเพิ่ม res ใหม่
+Route::get('/resource/new_resource/{slug}', 'ResourceController@add_new_resource');
+
+// สำหรับ save res ใหม่
+Route::post('/resource/save', 'ResourceController@save');
 
 // edit res
 Route::get('/dataset/page/{slug}/resource_edit/{res_slug}', 'ResourceController@edit');
@@ -92,6 +96,10 @@ Route::resource('administrator', 'AdministratorController');
 
 //////////////////////////////////////////////////////////////////////////////
 
+Route::resource('categories', 'CategoriesController');
+
+//////////////////////////////////////////////////////////////////////////////
+
 Route::get('/login', 'IndexController@login');
 Route::post('/chk_login', 'IndexController@chk_login');
 Route::get('/logout', function () {
@@ -101,7 +109,7 @@ Route::get('/logout', function () {
 Route::get('/is-login', 'IndexController@is_login');
 Route::post('/user-download', 'IndexController@user_download');
 
-Route::get('/list-user', 'IndexController@list_user');
+// Route::post('/list-user', 'IndexController@list_user');
 
 // Route::get('/cookie', function () {
 //     dd(Cookie::get('token'));

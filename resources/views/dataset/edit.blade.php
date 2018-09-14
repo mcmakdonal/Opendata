@@ -36,8 +36,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="title" class="control-label">Title : </label>
-                            <input type="text" class="form-control" id="title" name="title" value="{{ $tbl_dataset[0]->title }}" placeholder="ชื่อ" required>
+                            <label for="title" class="control-label">ชื่อ Dataset : </label>
+                            <input type="text" class="form-control" id="dts_title" name="dts_title" value="{{ $tbl_dataset[0]->dts_title }}" placeholder="ชื่อ Dataset" required>
                         </div>
                     </div>
 
@@ -46,19 +46,73 @@
                             <label for="URL" class="control-label">Url : </label>
                             <div class="input-group">
                                 <span class="input-group-addon">/dataset/page/</span>
-                                <input type="text" name="url" id="url" value="{{ $tbl_dataset[0]->url }}" class="form-control" placeholder="my-dataset" readonly>
+                                <input type="text" name="dts_url" id="dts_url" value="{{ $tbl_dataset[0]->dts_url }}" class="form-control" placeholder="my-dataset" readonly>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="description" class="control-label">Description : </label>
-                            <textarea class="form-control" id="description" name="description" rows="3" style="resize : none;">{{ $tbl_dataset[0]->description }}</textarea>
+                            <label for="description" class="control-label">รายละเอียด : </label>
+                            <textarea class="form-control" id="dts_description" name="dts_description" rows="3" style="resize : none;">{{ $tbl_dataset[0]->dts_description }}</textarea>
                         </div>
                     </div>
 
                     <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="dts_scope_geo" class="control-label">ขอบเขตภูมิศาสตร์ : </label>
+                            <input type="text" class="form-control" id="dts_scope_geo" name="dts_scope_geo" value="{{ $tbl_dataset[0]->dts_scope_geo }}" placeholder="ขอบเขตภูมิศาสตร์" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="dts_tag" class="control-label">ป้ายกำกับ : </label>
+                            <input type="text" class="form-control tag-input" id="dts_tag" name="dts_tag" value="{{ $tbl_dataset[0]->dts_tag }}" placeholder="ป้ายกำกับ">
+                            <span class="label label-warning">ใส่คำที่ต้องการจากนั้นกด enter</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="dts_contact_name" class="control-label">ชื่อผู้ใช้ข้อมูล : </label>
+                            <input type="text" class="form-control" id="dts_contact_name" name="dts_contact_name" value="{{ $tbl_dataset[0]->dts_contact_name }}" placeholder="ชื่อผู้ใช้ข้อมูล" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="dts_contact_email" class="control-label">อีเมลผู้ให้ข้อมูล : </label>
+                            <input type="email" class="form-control" id="dts_contact_email" name="dts_contact_email" value="{{ $tbl_dataset[0]->dts_contact_email }}" placeholder="อีเมลผู้ให้ข้อมูล" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="dts_permission" class="control-label">สิทธิ์ในการเข้าถึงข้อมูล : </label>
+                            <input type="text" class="form-control" id="dts_permission" name="dts_permission" value="{{ $tbl_dataset[0]->dts_permission }}" placeholder="สิทธิ์ในการเข้าถึงข้อมูล" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="dts_frequent" class="control-label">ความถี่ในการปรับปรุง : </label>
+                            <select class="form-control use-select2" name="dts_frequent" id="dts_frequent" required>
+                                <option value="0" {{ ($tbl_dataset[0]->dts_frequent == 0)? "selected" : "" }} >Not updated(historical only)</option>
+                                <option value="1" {{ ($tbl_dataset[0]->dts_frequent == 1)? "selected" : "" }} >Annual</option>
+                                <option value="2" {{ ($tbl_dataset[0]->dts_frequent == 2)? "selected" : "" }} >Quarterly</option>
+                                <option value="3" {{ ($tbl_dataset[0]->dts_frequent == 3)? "selected" : "" }} >Monthly</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <hr style="display:none;" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="" class="control-label">License : </label>
                             <select class="form-control use-select2" name="lcs_id" id="lcs_id" required>
@@ -69,23 +123,34 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="" class="control-label">Organization : </label>
                             <select class="form-control use-select2" name="ogz_id" id="ogz_id" required>
                                 @foreach($get_ogz as $k => $v)
-                                    <option value="{{ $v->ogz_id }}" {{ ($tbl_dataset[0]->ogz_id == $v->ogz_id)? "selected" : "" }} >{{ $v->title }}</option>
+                                    <option value="{{ $v->ogz_id }}" {{ ($tbl_dataset[0]->ogz_id == $v->ogz_id)? "selected" : "" }} >{{ $v->ogz_title }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="" class="control-label">Categories : </label>
+                            <select class="form-control use-select2" name="cat_id" id="cat_id" required>
+                                @foreach($get_cat as $k => $v)
+                                    <option value="{{ $v->cat_id }}" {{ ($tbl_dataset[0]->cat_id == $v->cat_id)? "selected" : "" }} >{{ $v->cat_title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="" class="control-label">สถานะ : </label>
-                            <select class="form-control use-select2" name="status" id="status">
-                                <option value="pb" {{ ($tbl_dataset[0]->status == "pb")? "selected" : "" }} >Public</option>
-                                <option value="pv" {{ ($tbl_dataset[0]->status == "pv")? "selected" : "" }} >Private</option>
+                            <select class="form-control use-select2" name="dts_status" id="dts_status">
+                                <option value="pb" {{ ($tbl_dataset[0]->dts_status == "pb")? "selected" : "" }} >Public</option>
+                                <option value="pv" {{ ($tbl_dataset[0]->dts_status == "pv")? "selected" : "" }} >Private</option>
                             </select>
                         </div>
                     </div>
@@ -105,7 +170,7 @@
         <div id="resouce" class="tab-pane fade"><br>
             <div class="row">
                 <div class="col-md-12 featured-responsive">
-                    <?=link_to('/dataset/new_resource/' . $slug_url, $title = 'Add New Resource', ['class' => 'btn btn-primary'], $secure = null);?>
+                    <?=link_to('/resource/new_resource/' . $slug_url, $title = 'Add New Resource', ['class' => 'btn btn-primary'], $secure = null);?>
                     <div class="list-group" style="margin-top: 10px;">
                         @foreach($resource as $k => $v)
                         <div class="list-group-item list-group-item-action">

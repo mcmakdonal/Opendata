@@ -345,6 +345,7 @@ class ComposerStaticInit56c87ba19ddd9b9dc54e9095ed458d26
 
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Dataset' => __DIR__ . '/../..' . '/app/Dataset.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Helpers\\AppHelper' => __DIR__ . '/../..' . '/app/Helpers/AppHelper.php',
         'App\\Http\\Controllers\\AdministratorController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdministratorController.php',
@@ -366,12 +367,14 @@ class ComposerStaticInit56c87ba19ddd9b9dc54e9095ed458d26
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Middleware\\isLogin' => __DIR__ . '/../..' . '/app/Http/Middleware/isLogin.php',
         'App\\Libs\\Customlib' => __DIR__ . '/../..' . '/app/Libs/Customlib.php',
+        'App\\Organization' => __DIR__ . '/../..' . '/app/Organization.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\userdownload' => __DIR__ . '/../..' . '/app/userdownload.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',

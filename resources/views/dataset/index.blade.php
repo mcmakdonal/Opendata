@@ -12,17 +12,10 @@
                         <h3><i class="fa fa-bars" aria-hidden="true"></i> Organizations </h3>
                     </div>
                     <ul class="list-group" style="list-style: none;">
-                        @foreach($ogz as $k => $v)
-                            @if($slug_sec)
-                                <a  href="" class="list-group-item">
-                            @else
-                                <a  href="{{ '?slug='.$v->url }}" class="list-group-item">
-                            @endif
+                        @foreach($get_ogz_count as $k => $v)
+                            <a  href="javascript:void(0)" class="list-group-item organization search-data" data-id={{ $v->ogz_id }}>
                                 <li class="">
-                                    {{$v->title}} <span class="badge-primary badge-pill">({{$v->num}})</span>
-                                    @if($slug_sec)
-                                        <span class="badge" style="float: right;"><i class="fa fa-window-close" aria-hidden="true"></i></span>
-                                    @endif
+                                    {{$v->ogz_title}} <span class="badge-primary badge-pill">({{$v->num}})</span>
                                 </li>
                             </a>
                         @endforeach
@@ -37,7 +30,7 @@
                     </div>
                     <ul class="list-group" style="list-style: none;">
                         @foreach($file_format as $k => $v)
-                        <a  href="?format={{$v->file_format}}"  class="list-group-item">
+                        <a  href="javascript:void(0)"  class="list-group-item format search-data" data-id="{{$v->file_format}}">
                             <li class="">
                                 {{$v->file_format}} <span class="badge-primary badge-pill">({{$v->num}})</span>
                             </li>
@@ -54,9 +47,26 @@
                     </div>
                     <ul class="list-group" style="list-style: none;">
                         @foreach($get_lcs as $k => $v)
-                        <a  href="?lcs={{$v->license}}"  class="list-group-item">
+                        <a  href="javascript:void(0)"  class="list-group-item license search-data" data-id="{{$v->lcs_id}}">
                             <li class="">
                                 {{$v->license}} <span class="badge-primary badge-pill">({{$v->num}})</span>
+                            </li>
+                        </a>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading" style="padding-top: 10px;padding-bottom: 10px;">
+                        <h3><i class="fa fa-filter" aria-hidden="true"></i> Categories</h3>
+                    </div>
+                    <ul class="list-group" style="list-style: none;">
+                        @foreach($get_cat as $k => $v)
+                        <a  href="javascript:void(0)"  class="list-group-item categories search-data" data-id="{{$v->cat_id}}">
+                            <li class="">
+                                {{$v->cat_title}} <span class="badge-primary badge-pill">({{$v->num}})</span>
                             </li>
                         </a>
                         @endforeach
@@ -73,7 +83,7 @@
                 </div>
             </div>
             @endif
-            {!! Form::open(['url' => url()->current(),'class' => 'form-auth-small', 'method' => 'get']) !!}
+            {!! Form::open(['url' => '#','class' => 'form-auth-small', 'method' => 'get']) !!}
             <div class="row">
                 <div class="col-md-8">
                     <div class="form-group">
@@ -81,46 +91,31 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success">Search</button>
-                        <a href="/dataset"><button type="button" class="btn btn-warning">Reset</button></a>
+                    <div class="form-group text-center">
+                        <button type="button" class="btn btn-success search-data">Search</button>
+                        <button type="button" class="btn btn-warning clear-data">Reset</button>
                     </div>
                 </div>
             </div>
             {!! Form::close() !!}
-            <div class="row">
-                <div class="col-md-2 col-xs-3">
-                    <p>Search : </p>
-                </div>
-                <div class="col-md-10 col-xs-9">
-                    @foreach($param as $k => $v)
-                        @if($v != "")
-                            <span class="label label-default">{{$v}}</span>&nbsp;
-                        @endif
-                    @endforeach
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-md-4 col-md-offset-8">
+                    <select class="form-control use-select2 search-data" id="order">
+                        <option value="">การเรียกดู</option>
+                        <option value="view">ความนิยม</option>
+                        <option value="txt">ตัวอักษร</option>
+                        <option value="update">แก้ไขล่าสุด</option>
+                    </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 featured-responsive">
-                    <div class="list-group">
-                        @foreach($get_join_dts as $k => $v)
-                            <a href="{{ url('/dataset/page/'.$v->url) }}" class="list-group-item list-group-item-action">
-                                <h5>
-                                    @if($is_login)
-                                        <span class="badge badge-secondary">{{ ($v->status == "pb")?"Public":"Private" }}
-                                        </span> {{$v->title}} 
-                                    @endif
-                                </h5>
-                                <p>{{ $v->description }}</p>
-                                @foreach(explode(",",$v->format) as $f)
-                                    <span class="label label-primary">{{$f}}</span>
-                                @endforeach
-                            </a>
-                        @endforeach
-                    </div>
-                </div>
+            <div class="row" id="result-data">
+
             <div>
         </div>
     </div>
 </section>
+@endsection
+
+@section('script')
+get_data();
 @endsection

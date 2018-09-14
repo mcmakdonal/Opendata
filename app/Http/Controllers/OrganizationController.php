@@ -41,11 +41,11 @@ class OrganizationController extends Controller
     public function save(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'url' => 'required|string|max:250',
-            'description' => 'required|max:500',
-            'status' => 'string|required',
-            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096|required',
+            'ogz_title' => 'required',
+            'ogz_url' => 'required|string|max:250',
+            'ogz_description' => 'required|max:500',
+            'ogz_status' => 'string|required',
+            'ogz_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096|required',
         ]);
 
         if ($validator->fails()) {
@@ -53,29 +53,38 @@ class OrganizationController extends Controller
         }
 
         $image = "";
-        if ($request->hasfile('image')) {
-            if ($request->file('image')) {
-                $file = $request->file('image');
+        if ($request->hasfile('ogz_image')) {
+            if ($request->file('ogz_image')) {
+                Customlib::create_dir();
+                $file = $request->file('ogz_image');
+                $image_info = getimagesize($file);
                 $name = date('YmdHis') . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path() . '/files/og_image/', $name);
                 $image_resize = Image::make(public_path() . '/files/og_image/' . $name);
-                $image_resize->resize(300, 300);
+                if ($image_info[0] > 300 && $image_info[1] > 300) {
+                    $image_resize->resize(300, 300);
+                } else {
+                    // resize the image to a height of 300 and constrain aspect ratio (auto width)
+                    $image_resize->resize(null, 300, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                }
                 $image_resize->save(public_path() . '/files/og_image/' . $name);
                 $image = 'files/og_image/' . $name;
             }
         }
 
-        $url = Customlib::make_slug("url", $request->url);
+        $url = Customlib::make_slug("url", $request->ogz_url);
         if (Customlib::get_url("ogz", $url)) {
             return redirect()->back()->withErrors("Url ถูกใช้ไปแล้ว กรุณาเปลี่ยน url ใหม่");
         }
 
         $args = array(
-            'title' => $request->title,
-            'url' => $url,
-            'description' => $request->description,
-            'status' => $request->status,
-            'image' => $image,
+            'ogz_title' => $request->ogz_title,
+            'ogz_url' => $url,
+            'ogz_description' => $request->ogz_description,
+            'ogz_status' => $request->ogz_status,
+            'ogz_image' => $image,
             'create_date' => date('Y-m-d H:i:s'),
             'create_by' => 1,
             'update_date' => date('Y-m-d H:i:s'),
@@ -135,20 +144,21 @@ class OrganizationController extends Controller
     public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'description' => 'required|max:500',
-            'status' => 'string|required',
-            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096|nullable',
+            'ogz_title' => 'required',
+            'ogz_description' => 'required|max:500',
+            'ogz_status' => 'string|required',
+            'ogz_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096|nullable',
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $image = $request->old_image;
-        if ($request->hasfile('image')) {
-            if ($request->file('image')) {
-                $file = $request->file('image');
+        $image = $request->ogz_old_image;
+        if ($request->hasfile('ogz_image')) {
+            if ($request->file('ogz_image')) {
+                Customlib::create_dir();
+                $file = $request->file('ogz_image');
                 $name = date('YmdHis') . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path() . '/files/og_image/', $name);
                 $image_resize = Image::make(public_path() . '/files/og_image/' . $name);
@@ -159,10 +169,10 @@ class OrganizationController extends Controller
         }
 
         $args = array(
-            'title' => $request->title,
-            'description' => $request->description,
-            'status' => $request->status,
-            'image' => $image,
+            'ogz_title' => $request->ogz_title,
+            'ogz_description' => $request->ogz_description,
+            'ogz_status' => $request->ogz_status,
+            'ogz_image' => $image,
             'update_date' => date('Y-m-d H:i:s'),
             'update_by' => 1,
             'record_status' => 'A',

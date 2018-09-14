@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label for="title" class="control-label">Title : </label>
-                <input type="text" class="form-control" id="title" name="title" value="" placeholder="ชื่อ" required>
+                <input type="text" class="form-control" id="ogz_title" name="ogz_title" value="" placeholder="ชื่อ" required>
             </div>
         </div>
 
@@ -27,7 +27,7 @@
                 <label for="URL" class="control-label">Url : </label>
                 <div class="input-group">
                     <span class="input-group-addon">/organization/page/</span>
-                    <input type="text" name="url" id="url" class="form-control" placeholder="my-organization">
+                    <input type="text" name="ogz_url" id="ogz_url" class="form-control" placeholder="my-organization">
                 </div>
             </div>
         </div>
@@ -35,21 +35,21 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label for="description" class="control-label">Description : </label>
-                <textarea class="form-control" id="description" name="description" rows="3" style="resize : none;"></textarea>
+                <textarea class="form-control" id="ogz_description" name="ogz_description" rows="3" style="resize : none;"></textarea>
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="form-group">
                 <label for="Image" class="control-label">Image : </label>
-                <input class="form-control" type="file" name="image" id="image" required>
+                <input class="form-control" type="file" name="ogz_image" id="ogz_image" required>
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="form-group">
                 <label for="" class="control-label">สถานะ : </label>
-                <select class="form-control use-select2" name="status" id="status">
+                <select class="form-control use-select2" name="ogz_status" id="ogz_status">
                     <option value="pb">Public</option>
                     <option value="pv">Private</option>
                 </select>

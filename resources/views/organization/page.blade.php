@@ -56,14 +56,14 @@
                             <h3> {{count($content)}} Datasets found</h3>
                                 <div class="list-group">
                                     @foreach($content as $k => $v)
-                                        <a href="{{ url('/dataset/page/'.$v->url) }}" class="list-group-item list-group-item-action">
+                                        <a href="{{ url('/dataset/page/'.$v->ogz_url) }}" class="list-group-item list-group-item-action">
                                             <h5> 
                                                 @if($is_login) 
-                                                    <span class="badge badge-secondary">{{ ($v->status == "pb")?"Public":"Private" }}</span>
+                                                    <span class="badge badge-secondary">{{ ($v->ogz_status == "pb")?"Public":"Private" }}</span>
                                                 @endif 
-                                            {{$v->title}} 
+                                            {{$v->ogz_title}} 
                                             </h5>
-                                            <p>{{ $v->description }}</p> 
+                                            <p>{{ $v->ogz_description }}</p> 
                                         </a>
                                     @endforeach       
                                 </div>            

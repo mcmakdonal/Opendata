@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Validator;
-use App\userdownload;
 
 class IndexController extends Controller
 {
@@ -82,23 +81,20 @@ class IndexController extends Controller
 
     }
 
-    public function list_user()
+    public function list_data(Request $request)
     {
+        $organization = $request->organization;
+        $format = $request->format;
+        $license = $request->license;
+        $categories = $request->categories;
+        $title = $request->title;
+        $order = $request->order;
 
-        userdownload::create(['name' => 'Flight 10']);
-
-        // $userdownload = userdownload::find(2);
-
-        // $userdownload->res_id = 3;
-        // $userdownload->first_name = "first_name2";
-        // $userdownload->last_name = "last_name2";
-        // $userdownload->description = "description2";
-        // $userdownload->update_by = 1;
-        // $userdownload->record_status = "A";
-
-        // $userdownload->save();
-
-
-        dd($userdownload);
+        $get_join_dts = Customlib::get_all_data($organization, $format, $license, $categories, $title, $order);
+        $arg = [
+            'data' => $get_join_dts,
+            'is_login' => Customlib::is_login()
+        ];
+        return response()->json($arg);
     }
 }

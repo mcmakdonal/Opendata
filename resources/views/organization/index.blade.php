@@ -30,10 +30,10 @@
         @foreach($get_ogz as $k => $v)
         <div class="col-md-4 featured-responsive">
             <div class="featured-place-wrap">
-                <a href="{{ url('/organization/page/'.$v->url) }}">
-                    <img src="{{ url($v->image) }}" class="img-responsive" alt="#">
+                <a href="{{ url('/organization/page/'.$v->ogz_url) }}">
+                    <img src="{{ url($v->ogz_image) }}" class="img-responsive" alt="#">
                     <div class="featured-title-box">
-                        <h5 style="word-break: break-all">{{ str_limit($v->title,30) }}</h5>
+                        <h5 style="word-break: break-all">{{ str_limit($v->ogz_title,30) }}</h5>
                     </div>
                 </a>
             </div>

@@ -22,33 +22,50 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="file" class="control-label">File : </label>
+                <label for="file" class="control-label">เลือกชนิดของ Resource : </label>
+                <select class="form-control use-select2" id="file_type" name="file_type">
+                    <option value="f" {{ ($get_res[0]->file_type == "f")? "selected" : "" }} >File Upload</option>
+                    <option value="w" {{ ($get_res[0]->file_type == "w")? "selected" : "" }} >Web URL</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-12" id="div-file">
+            <div class="form-group">
+                <label for="file" class="control-label">ไฟล์ : </label>
                 <input class="form-control" type="file" name="file" id="file" onchange="read_filename(this)">
             </div>
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-12" id="div-web" style="display: none;">
             <div class="form-group">
-                <label for="" class="control-label">File old : </label>
-                <input type="text" class="form-control" value="{{ $get_res[0]->file_name }}" readonly>
+                <label for="file" class="control-label">Web URL : </label>
+                <input class="form-control" type="url" name="file" id="file" value="{{ $get_res[0]->file_path }}" placeholder="Web URL" disabled>
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="form-group">
-                <label for="file_name" class="control-label">Filename : </label>
+                <label for="" class="control-label">Path ไฟล์เดิม : </label>
+                <input type="text" class="form-control" value="{{ (strpos($get_res[0]->file_path, 'http') !== false)? $get_res[0]->file_path : url('').$get_res[0]->file_path }}" readonly>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="file_name" class="control-label">ชื่อไฟล์ : </label>
                 <input type="text" class="form-control" id="file_name" name="file_name" value="{{ $get_res[0]->file_name }}" placeholder="ชื่อ" required>
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="form-group">
-                <label for="file_desc" class="control-label">Description : </label>
+                <label for="file_desc" class="control-label">รายละเอียดไฟล์ : </label>
                 <textarea class="form-control" id="file_desc" name="file_desc" rows="3" style="resize : none;" required>{{ $get_res[0]->file_desc }}</textarea>
             </div>
         </div>
 
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
             <div class="form-group">
                 <label for="" class="control-label">Format : </label>
                 <select class="form-control use-select2" name="file_format" id="file_format">
@@ -58,7 +75,7 @@
                     <option value="xml" {{ ($get_res[0]->file_format == "xml")? "selected" : "" }} >XML</option>
                 </select>
             </div>
-        </div>
+        </div> -->
 
         <div class="col-md-6">
             <button class="btn btn-danger" type="button" onclick="remove_res(this,'{{$slug_url}}','{{ $get_res[0]->res_id }}')" data="{{ url('/resource/delete') }}">Delete Resource</button>
@@ -69,10 +86,15 @@
             <input type="hidden" value="{{ $get_res[0]->file_path }}" name="old_file_path">
             <input type="hidden" value="{{ $get_res[0]->file_ext }}" name="old_file_ext">
             <input type="hidden" value="{{ $get_res[0]->res_id }}" name="res_id">
+            <input type="hidden" value="{{ $get_res[0]->dts_id }}" name="dts_id">
             <button type="submit" class="btn btn-success">Update Resource</button>
             <?=link_to('/dataset/page/' . $slug_url, $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null);?>
         </div>
     </div>
     {!! Form::close() !!}
 </section>
+@endsection
+
+@section('script')
+change_res(true);
 @endsection

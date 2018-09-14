@@ -37,12 +37,12 @@
                         <div id="dataset" class="tab-pane fade in active">
                             @foreach($content as $k => $v)
                                 <div class="row">
-                                    <div class="col-md-6 col-xs-12"><h3>{{ $v->title }}</h3></div>
-                                    @if(($is_login) && $v->status == "pv")
+                                    <div class="col-md-6 col-xs-12"><h3>{{ $v->dts_title }}</h3></div>
+                                    @if(($is_login) && $v->dts_status == "pv")
                                         <div class="col-md-6 col-xs-12 "><h3 class="text-right"> <span class="label label-primary"> <span class="lnr lnr-lock"></span> Private </span> </h3></div>
                                     @endif
                                 </div>
-                                <p>{{ $v->description }}</p>
+                                <p>{{ $v->dts_description }}</p>
                             @endforeach
 
                             <h4>Data and Resources</h4>

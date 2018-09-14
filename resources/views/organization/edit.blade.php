@@ -40,7 +40,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="title" class="control-label">Title : </label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{ $content[0]->title }}" placeholder="ชื่อ" required>
+                        <input type="text" class="form-control" id="ogz_title" name="ogz_title" value="{{ $content[0]->ogz_title }}" placeholder="ชื่อ" required>
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@
                         <label for="URL" class="control-label">Url : </label>
                         <div class="input-group">
                             <span class="input-group-addon">/organization/page/</span>
-                            <input type="text" name="url" id="url" value="{{ $content[0]->url }}" class="form-control" placeholder="my-organization" readonly>
+                            <input type="text" name="ogz_url" id="ogz_url" value="{{ $content[0]->ogz_url }}" class="form-control" placeholder="my-organization" readonly>
                         </div>
                     </div>
                 </div>
@@ -57,31 +57,31 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="description" class="control-label">Description : </label>
-                        <textarea class="form-control" id="description" name="description" rows="3" style="resize : none;">{{ $content[0]->description }}</textarea>
+                        <textarea class="form-control" id="ogz_description" name="ogz_description" rows="3" style="resize : none;">{{ $content[0]->ogz_description }}</textarea>
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="Image" class="control-label">Image : </label>
-                        <input class="form-control" type="file" name="image" id="image">
+                        <input class="form-control" type="file" name="ogz_image" id="ogz_image">
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="Image" class="control-label">Image : </label>
-                        <img src="{{ url($content[0]->image) }}" class="img-responsive" style="width: 120px;">
-                        <input type="hidden" value="{{$content[0]->image}}" name="old_image">
+                        <img src="{{ url($content[0]->ogz_image) }}" class="img-responsive" style="width: 120px;">
+                        <input type="hidden" value="{{$content[0]->ogz_image}}" name="ogz_old_image">
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="" class="control-label">สถานะ : </label>
-                        <select class="form-control use-select2" name="status" id="status">
-                            <option value="pb" {{ ($content[0]->status == "pb")? "selected" : "" }} >Public</option>
-                            <option value="pv" {{ ($content[0]->status == "pv")? "selected" : "" }} >Private</option>
+                        <select class="form-control use-select2" name="ogz_status" id="ogz_status">
+                            <option value="pb" {{ ($content[0]->ogz_status == "pb")? "selected" : "" }} >Public</option>
+                            <option value="pv" {{ ($content[0]->ogz_status == "pv")? "selected" : "" }} >Private</option>
                         </select>
                     </div>
                 </div>

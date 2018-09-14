@@ -20,8 +20,87 @@ class ResourceController extends Controller
             'is_login' => Customlib::is_login(),
             'get_res' => $get_res,
             'slug_url' => $slug,
-            'res_slug' => $res_slug
+            'res_slug' => $res_slug,
         ]);
+    }
+
+    public function add_new_resource(string $slug_url)
+    {
+        if ($slug_url != "") {
+            return view('dataset.add_resource', [
+                'title' => 'Add an Resource',
+                'header' => 'Add an Resource',
+                'slug_url' => $slug_url,
+            ]);
+        }
+    }
+
+    public function save(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file_name' => 'required|max:250',
+            'file_type' => 'string|max:1|required',
+            'file_desc' => 'required|max:500',
+            'file' => 'max:20480|nullable',
+            'slug_url' => 'required|max:500',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $file = "";
+        $file_arg = [];
+        if ($request->hasfile('file')) {
+            if ($request->file('file')) {
+                $path = uniqid();
+                Customlib::create_dir();
+                if (!mkdir(public_path('/files/' . $path), 0777, true)) {
+                    $path = "res";
+                }
+
+                $file = $request->file('file');
+                $name = Customlib::make_slug("img", $file->getClientOriginalName());
+                $file->move(public_path('/files/' . $path) . '/', $name);
+                $file_arg['file_path'] = '/files/' . $path . '/' . $name;
+                $file_arg['file_ext'] = $file_arg['file_format'] = $file->getClientOriginalExtension();
+                // $file_arg['file_format'] = ($request->file_format == "") ? $file->getClientOriginalExtension() : $request->file_format;
+            } else {
+                return redirect('/dataset/page/' . $request->slug_url)->withErrors("Issue With upload file");
+                exit();
+            }
+        } else {
+            $file_arg['file_path'] = $request->file;
+            $explode = explode(".", $request->file);
+            $ext = strtolower(end($explode));
+            $clear = explode("/", $ext);
+            $ext = $clear[0];
+            $format = ['com', 'th', 'net', 'info', 'php', 'html', 'aspx'];
+            $file_arg['file_ext'] = $file_arg['file_format'] = (in_array($ext, $format)) ? "web" : $ext;
+        }
+
+        $dts_id = Customlib::get_id("dts", $request->slug_url);
+        if ($dts_id) {
+            $file_arg['dts_id'] = $dts_id;
+            $file_arg['file_name'] = $request->file_name;
+            $file_arg['file_desc'] = $request->file_desc;
+            $file_arg['file_type'] = $request->file_type;
+            $file_arg['file_slug'] = uniqid();
+            $file_arg['create_date'] = date('Y-m-d H:i:s');
+            $file_arg['create_by'] = 1;
+            $file_arg['update_date'] = date('Y-m-d H:i:s');
+            $file_arg['update_by'] = 1;
+            $file_arg['record_status'] = "A";
+            $result = DB::table('tbl_resource')->insert($file_arg);
+            if ($result) {
+                // อัพเดตคะแนนดาว
+                Customlib::update_rate_star($dts_id);
+                return redirect('/dataset/page/' . $request->slug_url)->with('status', 'Success');
+            } else {
+                return redirect('/dataset/page/' . $request->slug_url)->withErrors("Issue With upload file");
+            }
+        }
+
     }
 
     public function edit($slug, $res_slug)
@@ -43,10 +122,10 @@ class ResourceController extends Controller
         $validator = Validator::make($request->all(), [
             'res_id' => 'required',
             'file_name' => 'required|max:250',
-            'file_format' => 'string|max:20|nullable',
+            'file_type' => 'string|max:1|required',
             'file_desc' => 'required|max:500',
             'slug_url' => 'required|max:500',
-            'file.*' => 'max:16384|nullable',
+            'file' => 'max:20480|nullable',
             'old_file_path' => 'required',
             'old_file_ext' => 'required',
         ]);
@@ -57,8 +136,7 @@ class ResourceController extends Controller
 
         $file = "";
         $file_arg['file_path'] = $request->old_file_path;
-        $file_arg['file_ext'] = $request->old_file_ext;
-        $file_arg['file_format'] = $request->file_format;
+        $file_arg['file_ext'] = $file_arg['file_format']= $request->old_file_ext;
         if ($request->hasfile('file')) {
             if ($request->file('file')) {
                 $path = uniqid();
@@ -76,22 +154,34 @@ class ResourceController extends Controller
                 return redirect()->back()->withErrors("Issue With upload file");
                 exit();
             }
+        } elseif ($request->file != "") {
+            $file_arg['file_path'] = $request->file;
+            $explode = explode(".", $request->file);
+            $ext = strtolower(end($explode));
+            $clear = explode("/", $ext);
+            $ext = $clear[0];
+            $format = ['com', 'th', 'net', 'info', 'php', 'html', 'aspx'];
+            $file_arg['file_ext'] = $file_arg['file_format'] = (in_array($ext, $format)) ? "web" : $ext;
         }
 
         $file_arg['file_name'] = $request->file_name;
         $file_arg['file_desc'] = $request->file_desc;
+        $file_arg['file_type'] = $request->file_type;
         $file_arg['update_date'] = date('Y-m-d H:i:s');
         $file_arg['update_by'] = 1;
         $file_arg['record_status'] = "A";
         $result = DB::table('tbl_resource')->where('res_id', $request->res_id)->update($file_arg);
         if ($result) {
+            // อัพเดตคะแนนดาว
+            Customlib::update_rate_star($request->dts_id);
             return redirect()->back()->with('status', 'Success');
         } else {
             return redirect()->back()->withErrors(array('error' => 'error'));
         }
     }
 
-    public function delete($res_id){
+    public function delete($res_id)
+    {
         if ($res_id != "") {
             $result = DB::table('tbl_resource')->where('res_id', $res_id)->delete();
             if ($result) {

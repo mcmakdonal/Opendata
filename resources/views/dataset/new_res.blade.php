@@ -25,26 +25,43 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="file" class="control-label">File : </label>
+                <label for="file" class="control-label">เลือกชนิดของ Resource : </label>
+                <select class="form-control use-select2" id="file_type" name="file_type">
+                    <option value="f">File Upload</option>
+                    <option value="w">Web URL</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-12" id="div-file">
+            <div class="form-group">
+                <label for="file" class="control-label">ไฟล์ : </label>
                 <input class="form-control" type="file" name="file" id="file" onchange="read_filename(this)" required>
             </div>
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-12" id="div-web" style="display: none;">
             <div class="form-group">
-                <label for="file_name" class="control-label">Filename : </label>
-                <input type="text" class="form-control" id="file_name" name="file_name" value="" placeholder="ชื่อ" required>
+                <label for="file" class="control-label">Web URL : </label>
+                <input class="form-control" type="url" name="file" id="file" placeholder="Web URL" disabled>
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="form-group">
-                <label for="file_desc" class="control-label">Description : </label>
+                <label for="file_name" class="control-label">ชื่อไฟล์ : </label>
+                <input type="text" class="form-control" id="file_name" name="file_name" value="" placeholder="ชื่อไฟล์" required>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="file_desc" class="control-label">รายละเอียด : </label>
                 <textarea class="form-control" id="file_desc" name="file_desc" rows="3" style="resize : none;" required></textarea>
             </div>
         </div>
 
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
             <div class="form-group">
                 <label for="" class="control-label">Format : </label>
                 <select class="form-control use-select2" name="file_format" id="file_format">
@@ -54,11 +71,11 @@
                     <option value="xml">XML</option>
                 </select>
             </div>
-        </div>
+        </div> -->
 
         <div class="col-md-12 text-right">
-            <button type="submit" class="btn btn-success">Create Dataset</button>
-            <?= link_to('/dataset', $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null); ?>
+            <button type="submit" class="btn btn-success">สร้าง Dataset</button>
+            <?=link_to('/dataset', $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null);?>
         </div>
     </div>
     {!! Form::close() !!}

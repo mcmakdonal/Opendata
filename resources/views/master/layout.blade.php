@@ -12,6 +12,7 @@
 	{{ \AppHelper::instance()->gen_script('css','backend/assets/vendor/font-awesome/css/font-awesome.min.css') }}
 	{{ \AppHelper::instance()->gen_script('css','backend/assets/vendor/linearicons/style.css') }}
 	{{ \AppHelper::instance()->gen_script('css','backend/assets/vendor/chartist/css/chartist-custom.css') }}
+	{{ \AppHelper::instance()->gen_script('css','backend/assets/vendor/jQuery-Tags-Input/dist/jquery.tagsinput.min.css') }}
 	<!-- VENDOR CSS DATATABLE -->
 	{{ \AppHelper::instance()->gen_script('css','backend/assets/vendor/datatables/jquery.dataTables.css') }}
 	{{ \AppHelper::instance()->gen_script('css','backend/assets/vendor/datatables/buttons.dataTables.min.css') }}
@@ -38,9 +39,9 @@
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<!-- NAVBAR -->
-		<nav class="navbar navbar-default navbar-fixed-top">
+		<nav class="navbar navbar-default navbar-fixed-top" style="background-image: url({{ url('backend/assets/img/header_fx.png') }});background-position: top;background-repeat: no-repeat; background-size: cover;">
 			<div class="brand">
-				<a href="{{ url('/') }}"> Opendata </a>
+				<a href="{{ url('/') }}"> <img src="{{ url('backend/assets/img/logo.png') }}" class="img-responsive"> </a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -92,7 +93,7 @@
 						<li><a href="#">Pictures</a></li>
 						<li><a href="#">Summer 15</a></li>
 						<li>Italy</li>
-					</ul> 
+					</ul>
 					<div class="panel panel-headline">
 						<div class="panel-heading">
 							<h3 class="panel-title">@yield('header')</h3>
@@ -125,7 +126,7 @@
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/scripts/sweetalert.min.js') }}
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/scripts/loadingoverlay.min.js') }}
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/select2/select2.min.js') }}
-
+	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/jQuery-Tags-Input/dist/jquery.tagsinput.min.js') }}
 	<!-- VENDOR CSS DATATABLE -->
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/datatables/jquery.dataTables.min.js') }}
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/datatables/dataTables.buttons.min.js') }}
@@ -136,7 +137,7 @@
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/datatables/buttons.html5.min.js') }}
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/datatables/buttons.print.min.js') }}
 
-	<!-- VENDOR CSS DATETIMERANGE -->	
+	<!-- VENDOR CSS DATETIMERANGE -->
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/daterangepicker/moment.min.js') }}
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/daterangepicker/daterangepicker.min.js') }}
 
@@ -146,6 +147,11 @@
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/scripts/klorofil-common.js') }}
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/scripts/main.js') }}
 	<!-- {{ \AppHelper::instance()->gen_script('js','backend/assets/css/demo.css') }} -->
+	<script>
+		$(document).ready(function ($) {
+			@yield('script')
+		});
+	</script>
 </body>
 
 </html>
