@@ -317,7 +317,7 @@ class Customlib extends ServiceProvider
         } else if (in_array($ext, $start_5)) {
             return 5;
         } else {
-            return 1;
+            return 5;
         }
     }
 
