@@ -21,9 +21,8 @@ class OrganizationController extends Controller
     public function index(Request $request)
     {
         $title = $request->title;
-
         $get_ogz = Customlib::get_ogz("", $title);
-        // dd($paginatedItems);
+        // dd($get_ogz);
         return view('organization.index', [
             'title' => 'Organization',
             'header' => 'Organization',
@@ -153,7 +152,7 @@ class OrganizationController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+        
         $image = $request->ogz_old_image;
         if ($request->hasfile('ogz_image')) {
             if ($request->file('ogz_image')) {

@@ -122,11 +122,11 @@
                             <tr>
                                 <td>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" name="url" value="{{$v->url}}"></label>
+                                        <label><input type="checkbox" name="url" value="{{$v->dts_url}}"></label>
                                     </div>
                                 </td>
                                 <td colspan="3">
-                                    <h5> <span class="badge badge-secondary">{{ ($v->status == "pb")?"Public":"Private" }}</span> {{$v->title}} </h5>
+                                    <h5> <span class="badge badge-secondary">{{ ($v->dts_status == "pb")?"Public":"Private" }}</span> {{$v->dts_title}} </h5>
                                 </td>
                             </tr>
                             @endforeach

@@ -110,7 +110,10 @@
             </div>
             <div class="row" id="result-data">
 
-            <div>
+            </div>
+            <div class="row">
+                <ul id="pagination" class="pagination pull-right"></ul>
+            </div>
         </div>
     </div>
 </section>

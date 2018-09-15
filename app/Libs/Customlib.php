@@ -66,8 +66,15 @@ class Customlib extends ServiceProvider
         }
     }
 
-    public static function get_all_data($organization = "", $format = "", $license = "", $categories = "", $title = "", $order = "")
+    public static function get_all_data($organization = "", $format = "", $license = "", $categories = "", $title = "", $order = "", $page = 1)
     {
+
+        $limit = 10;
+        if ($page == 1) {
+            $offset = 0;
+        } else {
+            $offset = ($limit * $page) - 1;
+        }
         $matchThese = [];
         $matchOrder = 'tbl_dataset.dts_id DESC';
         if ($organization != "") {
@@ -109,9 +116,29 @@ class Customlib extends ServiceProvider
             ->where($matchThese)
             ->orderByRaw($matchOrder)
             ->groupBy($select)
+            ->offset($offset)
+            ->limit($limit)
             ->get()
             ->toArray();
-        return $tbl_dataset;
+
+        $count = DB::table('tbl_dataset')
+            ->select('tbl_dataset.dts_id', 'tbl_dataset.dts_title', 'tbl_dataset.dts_url', 'tbl_dataset.dts_status', 'tbl_dataset.dts_description', DB::raw('group_concat(tbl_resource.file_format) format'))
+            ->join('tbl_organization', 'tbl_organization.ogz_id', '=', 'tbl_dataset.ogz_id')
+            ->leftJoin('tbl_resource', 'tbl_resource.dts_id', '=', 'tbl_dataset.dts_id')
+            ->leftJoin('tbl_license', 'tbl_license.lcs_id', '=', 'tbl_dataset.lcs_id')
+            ->leftJoin('tbl_categories', 'tbl_categories.cat_id', '=', 'tbl_dataset.cat_id')
+            ->where($matchThese)
+            ->orderByRaw($matchOrder)
+            ->groupBy($select)
+            ->get()
+            ->toArray();
+
+        $ceil = ceil(count($count) / $limit);
+        $args = [
+            'table' => $tbl_dataset,
+            'totalPages' => (($ceil == 0) ? 1 : $ceil),
+        ];
+        return $args;
     }
 
     public static function get_ogz($slug = "", $title = "")
@@ -126,7 +153,12 @@ class Customlib extends ServiceProvider
         if (!Customlib::is_login()) {
             $matchThese[] = ['tbl_organization.ogz_status', '=', "pb"];
         }
-        $tbl_organization = DB::table('tbl_organization')->where($matchThese)->get()->toArray();
+        $tbl_organization = DB::table('tbl_organization')
+        ->select('tbl_organization.ogz_id','ogz_title','ogz_url','ogz_description','ogz_image','ogz_status', DB::raw('count(tbl_dataset.ogz_id) num'))
+        ->leftJoin('tbl_dataset', 'tbl_dataset.ogz_id', '=', 'tbl_organization.ogz_id')
+        ->where($matchThese)
+        ->groupBy('tbl_organization.ogz_id','ogz_title','ogz_url','ogz_description','ogz_image','ogz_status')
+        ->paginate(8);
         return $tbl_organization;
     }
 
@@ -145,7 +177,13 @@ class Customlib extends ServiceProvider
         if (!Customlib::is_login()) {
             $matchThese[] = ['tbl_dataset.dts_status', '=', "pb"];
         }
-        $tbl_dataset = DB::table('tbl_dataset')->where($matchThese)->get()->toArray();
+        $tbl_dataset = DB::table('tbl_dataset')
+            ->where($matchThese)
+            ->join('tbl_license', 'tbl_license.lcs_id', '=', 'tbl_dataset.lcs_id')
+            ->join('tbl_categories', 'tbl_categories.cat_id', '=', 'tbl_dataset.cat_id')
+            ->join('tbl_organization', 'tbl_organization.ogz_id', '=', 'tbl_dataset.ogz_id')
+            ->get()
+            ->toArray();
         return $tbl_dataset;
     }
 
@@ -317,8 +355,14 @@ class Customlib extends ServiceProvider
         } else if (in_array($ext, $start_5)) {
             return 5;
         } else {
-            return 5;
+            return 1;
         }
     }
 
+    public static function frequent()
+    {
+        $arg = ['Not updated(historical only)', 'Annual', 'Quarterly', 'Monthly'];
+        return $arg;
+
+    }
 }

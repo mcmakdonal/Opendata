@@ -21,7 +21,7 @@ class AppHelper
 
     public function check_login_fb()
     {
-        if (\Cookie::get('mct_user_id') === null){
+        if (\Cookie::get('mct_user_id') === null) {
             return false;
         } else {
             return true;
@@ -31,5 +31,18 @@ class AppHelper
     public static function instance()
     {
         return new AppHelper();
+    }
+
+    public static function DateThai($strDate)
+    {
+        $strYear = date("Y", strtotime($strDate)) + 543;
+        $strMonth = date("n", strtotime($strDate));
+        $strDay = date("j", strtotime($strDate));
+        $strHour = date("H", strtotime($strDate));
+        $strMinute = date("i", strtotime($strDate));
+        $strSeconds = date("s", strtotime($strDate));
+        $strMonthCut = array("", "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม");
+        $strMonthThai = $strMonthCut[$strMonth];
+        return "$strDay $strMonthThai $strYear, $strHour:$strMinute";
     }
 }

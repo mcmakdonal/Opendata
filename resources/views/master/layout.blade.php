@@ -127,6 +127,7 @@
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/scripts/loadingoverlay.min.js') }}
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/select2/select2.min.js') }}
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/jQuery-Tags-Input/dist/jquery.tagsinput.min.js') }}
+	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/josecebe-twbs-pagination/jquery.twbsPagination.min.js') }}
 	<!-- VENDOR CSS DATATABLE -->
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/datatables/jquery.dataTables.min.js') }}
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/datatables/dataTables.buttons.min.js') }}
@@ -146,7 +147,8 @@
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/chartist/js/chartist.min.js') }}
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/scripts/klorofil-common.js') }}
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/scripts/main.js') }}
-	<!-- {{ \AppHelper::instance()->gen_script('js','backend/assets/css/demo.css') }} -->
+	{{ \AppHelper::instance()->gen_script('js','backend/assets/scripts/module.js') }}
+
 	<script>
 		$(document).ready(function ($) {
 			@yield('script')

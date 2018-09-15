@@ -53,17 +53,17 @@
                         {!! Form::close() !!}
                         <div class="row">
                             <div class="col-md-12">
-                            <h3> {{count($content)}} Datasets found</h3>
+                            <h3> {{count($content)}} Datasets</h3>
                                 <div class="list-group">
                                     @foreach($content as $k => $v)
-                                        <a href="{{ url('/dataset/page/'.$v->ogz_url) }}" class="list-group-item list-group-item-action">
+                                        <a href="{{ url('/dataset/page/'.$v->dts_url) }}" class="list-group-item list-group-item-action">
                                             <h5> 
                                                 @if($is_login) 
-                                                    <span class="badge badge-secondary">{{ ($v->ogz_status == "pb")?"Public":"Private" }}</span>
+                                                    <span class="badge badge-secondary">{{ ($v->dts_status == "pb")?"Public":"Private" }}</span>
                                                 @endif 
-                                            {{$v->ogz_title}} 
+                                            {{$v->dts_title}} 
                                             </h5>
-                                            <p>{{ $v->ogz_description }}</p> 
+                                            <p>{{ $v->dts_description }}</p> 
                                         </a>
                                     @endforeach       
                                 </div>            

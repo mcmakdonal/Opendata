@@ -89,12 +89,16 @@ class IndexController extends Controller
         $categories = $request->categories;
         $title = $request->title;
         $order = $request->order;
+        $page = ($request->page)? $request->page : 1;
 
-        $get_join_dts = Customlib::get_all_data($organization, $format, $license, $categories, $title, $order);
+        $get_join_dts = Customlib::get_all_data($organization, $format, $license, $categories, $title, $order, $page);
         $arg = [
-            'data' => $get_join_dts,
-            'is_login' => Customlib::is_login()
+            'data' => $get_join_dts['table'],
+            'is_login' => Customlib::is_login(),
+            'totalPages' => $get_join_dts['totalPages'],
+            'startPage' => (int) $page
         ];
+        // dd($arg);
         return response()->json($arg);
     }
 }

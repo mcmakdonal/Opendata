@@ -89,10 +89,9 @@
                 <div class="form-group">
                     <label for="dts_frequent" class="control-label">ความถี่ในการปรับปรุง : </label>
                     <select class="form-control use-select2" name="dts_frequent" id="dts_frequent" required>
-                        <option value="0">Not updated(historical only)</option>
-                        <option value="1">Annual</option>
-                        <option value="2">Quarterly</option>
-                        <option value="3">Monthly</option>
+                        @foreach ($get_frequent as $k => $v )
+                            <option value="{{$k}}">{{$v}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

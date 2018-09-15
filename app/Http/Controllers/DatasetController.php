@@ -41,6 +41,7 @@ class DatasetController extends Controller
         $get_ogz = Customlib::get_ogz();
         $get_lcs = Customlib::get_lcs();
         $get_cat = Customlib::get_cat();
+        $get_frequent = Customlib::frequent();
 
         return view('dataset.new', [
             'title' => 'Create an Dataset',
@@ -49,6 +50,7 @@ class DatasetController extends Controller
             'get_lcs' => $get_lcs,
             'get_cat' => $get_cat,
             'lock_ogz' => ($request->ogz) ? $request->ogz : "",
+            'get_frequent' => $get_frequent
         ]);
     }
 
@@ -193,11 +195,13 @@ class DatasetController extends Controller
     {
         if ($slug_url != "") {
             $tbl_dataset = Customlib::get_dts("", "", $slug_url);
+            // dd($tbl_dataset);
             if (!(count($tbl_dataset) > 0)) {
                 abort(404);
             }
             $dts_id = $tbl_dataset[0]->dts_id;
             $tbl_resource = Customlib::get_res("", $dts_id);
+            $get_frequent = Customlib::frequent();
             // dd($tbl_resource);
             return view('dataset.page', [
                 'title' => 'Dataset',
@@ -206,6 +210,7 @@ class DatasetController extends Controller
                 'resource' => $tbl_resource,
                 'slug_url' => $slug_url,
                 'is_login' => Customlib::is_login(),
+                'get_frequent' => $get_frequent
             ]);
         }
     }
@@ -222,6 +227,7 @@ class DatasetController extends Controller
             $get_ogz = Customlib::get_ogz();
             $get_lcs = Customlib::get_lcs();
             $get_cat = Customlib::get_cat();
+            $get_frequent = Customlib::frequent();
 
             return view('dataset.edit', [
                 'title' => 'Dataset Edit',
@@ -232,6 +238,7 @@ class DatasetController extends Controller
                 'resource' => $tbl_resource,
                 'get_lcs' => $get_lcs,
                 'get_cat' => $get_cat,
+                'get_frequent' => $get_frequent
             ]);
         }
     }

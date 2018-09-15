@@ -98,10 +98,9 @@
                         <div class="form-group">
                             <label for="dts_frequent" class="control-label">ความถี่ในการปรับปรุง : </label>
                             <select class="form-control use-select2" name="dts_frequent" id="dts_frequent" required>
-                                <option value="0" {{ ($tbl_dataset[0]->dts_frequent == 0)? "selected" : "" }} >Not updated(historical only)</option>
-                                <option value="1" {{ ($tbl_dataset[0]->dts_frequent == 1)? "selected" : "" }} >Annual</option>
-                                <option value="2" {{ ($tbl_dataset[0]->dts_frequent == 2)? "selected" : "" }} >Quarterly</option>
-                                <option value="3" {{ ($tbl_dataset[0]->dts_frequent == 3)? "selected" : "" }} >Monthly</option>
+                                @foreach ($get_frequent as $k => $v )
+                                    <option value="{{$k}}" {{ ($tbl_dataset[0]->dts_frequent == $k)? "selected" : "" }} >{{$v}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -162,7 +161,7 @@
                     <div class="col-md-6 text-right">
                         <input type="hidden" value="{{ $tbl_dataset[0]->dts_id }}" name="dts_id">
                         <button type="submit" class="btn btn-success">Update Dataset</button>
-                        <?=link_to('/dataset', $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null);?>
+                        <?=link_to('/dataset/page/'.$slug_url, $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null);?>
                     </div>
                 </div>
             {!! Form::close() !!}
