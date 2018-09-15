@@ -12,7 +12,7 @@
 	{{ \AppHelper::instance()->gen_script('css','backend/assets/vendor/font-awesome/css/font-awesome.min.css') }}
 	{{ \AppHelper::instance()->gen_script('css','backend/assets/vendor/linearicons/style.css') }}
 	{{ \AppHelper::instance()->gen_script('css','backend/assets/vendor/chartist/css/chartist-custom.css') }}
-	{{ \AppHelper::instance()->gen_script('css','backend/assets/vendor/jQuery-Tags-Input/dist/jquery.tagsinput.min.css') }}
+	{{ \AppHelper::instance()->gen_script('css','backend/assets/vendor/jquery-tags-input/dist/jquery.tagsinput.min.css') }}
 	<!-- VENDOR CSS DATATABLE -->
 	{{ \AppHelper::instance()->gen_script('css','backend/assets/vendor/datatables/jquery.dataTables.css') }}
 	{{ \AppHelper::instance()->gen_script('css','backend/assets/vendor/datatables/buttons.dataTables.min.css') }}
@@ -126,7 +126,7 @@
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/scripts/sweetalert.min.js') }}
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/scripts/loadingoverlay.min.js') }}
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/select2/select2.min.js') }}
-	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/jQuery-Tags-Input/dist/jquery.tagsinput.min.js') }}
+	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/jquery-tags-input/dist/jquery.tagsinput.min.js') }}
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/josecebe-twbs-pagination/jquery.twbsPagination.min.js') }}
 	<!-- VENDOR CSS DATATABLE -->
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/vendor/datatables/jquery.dataTables.min.js') }}

@@ -53,7 +53,7 @@
                         {!! Form::close() !!}
                         <div class="row">
                             <div class="col-md-12">
-                            <h3> {{count($content)}} Datasets</h3>
+                            <h3> {{count($content)}} Datasets </h3>
                                 <div class="list-group">
                                     @foreach($content as $k => $v)
                                         <a href="{{ url('/dataset/page/'.$v->dts_url) }}" class="list-group-item list-group-item-action">
