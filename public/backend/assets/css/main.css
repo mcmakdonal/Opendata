@@ -2652,7 +2652,7 @@ ul.breadcrumb li a:hover {
 
 .menu-active {
     background-color: #C42191 !important;
-    color: white !important;
+    color: #C42191 !important;
 }
 
 label {

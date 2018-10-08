@@ -21,7 +21,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">บันทึก</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
                         </div>
                     </div>
                 </div>

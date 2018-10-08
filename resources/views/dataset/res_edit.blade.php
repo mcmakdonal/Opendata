@@ -4,6 +4,8 @@
 
 @section('content')
 <section class="">
+<div class="col-md-12">
+    <div class="panel panel-primary"  style="padding: 20px;">
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -92,6 +94,8 @@
         </div>
     </div>
     {!! Form::close() !!}
+</div>
+</div>
 </section>
 @endsection
 

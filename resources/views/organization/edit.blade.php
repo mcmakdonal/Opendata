@@ -4,22 +4,25 @@
 
 @section('content')
 <section class="">
+<div class="col-md-12">
+    <div class="panel panel-primary"  style="padding: 20px;">
     @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}
         </div>
     @endif
     
-    <div class="text-right">
-        <a href="{{url('/organization/page/'.$slug_url)}}">
-            <button type="submit" class="btn btn-primary"><span class="lnr lnr-eye"></span> View Organization</button>
-        </a>
-    </div>
+   
 
     <ul class="nav nav-tabs" role="tablist">
         <li class="active"><a data-toggle="tab" href="#edit"><span class="lnr lnr-pencil"></span> Edit</a></li>
         <li><a data-toggle="tab" href="#datasets"><span class="lnr lnr-cloud-download"></span> Datasets</a></li>
-        <li><a data-toggle="tab" href="#member"><span class="lnr lnr-users"></span> Members</a></li>
+        <!-- <li><a data-toggle="tab" href="#member"><span class="lnr lnr-users"></span> Members</a></li> -->
+        <div class="text-right">
+        <a href="{{url('/organization/page/'.$slug_url)}}">
+            <button type="submit" class="btn btn-primary"><span class="lnr lnr-eye"></span> View Organization</button>
+        </a>
+    </div>
     </ul>
 
     <div class="tab-content">
@@ -143,6 +146,7 @@
         </div>
 
     </div>
-
+</div>
+</div>
 </section>
 @endsection

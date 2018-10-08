@@ -15,294 +15,174 @@
 	<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('backend/assets/img/apple-icon.png') }}">
 	<link rel="icon" type="image/png" sizes="96x96" href="{{ asset('backend/assets/img/favicon.png') }}">
 </head>
-
 <style>
 
-    /* BASIC */
-
-    html {
-    background-color: #56baed;
+@media only screen and (max-width: 700px) {
+    .right-box {
+        width:100% !important;
     }
-
-    body {
-    font-family: "Poppins", sans-serif;
-    height: 100vh;
+    .feed-box{
+      display:none !important;
     }
+}
 
-    a {
-    color: #92badd;
-    display:inline-block;
-    text-decoration: none;
-    font-weight: 400;
-    }
+  .login-box-body{
+  box-shadow: -30px 30px 50px rgba(0, 0, 0, 0.32);
+  border-radius: 4px;
+  text-align: center;
+  }
+  body{
+    height: 100%;
+    background: #dddddd;
+  }
+  .right-box{
+    float: right;
+    width: 500px;
+    height: 100%;
+    padding: 10px 60px 0px;
+  }
 
-    h2 {
-    text-align: center;
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-    display:inline-block;
-    margin: 40px 8px 10px 8px; 
-    color: #cccccc;
-    }
-
-
-
-    /* STRUCTURE */
-
-    .wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column; 
-    justify-content: center;
-    width: 100%;
-    min-height: 100%;
-    padding: 20px;
-    }
-
-    #formContent {
-    -webkit-border-radius: 10px 10px 10px 10px;
-    border-radius: 10px 10px 10px 10px;
-    background: #fff;
-    padding: 30px;
-    width: 90%;
-    max-width: 450px;
-    position: relative;
-    padding: 0px;
-    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-    text-align: center;
-    }
-
-    #formFooter {
-    background-color: #f6f6f6;
-    border-top: 1px solid #dce8f1;
-    padding: 25px;
-    text-align: center;
-    -webkit-border-radius: 0 0 10px 10px;
-    border-radius: 0 0 10px 10px;
-    }
-
-
-
-    /* TABS */
-
-    h2.inactive {
-    color: #cccccc;
-    }
-
-    h2.active {
-    color: #0d0d0d;
-    border-bottom: 2px solid #5fbae9;
-    }
-
-
-
-    /* FORM TYPOGRAPHY*/
-
-    input[type=button], input[type=submit], input[type=reset]  {
-    background-color: #56baed;
-    border: none;
-    color: white;
-    padding: 15px 80px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    text-transform: uppercase;
-    font-size: 13px;
-    -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-    box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-    margin: 5px 20px 40px 20px;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    }
-
-    input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-    background-color: #39ace7;
-    }
-
-    input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
-    -moz-transform: scale(0.95);
-    -webkit-transform: scale(0.95);
-    -o-transform: scale(0.95);
-    -ms-transform: scale(0.95);
-    transform: scale(0.95);
-    }
-
-    input[type=text],input[type=password] {
-    background-color: #f6f6f6;
-    border: none;
-    color: #0d0d0d;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 5px;
-    width: 85%;
-    border: 2px solid #f6f6f6;
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-    }
-
-    input[type=text]:focus {
-    background-color: #fff;
-    border-bottom: 2px solid #5fbae9;
-    }
-
-    input[type=text]:placeholder {
-    color: #cccccc;
-    }
-
-
-
-    /* ANIMATIONS */
-
-    /* Simple CSS3 Fade-in-down Animation */
-    .fadeInDown {
-    -webkit-animation-name: fadeInDown;
-    animation-name: fadeInDown;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-    }
-
-    @-webkit-keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -100%, 0);
-        transform: translate3d(0, -100%, 0);
-    }
-    100% {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
-    }
-
-    @keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -100%, 0);
-        transform: translate3d(0, -100%, 0);
-    }
-    100% {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
-    }
-
-    /* Simple CSS3 Fade-in Animation */
-    @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-    @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-
-    .fadeIn {
-    opacity:0;
-    -webkit-animation:fadeIn ease-in 1;
-    -moz-animation:fadeIn ease-in 1;
-    animation:fadeIn ease-in 1;
-
-    -webkit-animation-fill-mode:forwards;
-    -moz-animation-fill-mode:forwards;
-    animation-fill-mode:forwards;
-
-    -webkit-animation-duration:1s;
-    -moz-animation-duration:1s;
-    animation-duration:1s;
-    }
-
-    .fadeIn.first {
-    -webkit-animation-delay: 0.4s;
-    -moz-animation-delay: 0.4s;
-    animation-delay: 0.4s;
-    }
-
-    .fadeIn.second {
-    -webkit-animation-delay: 0.6s;
-    -moz-animation-delay: 0.6s;
-    animation-delay: 0.6s;
-    }
-
-    .fadeIn.third {
-    -webkit-animation-delay: 0.8s;
-    -moz-animation-delay: 0.8s;
-    animation-delay: 0.8s;
-    }
-
-    .fadeIn.fourth {
-    -webkit-animation-delay: 1s;
-    -moz-animation-delay: 1s;
-    animation-delay: 1s;
-    }
-
-    /* Simple CSS3 Fade-in Animation */
-    .underlineHover:after {
-    display: block;
+  .fedd-img{
+    position: absolute;
+    bottom: 0;
     left: 0;
-    bottom: -10px;
-    width: 0;
-    height: 2px;
-    background-color: #56baed;
-    content: "";
-    transition: width 0.2s;
-    }
+    right: 0;
+    top: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top center;
+  }
+  .feed-box{
+    position: fixed;
+    left: 0;
+    right: 500px;
+    top: 0;
+    bottom: 0;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    overflow: hidden;
+  }
+  .caption{
+    color: rgba(255,255,255,.75);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 60px 60px 30px;
+    font-size: 18px;
+    z-index: 20;
+    font-weight: 300;
+    background: -moz-linear-gradient(top,rgba(0,0,0,0) 0,rgba(0,0,0,1) 100%);
+    background: -webkit-linear-gradient(top,rgba(0,0,0,0) 0,rgba(0,0,0,1) 100%);
+    background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000', GradientType=0 );
+  }
+  .caption-title{
+    color: #fff;
+    font-weight: 300;
+    font-size: 36px;
+  }
+.login{
+  height: 46px;
+    padding: 10px 16px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+}
+  .btn-login{
+    font-size: 16px;
+    line-height: 24px;
+    padding: 10px 16px;
+    background: #C42191;
+    color:white;
+  }
+  #box-header{
+    position: relative;
+    font-size: 30px;
+    margin-bottom: 15px;
+    text-align:center;
+  }
+  #box-header>span>i{
+    color:#009688;
+  }
+  #box-header>div{
+  color: #707478;
+  font-size:16px;
+  }
 
-    .underlineHover:hover {
-    color: #0d0d0d;
-    }
-
-    .underlineHover:hover:after{
-    width: 100%;
-    }
-
-
-
-    /* OTHERS */
-
-    *:focus {
-        outline: none;
-    } 
-
-    #icon {
-    width:60%;
-    }
+  .form-control-feedback {
+    top: 5px !important;
+    right: 5px !important;
+}
+hr {
+  border: none;
+  height: 1px;
+  background: #f1f3f5;
+  margin-top: 1rem;
+    margin-bottom: 1rem;
+    box-sizing: content-box;
+    overflow: visible;
+    display: block;
+    unicode-bidi: isolate;
+    -webkit-margin-before: 0.5em;
+    -webkit-margin-after: 0.5em;
+    -webkit-margin-start: auto;
+    -webkit-margin-end: auto;
+}
 </style>
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
+<body >
 
-    <!-- Icon -->
-    <div class="fadeIn first">
-      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
-    </div>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
-    <!-- Login Form -->
-    {!! Form::open(['url' => '/chk_login','class' => 'form-auth-small', 'method' => 'post','files' => true]) !!}
-        <input type="text" id="login" class="fadeIn second" name="username" placeholder="username" required>
-        <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required>
-        <input type="submit" class="fadeIn fourth" value="Log In">
-    {!! Form::close() !!}
 
+  <div class="feed-box">
+      <div class="fedd-img" style="background-image: url(/backend/assets/img/login_bg.png)"></div>
+      <div class="caption">
+          <h4 class="caption-title"><b>Open Data</b> </h4>
+          <p>
+              
+          </p>
+      </div>
   </div>
-</div>
+
+  <div class="right-box">
+    <div id="box-header">
+      <img src="/backend/assets/img/login_logo.png">
+     
+    
+     
+    </div>
+
+       
+       {!! Form::open(['url' => '/chk_login','class' => 'form-auth-small', 'method' => 'post','files' => true]) !!}
+       
+          <div class="form-group has-feedback" id="id_pass" style="color: red;text-align: right;display:none;">
+              Email หรือ Password ไม่ถูกต้อง
+            </div>
+
+        <div class="form-group has-feedback">
+          <input type="text" id="username" class="form-control login" name="username" placeholder="username" >
+          <span class="glyphicon glyphicon-envelope "></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="password" id="pass"  name="password"class="form-control login" placeholder="Password">
+          <i class="glyphicon glyphicon-lock "></i>
+        </div>
+        <div class="col-xs-12" style="    margin-top: 20px;">
+          
+          <button type="submit" class="btn  btn-block btn-login" >Sign In</button>
+        </div>
+        <div class="col-xs-12" >
+            <div style="    margin-top: 20px;color: #707478;">
+             
+            </div>
+        </div>
+        <div class="col-xs-12" style="margin-top:50px">
+        <hr>
+        <p class="text-center text-grey-darker">
+            © Mculture
+        </p>
+      </div>
+        {!! Form::close() !!}
+      
+  </div>
+
+

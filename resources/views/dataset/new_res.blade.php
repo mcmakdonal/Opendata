@@ -4,6 +4,8 @@
 
 @section('content')
 <section class="">
+<div class="col-md-12">
+    <div class="panel panel-primary" style="padding:20px">
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -61,6 +63,27 @@
             </div>
         </div>
 
+          <div class="col-md-12 featured-responsive">
+                <div class="form-group">
+                <label for="file_desc" class="control-label">Metadata : <button type="button" class="btn btn-success metadata_btn" onclick="add_table()"><i class="glyphicon glyphicon-plus"></i></button></label>
+               
+               
+                <table class="table table-bordered" style="text-align:center;background:white">
+        <tr>
+        <td >Field name</td>
+        <td>Description</td>
+        <td >Field type</td>
+        <td >Unit</td>
+        <td >Del</td>
+        </tr>
+        <tbody id="data_body">
+                                    </tbody>
+                                    </table>
+                                    </div>
+
+         <div class="row">
+              
+
         <!-- <div class="col-md-12">
             <div class="form-group">
                 <label for="" class="control-label">Format : </label>
@@ -79,5 +102,7 @@
         </div>
     </div>
     {!! Form::close() !!}
+    </div>
+    </div>
 </section>
 @endsection

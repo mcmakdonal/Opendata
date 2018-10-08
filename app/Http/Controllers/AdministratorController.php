@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Validator;
+use App\Libs\Customlib;
 
 class AdministratorController extends Controller
 {
@@ -59,12 +61,16 @@ class AdministratorController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        if(Customlib::check_has_username($request->username)){
+            return redirect()->back()->withErrors(array('error' => 'Username already exists'));
+        }
 
         $args = array(
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'username' => $request->username,
-            'password' => Crypt::encryptString($request->password),
+            // 'password' => Crypt::encryptString($request->password),
+            'password' => Hash::make($request->password),
             'create_date' => date('Y-m-d H:i:s'),
             'create_by' => 1,
             'update_date' => date('Y-m-d H:i:s'),
@@ -134,7 +140,7 @@ class AdministratorController extends Controller
         $args = array(
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'password' => ($request->password != "") ? Crypt::encryptString($request->password) : $request->old_password,
+            'password' => ($request->password != "") ? Hash::make($request->password) : $request->old_password,
             'update_date' => date('Y-m-d H:i:s'),
             'update_by' => 1,
             'record_status' => 'A',

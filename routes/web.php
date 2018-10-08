@@ -10,9 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/env',function(){
+    if (App::environment('local')) {
+        phpinfo();
+    }
+});
 
 // หน้าแรก
-Route::get('/', 'IndexController@index')->name('index');
+Route::get('/', 'DatasetController@index')->name('index');
 
 // index dts
 Route::get('/dataset', 'DatasetController@index');
@@ -46,6 +51,11 @@ Route::post('/dataset/set_status', 'DatasetController@set_status');
 
 // ลบ dts
 Route::delete('/dataset/delete/{slug}', 'DatasetController@delete');
+
+// ลบ metadata
+Route::get('/dataset/delete_metadata/{mtd_id}', 'DatasetController@delete_metadata');
+
+Route::post('/dataset/update_metadata', 'DatasetController@update_metadata');
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -92,9 +102,16 @@ Route::delete('/organization/delete/{slug}', 'OrganizationController@delete');
 
 /////////////////////////////////////////////////////////////////////////
 
+// index ogz
+Route::get('/datamanagement', 'DatamanagementController@index');
+//////////////////
+
 Route::resource('administrator', 'AdministratorController');
 
-//////////////////////////////////////////////////////////////////////////////
+// api metadata
+Route::get('/get_matadata/{dts_id}', 'DatasetController@view_metadata');
+
+///////////////////////////////////////////////
 
 Route::resource('categories', 'CategoriesController');
 
@@ -103,14 +120,38 @@ Route::resource('categories', 'CategoriesController');
 Route::get('/login', 'IndexController@login');
 Route::post('/chk_login', 'IndexController@chk_login');
 Route::get('/logout', function () {
-    return redirect('/')->withCookie(Cookie::forget('token'));
+    return redirect('/')->withCookie(Cookie::forget('token'))->withCookie(Cookie::forget('name'));
 });
 
+// Check login
 Route::get('/is-login', 'IndexController@is_login');
+
+// Check username
+Route::post('/is-exists', 'IndexController@is_exists');
+
+// Add Log Download
 Route::post('/user-download', 'IndexController@user_download');
+
+// View Log Download
+Route::get('/log-download', 'LogdownloadController@index');
+
+Route::post('/filter-cat', 'IndexController@filter_cat');
+
+Route::post('/filter-ogz', 'IndexController@filter_ogz');
 
 // Route::post('/list-user', 'IndexController@list_user');
 
 // Route::get('/cookie', function () {
 //     dd(Cookie::get('token'));
 // });
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Route::get('/session', function () {
+    dd(session('new_dataset'));
+});
+Route::get('/cookie', function () {
+    // \Cookie::forget('USER_FULLNAME');
+    // \Cookie::forget('USER_EMAIL');
+    dd(\Cookie::get());
+});

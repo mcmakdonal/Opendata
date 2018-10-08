@@ -9,6 +9,13 @@ use Validator;
 
 class ResourceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('islogin', ['except' => [
+            'preview'
+        ]]);
+    }
+
     public function preview($slug, $res_slug)
     {
         $res_id = Customlib::get_id("res", $res_slug);
@@ -37,11 +44,10 @@ class ResourceController extends Controller
 
     public function save(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+       $validator = Validator::make($request->all(), [
             'file_name' => 'required|max:250',
             'file_type' => 'string|max:1|required',
             'file_desc' => 'required|max:500',
-            'file' => 'max:20480|nullable',
             'slug_url' => 'required|max:500',
         ]);
 
@@ -125,7 +131,7 @@ class ResourceController extends Controller
             'file_type' => 'string|max:1|required',
             'file_desc' => 'required|max:500',
             'slug_url' => 'required|max:500',
-            'file' => 'max:20480|nullable',
+            'file' => 'nullable',
             'old_file_path' => 'required',
             'old_file_ext' => 'required',
         ]);

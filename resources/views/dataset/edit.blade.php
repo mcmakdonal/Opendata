@@ -3,20 +3,24 @@
 
 @section('content')
 <section class="">
+<div class="col-md-12">
+    <div class="panel panel-primary"  style="padding: 20px;">
     @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}
         </div>
     @endif
-    <div class="text-right">
+    
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#dataset"><span class="lnr lnr-pencil"></span>Dataset</a></li>
+        <li><a data-toggle="tab" href="#resouce"><span class="lnr lnr-cloud-download"></span> Resource</a></li>
+        <li><a data-toggle="tab" href="#metadata"><span class="fa fa-database"></span> Metadata</a></li>
+        <div class="text-right">
         <a href="{{url('/dataset/page/'.$slug_url)}}">
             <button type="button" class="btn btn-primary"><span class="lnr lnr-eye"></span> View Dataset</button>
         </a>
     </div>
-
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#dataset"><span class="lnr lnr-pencil"></span> Edit metadata</a></li>
-        <li><a data-toggle="tab" href="#resouce"><span class="lnr lnr-cloud-download"></span> Resource</a></li>
     </ul>
 
     <div class="tab-content">
@@ -192,7 +196,127 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div id="metadata" class="tab-pane fade"><br>
+        {!! Form::open(['url' => '/dataset/update_metadata', 'method' => 'POST']) !!}
+        <div class="row">
+                <div class="col-md-12 featured-responsive">
+                <div class="form-group">
+                <label for="file_desc" class="control-label">Metadata : <button type="button" class="btn btn-success metadata_btn" onclick="add_table()"><i class="glyphicon glyphicon-plus"></i></button></label>
+               
+               
+                <table class="table table-bordered" style="text-align:center;background:white">
+        <tr>
+        <td >Field name</td>
+        <td>Description</td>
+        <td >Field type</td>
+        <td >Unit</td>
+        <td >Del</td>
+        </tr>
+        <tbody id="data_body">
+        @php
+  $size =count($metadata);
+ @endphp
+ @for($x = 0; $x <$size; $x++)
+        <tr id="tr{{$x}}">
+        <td><input type="text" value="{{ $metadata[$x]->mtd_field_name }}" class="form-control" name="field_name[]"  required></td>
+        <td><input type="text" value="{{ $metadata[$x]->mtd_description }}" class="form-control" name="description[]"  ></td>
+        <td><input type="text" value="{{ $metadata[$x]->mtd_field_type }}" class="form-control" name="field_type[]"  required></td>
+        <td ><input type="text" value="{{ $metadata[$x]->mtd_unit }}" class="form-control" name="unit[]"  >
+        <input type="text" value="0" class="form-control" style="display:none" name="type[]" >
+        <input type="hidden" value="{{ $metadata[$x]->mtd_id }}" name="mtd_id[]">
+        </td>
+        <td ><button type="button" class="btn btn-danger metadata_btn" onclick="remove_metadata('{{ $metadata[$x]->mtd_id }}','{{$slug_url}}')"><i class="glyphicon glyphicon-trash"></i></button> </td>
+        </tr>
+        @endfor
+                                    </tbody>
+                                    </table>
+                                    </div>
+             <div class="row">
+             <div class="col-md-12 text-right">
+             <input type="hidden" value="{{ $tbl_dataset[0]->dts_id }}" name="dts_id">
+             <input type="hidden" value="{{$slug_url}}" name="slug_url">
+                        <button type="submit" class="btn btn-success">Update Metadata</button>
+             
+                                    </div>               
+         {!! Form::close() !!}
+                </div>
+                                    
+            </div>
+                                   
+                                   </div>
 
+    </div>
+                                    </div>
+                                    </div>
+                                    <script>
+    var x=1000;
+        function add_table(){
+            x++;
+            var html = "<tr id='tr"+x+"' >\n" +
+"												<td><input type=\"text\" value=\"\" class=\"form-control\" name=\"field_name[]\"  required></td>\n" +
+"												<td><input type=\"text\" value=\" \" class=\"form-control\" name=\"description[]\"  ></td>\n" +
+"												<td><input type=\"text\" value=\"\" class=\"form-control\" name=\"field_type[]\"  required></td>\n" +
+"												<td><input type=\"text\" value=\" \" class=\"form-control\" name=\"unit[]\"  ><input type=\"text\" value=\"1\" class=\"form-control\" style=\"display:none\" name=\"type[]\" ></td>\n" +
+"                                               <td><button type=\"button\" class=\"btn btn-danger metadata_btn\" onclick=\"del_btn('"+x+"')\"><i class=\"glyphicon glyphicon-trash\"></i></button></td>\n" +
+"											</tr>";
+            $("#data_body").append(html);
+        }
+
+        function del_btn(x){
+           
+            $("#tr"+x).remove();
+        }
+
+
+        function remove_metadata(id,url) {
+    swal("คุณต้องการลบ Metadata นี้ ?", {
+        buttons: {
+            yes: {
+                text: "Yes",
+                className: "btn-danger"
+            },
+            no: {
+                text: "No",
+                className: "btn-default"
+            }
+        }
+    }).then(value => {
+        switch (value) {
+            case "yes":
+               
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        )
+                    },
+                    url: "/dataset/delete_metadata/"+id,
+                    method: "get",
+                    beforeSend() {
+                        $.LoadingOverlay("show");
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        var obj = result;
+                        $.LoadingOverlay("hide");
+                        if (obj.status) {
+                            window.location.replace("/dataset/edit/"+url);
+                        } else {
+                            swal("Fail !", "ไม่สามารถลบข้อมูลได้", "error");
+                        }
+                    },
+                    error(xhr, status, error) {
+                        alert(error);
+                    }
+                });
+                break;
+            case "no":
+                swal("Message!", "Cancel", "warning");
+                break;
+            default:
+        }
+    });
+}
+    </script>
 </section>
 @endsection

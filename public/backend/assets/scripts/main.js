@@ -16,12 +16,15 @@ $(document).ready(function ($) {
 $(window).load(function () {
     $(".preloader-wrapper").fadeOut();
     $("body").removeClass("preloader-site");
+    beautiful_tag();
+    beautiful_star();
 });
 
 // preload ajax
 $.LoadingOverlaySetup({
     image: "",
-    fontawesome: "fa fa-circle-o-notch fa-spin"
+    fontawesome: "fa fa-circle-o-notch fa-spin",
+    zIndex: 1000
 });
 
 function read_filename(e) {
@@ -464,3 +467,12 @@ function change_res(edit = false) {
         $("#div-web input[type=url]").attr("disabled", "disabled");
     }
 }
+
+$(".show-log-desc").click(function (e) {
+    var id = $(this).attr('data-id');
+    var html = $("#data_" + id).html();
+    $("#description_txt").val(html);
+    $("#modal-log-desc").modal({
+        backdrop: true
+    });
+});

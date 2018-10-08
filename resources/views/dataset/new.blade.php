@@ -4,6 +4,8 @@
 
 @section('content')
 <section class="">
+<div class="col-md-12">
+    <div class="panel panel-primary" style="padding:20px">
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -20,7 +22,7 @@
                 <button type="button" class="btn btn-block btn-success">1. Create dataset</button>
             </div>
             <div class="col-md-6">
-                <button type="button" class="btn btn-block btn-success" style="opacity : 0.5">2. Add data</button>
+                <button type="button" class="btn btn-block btn-success" style="opacity : 0.5;cursor: not-allowed">2. Add data</button>
             </div>
         </div>
         <div class="row">
@@ -31,12 +33,12 @@
                 </div>
             </div>
 
-            <div class="col-md-12">
+            <div class="col-md-12 hidden">
                 <div class="form-group">
                     <label for="URL" class="control-label">Url : </label>
                     <div class="input-group">
 						<span class="input-group-addon">/dataset/page/</span>
-						<input type="text" name="dts_url" id="dts_url" class="form-control" placeholder="my-dataset">
+						<input type="text" name="dts_url" id="dts_url"  value="{{ $uniq }}"  class="form-control" placeholder="my-dataset">
 					</div>
                 </div>
             </div>
@@ -151,5 +153,7 @@
             </div>
         </div>
     {!! Form::close() !!}
+    </div>
+    </div>
 </section>
 @endsection

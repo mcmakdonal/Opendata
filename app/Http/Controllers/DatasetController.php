@@ -14,6 +14,7 @@ class DatasetController extends Controller
         $this->middleware('islogin', ['except' => [
             'index',
             'page',
+            'view_metadata'
         ]]);
     }
 
@@ -42,6 +43,7 @@ class DatasetController extends Controller
         $get_lcs = Customlib::get_lcs();
         $get_cat = Customlib::get_cat();
         $get_frequent = Customlib::frequent();
+	$uniq = uniqid() . md5(date('Y-m-d H:i:s'));
 
         return view('dataset.new', [
             'title' => 'Create an Dataset',
@@ -50,7 +52,7 @@ class DatasetController extends Controller
             'get_lcs' => $get_lcs,
             'get_cat' => $get_cat,
             'lock_ogz' => ($request->ogz) ? $request->ogz : "",
-            'get_frequent' => $get_frequent
+            'get_frequent' => $get_frequent,'uniq' => $uniq
         ]);
     }
 
@@ -126,7 +128,7 @@ class DatasetController extends Controller
                 'file_name' => 'required|max:250',
                 'file_type' => 'string|max:1|required',
                 'file_desc' => 'required|max:500',
-                'file' => 'max:20480|nullable',
+                'file' => 'nullable',
             ]);
 
             if ($validator->fails()) {
@@ -176,11 +178,41 @@ class DatasetController extends Controller
                 $file_arg['update_by'] = 1;
                 $file_arg['record_status'] = "A";
                 $result = DB::table('tbl_resource')->insert($file_arg);
+
+                $rules = [
+                    // put your static input fields here
+                    'field_name' => 'required',
+                ];
+
+                
+             
+                if($request->has('field_name')){
+                    $field_name = $request->field_name;
+                    $description = $request->description;
+                    $field_type = $request->field_type;
+                    $unit = $request->unit;
+                    $size = count($field_name);
+                    for($x = 0; $x <$size; $x++){
+                    $metadata = [];
+                    $metadata['mtd_field_name'] = $field_name[$x];
+                    $metadata['mtd_description'] = ($description[$x]=="" ?" ":$description[$x]);
+                    $metadata['mtd_field_type'] = $field_type[$x];
+                    $metadata['mtd_unit'] = ($unit[$x]=="" ?" ":$unit[$x]);
+                    $metadata['dts_id'] = $dts_id;
+                    $result2 = DB::table('tbl_metadata')->insert($metadata);
+                    }
+                }
+
                 if ($result) {
                     \Session::forget('new_dataset');
                     // อัพเดตคะแนนดาว
                     Customlib::update_rate_star($dts_id);
-                    return redirect('/dataset/page/' . $new_dataset['dts_url'])->with('status', 'Success');
+
+                   $url = $new_dataset['dts_url'];
+
+                   //$url = iconv(mb_detect_encoding($url, mb_detect_order(), true), "UTF-8", $url);
+
+                    return redirect('/dataset/page/'.$url)->with('status', 'Success');
                 } else {
                     return redirect('/dataset/new');
                 }
@@ -201,6 +233,7 @@ class DatasetController extends Controller
             }
             $dts_id = $tbl_dataset[0]->dts_id;
             $tbl_resource = Customlib::get_res("", $dts_id);
+            $tbl_metadata = Customlib::get_metadata($dts_id);
             $get_frequent = Customlib::frequent();
             // dd($tbl_resource);
             return view('dataset.page', [
@@ -208,6 +241,7 @@ class DatasetController extends Controller
                 'header' => 'Dataset',
                 'content' => $tbl_dataset,
                 'resource' => $tbl_resource,
+                'metadata' => $tbl_metadata,
                 'slug_url' => $slug_url,
                 'is_login' => Customlib::is_login(),
                 'get_frequent' => $get_frequent
@@ -223,6 +257,7 @@ class DatasetController extends Controller
                 abort(404);
             }
             $dts_id = $tbl_dataset[0]->dts_id;
+            $tbl_metadata = Customlib::get_metadata($dts_id);
             $tbl_resource = DB::table('tbl_resource')->where('dts_id', $dts_id)->get();
             $get_ogz = Customlib::get_ogz();
             $get_lcs = Customlib::get_lcs();
@@ -235,6 +270,7 @@ class DatasetController extends Controller
                 'tbl_dataset' => $tbl_dataset,
                 'get_ogz' => $get_ogz,
                 'slug_url' => $slug_url,
+                'metadata' => $tbl_metadata,
                 'resource' => $tbl_resource,
                 'get_lcs' => $get_lcs,
                 'get_cat' => $get_cat,
@@ -270,6 +306,7 @@ class DatasetController extends Controller
             'dts_description' => $request->dts_description,
             'dts_status' => $request->dts_status,
             'lcs_id' => $request->lcs_id,
+            'cat_id' => $request->cat_id,
             'dts_scope_geo' => $request->dts_scope_geo,
             'dts_tag' => $request->dts_tag,
             'dts_contact_name' => $request->dts_contact_name,
@@ -294,6 +331,7 @@ class DatasetController extends Controller
         if ($slug_url != "") {
             $dts_id = Customlib::get_id("dts", $slug_url);
             $result = DB::table('tbl_dataset')->where('dts_id', $dts_id)->delete();
+            $result2 = DB::table('tbl_metadata')->where('dts_id', $dts_id)->delete();
             if ($result) {
                 return response()->json([
                     'status' => true,
@@ -304,6 +342,101 @@ class DatasetController extends Controller
                 ]);
             }
         }
+    }
+
+    public function delete_metadata($mtd_id)
+    {
+        if ($mtd_id != "") {
+            $result = DB::table('tbl_metadata')->where('mtd_id', $mtd_id)->delete();
+            if ($result) {
+                return response()->json([
+                    'status' => true,
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                ]);
+            }
+        }
+    }
+
+
+    public function update_metadata(Request $request)
+    {
+                $field_name = $request->field_name;
+                $description = $request->description;
+                $field_type = $request->field_type;
+                $unit = $request->unit;
+                $type = $request->type;
+                $dts_id = $request->dts_id;
+                $slug_url = $request->slug_url;
+                
+                $size = count($field_name);
+                $result = "";
+                if($size>0){
+                    for($x = 0; $x <$size; $x++){
+                    $metadata = [];
+                    $metadata['mtd_field_name'] = $field_name[$x];
+                    $metadata['mtd_description'] = ($description[$x]=="" ?" ":$description[$x]);
+                    $metadata['mtd_field_type'] = $field_type[$x];
+                    $metadata['mtd_unit'] = ($unit[$x]=="" ?" ":$unit[$x]);
+                    $metadata['dts_id'] = $dts_id;
+
+                    
+                    if($type[$x]=='1'){
+                    $result = DB::table('tbl_metadata')->insert($metadata);
+                    }else{ 
+                    $result = DB::table('tbl_metadata')->where('mtd_id', $request->mtd_id[$x])->update($metadata);   
+                    }
+                }
+            }
+            if ($result) {
+                return redirect('/dataset/edit/'. $slug_url)->with('status', 'Success');
+            } else {
+                return redirect('/dataset/edit/'. $slug_url);
+            }
+    }
+
+public function view_metadata($dts_id)
+    {
+        $tbl_data = null;
+        if ($dts_id != "") {
+            $tbl_resource = DB::table('view_metadata')->where('dts_id', $dts_id)->get();
+            $ary=[];
+            $size = count($tbl_resource);
+            for($x = 0; $x <$size; $x++){
+                if($tbl_resource[$x]->mtd_field_name != null){
+                $ary[] = [
+                    'mtd_field_name' => $tbl_resource[$x]->mtd_field_name,
+                    'mtd_description' => $tbl_resource[$x]->mtd_description,
+                    'mtd_field_type' => $tbl_resource[$x]->mtd_field_type,
+                    'mtd_unit' => $tbl_resource[$x]->mtd_unit,
+                
+                ];
+                }
+            }
+
+           
+
+            $tbl_data = array(
+                'dts_title' => $tbl_resource[0]->dts_title,
+                'dts_description' => $tbl_resource[0]->dts_description,
+                'dts_scope_geo' => $tbl_resource[0]->dts_scope_geo,
+                'dts_tag' => $tbl_resource[0]->dts_tag,
+                'dts_contact_name' => $tbl_resource[0]->dts_contact_name,
+                'dts_contact_email' => $tbl_resource[0]->dts_contact_email,
+                'create_date' => $tbl_resource[0]->create_date,
+                'update_date' => $tbl_resource[0]->update_date,
+                'license' => $tbl_resource[0]->license,
+                'ogz_title' => $tbl_resource[0]->ogz_title,
+                'cat_title' => $tbl_resource[0]->cat_title,
+                'meta_data' => $ary,
+            );
+
+
+        }
+        
+        return response()->json($tbl_data);
     }
 
     public function set_status(Request $request)

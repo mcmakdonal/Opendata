@@ -12,54 +12,64 @@
         </div>
     @endif
     {!! Form::open(['url' => url()->current(),'class' => 'form-auth-small', 'method' => 'get']) !!}
-    <div class="row">
-        <div class="col-md-9">
-            <div class="form-group">
-                <input type="text" class="form-control" id="title" name="title" value="" placeholder="คำค้นหา" required>
+    <div class="row ">
+    <div class="col-md-12">
+    <div class="input-group my-colorpicker2 colorpicker-element box_select_search">
+                  <input type="text" class="form-control form_style" id="title" name="title" value="" style="border-radius: 5px;" placeholder="คำค้นหา" required>
+                  <div class="input-group-addon box_btn_search">
+                  <button type="submit" class="btn search-data btn_search">
+                        <img  src="{{ url('backend/assets/img/icon_search.png') }}" > Search
+                        </button>
+                        <a href="/organization"><button type="button" class="btn clear-data btn_search" style="margin-left:5px">
+                        <img  src="{{ url('backend/assets/img/icon_reset.png') }}" > Reset
+                        </button></a>
+                  </div>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3 text-center">
-            <div class="form-group">
-                <button type="submit" class="btn btn-success">ค้นหา</button>
-                <a href="/organization"><button type="button" class="btn btn-warning">ล้างค่า</button></a>
+         </div>
+         <div class="row">
+                <div class="col-md-12 featured-responsive" style="margin-top:15px">
+                    <div class="box_headder" style="margin-bottom:0px">
+                     <div class="text_box_title" >
+                     <img src="{{ url('backend/assets/img/icon_topic.png') }}" >   ORGANIZATION
+                    </div>   
+                    <img src="{{ url('backend/assets/img/topic_fx.png') }}" style="float:right">
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
     {!! Form::close() !!}
-    <div class="row index-content">
-        @foreach($get_ogz as $k => $v)
-        <a href="{{ url('/organization/page/'.$v->ogz_url) }}">
-            <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
-                <div class="card">
-                    <img src="{{ url($v->ogz_image) }}" class="img-responsive" alt="#">
-                    <h4>{{ $v->ogz_title }}</h4>
-                    <p>{{ $v->ogz_description }}</p>
-                    <a href="{{ url('/organization/page/'.$v->ogz_url) }}" class="blue-button"> {{ $v->num }} Dataset </a>
+    <div class="row" style="padding: 20px 10px;">
+ @php
+  $g = 0;
+  $size =count($get_ogz);
+  $loop =  ceil($size/3.00);
+ @endphp
+    @for ($i = 0; $i < $loop; $i++)   
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 " style="padding:0">
+        @for($x = 0; $x < 3&$g<$size; $x++)
+        <a href="{{ url('/organization/page/'.$get_ogz[$g]->ogz_url) }}">
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 " style="padding:0px 5px">
+                <div class=" panel-primary" style="color: #6b6b6b;padding: 10px;">
+                    <div style="width:100%;text-align:center">
+                    <img src="{{ url($get_ogz[$g]->ogz_image) }}" style="width:90px" alt="#" >
+                    </div>
+                    <div class="box_text_or">
+                    <h4 style="margin-bottom:0;font-size:16px">{{ $get_ogz[$g]->ogz_title  }}</h4>
+                    </div>
+                    <div class="text_num">{{ $get_ogz[$g]->num }}</div>
+                    <div class="text_des">
+                    <p>{{ $get_ogz[$g]->ogz_description }}</p>
+                    </div>  
                 </div>
             </div>
         </a>
-        @endforeach                    
+        @php
+            $g++;
+        @endphp
+        @endfor  
+</div>
+@endfor
     </div>
-    @if ($get_ogz->lastPage() > 1)
-    <ul class="pagination">
-        <li class="">
-            <a href="{{ $get_ogz->url(1) }}">หน้าแรก</a>
-        </li>
-        <li class="{{ ($get_ogz->currentPage() == 1) ? ' disabled' : '' }}">
-            <a href="{{ $get_ogz->url(1) }}">ก่อนหน้า</a>
-        </li>
-        @for ($i = 1; $i <= $get_ogz->lastPage(); $i++)
-            <li class="{{ ($get_ogz->currentPage() == $i) ? ' active' : '' }}">
-                <a href="{{ $get_ogz->url($i) }}">{{ $i }}</a>
-            </li>
-        @endfor
-        <li class="{{ ($get_ogz->currentPage() == $get_ogz->lastPage()) ? ' disabled' : '' }}" {{ ($get_ogz->currentPage() == $get_ogz->lastPage()) ? ' disabled' : '' }} >
-            <a href="{{ $get_ogz->url($get_ogz->currentPage()+1) }}" >หน้าต่อไป</a>
-        </li>
-        <li class="{{ ($get_ogz->currentPage() == $get_ogz->lastPage()) ? ' disabled' : '' }}" {{ ($get_ogz->currentPage() == $get_ogz->lastPage()) ? ' disabled' : '' }} >
-            <a href="{{ $get_ogz->url($get_ogz->lastPage()) }}" >หน้าสุดท้าย</a>
-        </li>
-    </ul>
-    @endif
+   
 </section>
 @endsection

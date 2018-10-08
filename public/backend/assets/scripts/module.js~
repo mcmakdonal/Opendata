@@ -1,0 +1,222 @@
+var $pagination = $('#pagination');
+var defaultOpts = {
+    totalPages: 1
+};
+$pagination.twbsPagination(defaultOpts);
+
+function get_data(page = 1) {
+    var organization = ($(".organization.menu-active").attr('data-id') === undefined) ? "" : $(".organization.menu-active").attr('data-id');
+    var format = ($(".format.menu-active").attr('data-id') === undefined) ? "" : $(".format.menu-active").attr('data-id');
+    var license = ($(".license.menu-active").attr('data-id') === undefined) ? "" : $(".license.menu-active").attr('data-id');
+    var categories = ($(".categories.menu-active").attr('data-id') === undefined) ? "" : $(".categories.menu-active").attr('data-id');
+    var title = $("#title").val().trim();
+    var order = $("#order").val().trim();
+    var data = {
+        'organization': organization,
+        'format': format,
+        'license': license,
+        'categories': categories,
+        'title': title,
+        'order': order,
+        'page': page
+    };
+
+    update_filter(data);
+
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+        },
+        url: full_url + "/list-data",
+        method: "post",
+        data: data,
+        beforeSend() {
+            // $.LoadingOverlay("show");
+            $("#result-data").LoadingOverlay("show", {
+                fontawesome: "fa fa-circle-o-notch fa-spin"
+            });
+        },
+        success: function (result) {
+            var str = '';
+            $.each(result.data, function (index, value) {
+                str += '<div class="col-md-12 featured-responsive"><div class="list-group"><a href="' + full_url + '/dataset/page/' + value.dts_url + '" class="list-group-item list-group-item-action box_data">';
+                if (result.is_login) {
+                    var status = (value.dts_status == "pb") ? "Public" : "Private";
+                    str += '<h4><img src="' + full_url + '/backend/assets/img/icon_items_pink.png">' + value.dts_title + ' <span class="badge badge-secondary">' + status + '</span> </h4>';
+                } else {
+                    str += '<h4><img src="' + full_url + '/backend/assets/img/icon_items_pink.png">' + value.dts_title + ' </h4>';
+                }
+                str += '<p style="padding-left: 25px;" >' + value.dts_description + '</p>';
+                var format = value.format;
+                if (format !== null) {
+                    var arg = format.split(",");
+                    str += '<div style="padding-left: 25px;">';
+                    $.each(unique_arg(arg), function (i, val) {
+                        if (val !== '') {
+                            str += '<img src="' + full_url + '/backend/assets/img/' + val + '.png" style="margin-right: 3px;width: 45px;">';
+                        }
+                    });
+                    str += '</div>';
+                }
+                str += '</a></div></div>';
+                // str += '<span class="label label-primary">' + value.format + '</span></a></div></div>';
+            });
+            $("#result-data").LoadingOverlay("hide", true);
+            pagi_init(result.totalPages, result.startPage);
+            $("#result-data").html(str);
+            $('html,body').animate({
+                scrollTop: 0
+            }, 'slow');
+            $(".star").css({
+                'float': 'right',
+                'font-size': '15px',
+                'padding': '5px'
+            });
+        },
+        error(xhr, status, error) {
+            // alert(error);
+        }
+    });
+}
+
+function update_filter(data) {
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                "content"
+            )
+        },
+        url: full_url + "/filter-cat",
+        method: "post",
+        data: data,
+        success: function (obj) {
+            $("a.organization li span").html("(0)");
+            for (i = 0; i < obj['data'].length; i++) {
+                $("a[data-id=" + obj['data'][i]['ogz_id'] + "].organization li span").html("(" + obj['data'][i]['sum'] + ")");
+            };
+        },
+        error(xhr, status, error) {
+            // alert(error);
+        }
+    });
+
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                "content"
+            )
+        },
+        url: full_url + "/filter-ogz",
+        method: "post",
+        data: data,
+        success: function (obj) {
+            $("a.categories li span").html("(0)");
+            for (i = 0; i < obj['data'].length; i++) {
+                $("a[data-id=" + obj['data'][i]['cat_id'] + "].categories li span").html("(" + obj['data'][i]['sum'] + ")");
+            };
+        },
+        error(xhr, status, error) {
+            // alert(error);
+        }
+    });
+
+}
+
+function unique_arg(list) {
+    var result = [];
+    $.each(list, function (i, e) {
+        if ($.inArray(e, result) == -1) result.push(e);
+    });
+    return result;
+}
+
+
+function pagi_init(totalPages, startPage) {
+    $pagination.twbsPagination('destroy');
+    $pagination.twbsPagination({
+        totalPages: totalPages,
+        // the current page that show on start
+        startPage: startPage,
+
+        // maximum visible pages
+        visiblePages: (totalPages > 5) ? 5 : totalPages,
+
+        initiateStartPageClick: false,
+
+        // template for pagination links
+        href: false,
+
+        // variable name in href template for page number
+        hrefVariable: '{{number}}',
+
+        // Text labels
+        first: 'หน้าแรก',
+        prev: 'ก่อนหน้า',
+        next: 'หน้าต่อไป',
+        last: 'หน้าสุดท้าย',
+
+        // carousel-style pagination
+        loop: false,
+
+        // callback function
+        onPageClick: function (event, page) {
+            console.log(page);
+            get_data(page);
+        },
+
+        // pagination Classes
+        paginationClass: 'pagination',
+        nextClass: 'next',
+        prevClass: 'prev',
+        lastClass: 'last',
+        firstClass: 'first',
+        pageClass: 'page',
+        activeClass: 'active',
+        disabledClass: 'disabled'
+
+    });
+}
+
+function set_star(point) {
+    var str = '';
+    for (var i = 1; i <= point; i++) {
+        str += '<i class="fa fa-star" aria-hidden="true"></i>';
+        str += '&nbsp;';
+    }
+
+    return str;
+}
+
+function beautiful_star() {
+    if ($(".star").length > 0) {
+        var arr = $(".star").html();
+        var star = parseInt(arr);
+        var str = 'คะแนนการเปิดเผย : ';
+        for (var i = 1; i <= star; i++) {
+            str += '<i class="fa fa-star" aria-hidden="true"></i>';
+            str += '&nbsp;';
+        }
+        $(".star").css({
+            'float': 'right',
+            'font-size': '15px',
+            'padding': '5px'
+        });
+        $(".star").html(str);
+    }
+}
+
+
+function beautiful_tag() {
+    if ($(".tags").length > 0) {
+        var arr = $(".tags").html().split(',');
+        var str = 'Tag : ';
+        var style = ['default', 'primary', 'success', 'info', 'warning', 'danger'];
+        for (i = 0; i < arr.length; i++) {
+            var random = style[Math.floor(Math.random() * style.length)];
+            str += '<span class="label label-' + random + '">' + arr[i] + '</span>';
+            str += '&nbsp;';
+        }
+
+        $(".tags").html(str);
+    }
+}

@@ -21,7 +21,7 @@ class OrganizationController extends Controller
     public function index(Request $request)
     {
         $title = $request->title;
-        $get_ogz = Customlib::get_ogz("", $title);
+        $get_ogz = Customlib::get_ogz("", $title, true);
         // dd($get_ogz);
         return view('organization.index', [
             'title' => 'Organization',
@@ -32,8 +32,9 @@ class OrganizationController extends Controller
     }
 
     function new () {
+        $uniq = uniqid() . md5(date('Y-m-d H:i:s'));
         return view('organization.new', [
-            'title' => 'Create an Organization',
+            'title' => 'Create an Organization', 'uniq' => $uniq,
         ]);
     }
 
@@ -104,19 +105,19 @@ class OrganizationController extends Controller
     {
         if ($slug_url != "") {
             $ogz_id = Customlib::get_id("ogz", $slug_url);
+            $get_ogz = Customlib::get_ogz($slug_url);
             if ($ogz_id == false) {
                 abort(404);
             }
-            $title = $request->title;
-            $tbl_dataset = Customlib::get_dts($ogz_id, $title);
+            $get_cat = Customlib::get_cat();
             return view('organization.page', [
                 'title' => 'Organization',
                 'header' => 'Organization',
-                'content' => $tbl_dataset,
                 'slug_url' => $slug_url,
-                'real_url' => url('/organization/page/' . $slug_url),
+                'ogz_id' => $ogz_id,
                 'is_login' => Customlib::is_login(),
-                'search' => $title,
+                'get_cat' => $get_cat,
+                'ogz_title' => $get_ogz[0]->ogz_title,
             ]);
         }
     }
@@ -152,7 +153,7 @@ class OrganizationController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        
+
         $image = $request->ogz_old_image;
         if ($request->hasfile('ogz_image')) {
             if ($request->file('ogz_image')) {

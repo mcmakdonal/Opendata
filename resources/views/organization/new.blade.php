@@ -3,6 +3,8 @@
 
 @section('content')
 <section class="">
+<div class="col-md-12">
+    <div class="panel panel-primary"  style="padding: 20px;">
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -22,12 +24,12 @@
             </div>
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-12 hidden">
             <div class="form-group">
                 <label for="URL" class="control-label">Url : </label>
                 <div class="input-group">
                     <span class="input-group-addon">/organization/page/</span>
-                    <input type="text" name="ogz_url" id="ogz_url" class="form-control" placeholder="my-organization">
+                    <input type="text" name="ogz_url" id="ogz_url" class="form-control" value="{{ $uniq }}" placeholder="my-organization">
                 </div>
             </div>
         </div>
@@ -62,5 +64,7 @@
         </div>
     </div>
     {!! Form::close() !!}
+    </div>
+    </div>
 </section>
 @endsection
