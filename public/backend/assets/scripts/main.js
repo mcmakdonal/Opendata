@@ -72,12 +72,13 @@ function remove_dts(e, slug) {
                         }
                     },
                     error(xhr, status, error) {
-                        alert(error);
+                        $.LoadingOverlay("hide");
+                        swal("Fail !", error + " Status : " + status, "error");
                     }
                 });
                 break;
             case "no":
-                swal("Message!", "Cancel", "warning");
+                // swal("Message!", "Cancel", "warning");
                 break;
             default:
         }
@@ -121,12 +122,13 @@ function remove_ogz(e, slug) {
                         }
                     },
                     error(xhr, status, error) {
-                        alert(error);
+                        $.LoadingOverlay("hide");
+                        swal("Fail !", error + " Status : " + status, "error");
                     }
                 });
                 break;
             case "no":
-                swal("Message!", "Cancel", "warning");
+                // swal("Message!", "Cancel", "warning");
                 break;
             default:
         }
@@ -170,12 +172,13 @@ function remove_res(e, slug_url, res_id) {
                         }
                     },
                     error(xhr, status, error) {
-                        alert(error);
+                        $.LoadingOverlay("hide");
+                        swal("Fail !", error + " Status : " + status, "error");
                     }
                 });
                 break;
             case "no":
-                swal("Message!", "Cancel", "warning");
+                // swal("Message!", "Cancel", "warning");
                 break;
             default:
         }
@@ -189,7 +192,6 @@ function set_status_dts(type) {
         })
         .get();
 
-    // console.log(dts_id);
     $.ajax({
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
@@ -214,32 +216,150 @@ function set_status_dts(type) {
             }
         },
         error(xhr, status, error) {
-            alert(error);
+            $.LoadingOverlay("hide");
+            swal("Fail !", error + " Status : " + status, "error");
         }
     });
 }
 
 function delete_admin(e) {
-    $.ajax({
-        headers: {
-            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-        },
-        url: full_url + "/administrator/" + $(e).attr('data'),
-        method: "delete",
-        beforeSend() {
-            $.LoadingOverlay("show");
-        },
-        success: function (result) {
-            var obj = result;
-            $.LoadingOverlay("hide");
-            if (obj.status) {
-                location.reload(true);
-            } else {
-                swal("Fail !", "ผิดพลาด", "error");
+    swal("คุณต้องการลบ ผู้ดูแลระบบ นี้ ?", {
+        buttons: {
+            yes: {
+                text: "Yes",
+                className: "btn-danger"
+            },
+            no: {
+                text: "No",
+                className: "btn-default"
             }
-        },
-        error(xhr, status, error) {
-            alert(error);
+        }
+    }).then(value => {
+        switch (value) {
+            case "yes":
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    },
+                    url: full_url + "/administrator/" + $(e).attr('data'),
+                    method: "delete",
+                    beforeSend() {
+                        $.LoadingOverlay("show");
+                    },
+                    success: function (result) {
+                        var obj = result;
+                        $.LoadingOverlay("hide");
+                        if (obj.status) {
+                            location.reload(true);
+                        } else {
+                            swal("Fail !", "ผิดพลาด", "error");
+                        }
+                    },
+                    error(xhr, status, error) {
+                        $.LoadingOverlay("hide");
+                        swal("Fail !", error + " Status : " + status, "error");
+                    }
+                });
+                break;
+            case "no":
+                // swal("Message!", "Cancel", "warning");
+                break;
+            default:
+        }
+    });
+}
+
+function delete_datamanagement(e) {
+    swal("คุณต้องการลบ Data management นี้ ?", {
+        buttons: {
+            yes: {
+                text: "Yes",
+                className: "btn-danger"
+            },
+            no: {
+                text: "No",
+                className: "btn-default"
+            }
+        }
+    }).then(value => {
+        switch (value) {
+            case "yes":
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    },
+                    url: full_url + "/datamanagement/" + $(e).attr('data'),
+                    method: "delete",
+                    beforeSend() {
+                        $.LoadingOverlay("show");
+                    },
+                    success: function (result) {
+                        var obj = result;
+                        $.LoadingOverlay("hide");
+                        if (obj.status) {
+                            location.reload(true);
+                        } else {
+                            swal("Fail !", "ผิดพลาด", "error");
+                        }
+                    },
+                    error(xhr, status, error) {
+                        $.LoadingOverlay("hide");
+                        swal("Fail !", error + " Status : " + status, "error");
+                    }
+                });
+                break;
+            case "no":
+                // swal("Message!", "Cancel", "warning");
+                break;
+            default:
+        }
+    });
+}
+
+function export_datamanagement(e) {
+    swal("หากมีการแก้ไขข้อมูล กรุณากด บันทึกก่อน จากนั้น กด Export อีกครั้ง", {
+        buttons: {
+            yes: {
+                text: "ต่อไป",
+                className: "btn-success"
+            },
+            no: {
+                text: "ยกเลิก",
+                className: "btn-default"
+            }
+        }
+    }).then(value => {
+        switch (value) {
+            case "yes":
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    },
+                    url: full_url + "/datamanagement/export/" + $(e).attr('data'),
+                    method: "post",
+                    beforeSend() {
+                        $.LoadingOverlay("show");
+                    },
+                    success: function (result) {
+                        var obj = result;
+                        $.LoadingOverlay("hide");
+                        if (obj.status) {
+                            $(e).attr("disabled", "disabled");
+                            swal("Success !", "Export สำเร็จ", "success");
+                        } else {
+                            swal("Fail !", "ผิดพลาด", "error");
+                        }
+                    },
+                    error(xhr, status, error) {
+                        $.LoadingOverlay("hide");
+                        swal("Fail !", error + " Status : " + status, "error");
+                    }
+                });
+                break;
+            case "no":
+                // swal("Message!", "Cancel", "warning");
+                break;
+            default:
         }
     });
 }
@@ -312,7 +432,8 @@ $(".last-download").click(function (e) {
                 }
             },
             error(xhr, status, error) {
-                alert(error);
+                $.LoadingOverlay("hide");
+                swal("Fail !", error + " Status : " + status, "error");
             }
         });
     }
@@ -365,7 +486,8 @@ function manage_cat(type, id = '') {
                             }
                         },
                         error(xhr, status, error) {
-                            alert(error);
+                            $.LoadingOverlay("hide");
+                            swal("Fail !", error + " Status : " + status, "error");
                         }
                     });
                     break;

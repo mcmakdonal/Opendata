@@ -14,7 +14,7 @@ class DatasetController extends Controller
         $this->middleware('islogin', ['except' => [
             'index',
             'page',
-            'view_metadata'
+            'view_metadata',
         ]]);
     }
 
@@ -43,7 +43,7 @@ class DatasetController extends Controller
         $get_lcs = Customlib::get_lcs();
         $get_cat = Customlib::get_cat();
         $get_frequent = Customlib::frequent();
-	$uniq = uniqid() . md5(date('Y-m-d H:i:s'));
+        $uniq = uniqid() . md5(date('Y-m-d H:i:s'));
 
         return view('dataset.new', [
             'title' => 'Create an Dataset',
@@ -52,7 +52,8 @@ class DatasetController extends Controller
             'get_lcs' => $get_lcs,
             'get_cat' => $get_cat,
             'lock_ogz' => ($request->ogz) ? $request->ogz : "",
-            'get_frequent' => $get_frequent,'uniq' => $uniq
+            'get_frequent' => $get_frequent,
+            'uniq' => $uniq,
         ]);
     }
 
@@ -99,9 +100,9 @@ class DatasetController extends Controller
             'dts_res_point' => 1,
             'dts_view' => 0,
             'create_date' => date('Y-m-d H:i:s'),
-            'create_by' => 1,
+            'create_by' => \Cookie::get('token'),
             'update_date' => date('Y-m-d H:i:s'),
-            'update_by' => 1,
+            'update_by' => \Cookie::get('token'),
             'record_status' => 'A',
         );
         session(['new_dataset' => $args]);
@@ -184,22 +185,20 @@ class DatasetController extends Controller
                     'field_name' => 'required',
                 ];
 
-                
-             
-                if($request->has('field_name')){
+                if ($request->has('field_name')) {
                     $field_name = $request->field_name;
                     $description = $request->description;
                     $field_type = $request->field_type;
                     $unit = $request->unit;
                     $size = count($field_name);
-                    for($x = 0; $x <$size; $x++){
-                    $metadata = [];
-                    $metadata['mtd_field_name'] = $field_name[$x];
-                    $metadata['mtd_description'] = ($description[$x]=="" ?" ":$description[$x]);
-                    $metadata['mtd_field_type'] = $field_type[$x];
-                    $metadata['mtd_unit'] = ($unit[$x]=="" ?" ":$unit[$x]);
-                    $metadata['dts_id'] = $dts_id;
-                    $result2 = DB::table('tbl_metadata')->insert($metadata);
+                    for ($x = 0; $x < $size; $x++) {
+                        $metadata = [];
+                        $metadata['mtd_field_name'] = $field_name[$x];
+                        $metadata['mtd_description'] = ($description[$x] == "" ? " " : $description[$x]);
+                        $metadata['mtd_field_type'] = $field_type[$x];
+                        $metadata['mtd_unit'] = ($unit[$x] == "" ? " " : $unit[$x]);
+                        $metadata['dts_id'] = $dts_id;
+                        $result2 = DB::table('tbl_metadata')->insert($metadata);
                     }
                 }
 
@@ -208,11 +207,11 @@ class DatasetController extends Controller
                     // อัพเดตคะแนนดาว
                     Customlib::update_rate_star($dts_id);
 
-                   $url = $new_dataset['dts_url'];
+                    $url = $new_dataset['dts_url'];
 
-                   //$url = iconv(mb_detect_encoding($url, mb_detect_order(), true), "UTF-8", $url);
+                    //$url = iconv(mb_detect_encoding($url, mb_detect_order(), true), "UTF-8", $url);
 
-                    return redirect('/dataset/page/'.$url)->with('status', 'Success');
+                    return redirect('/dataset/page/' . $url)->with('status', 'Success');
                 } else {
                     return redirect('/dataset/new');
                 }
@@ -244,7 +243,7 @@ class DatasetController extends Controller
                 'metadata' => $tbl_metadata,
                 'slug_url' => $slug_url,
                 'is_login' => Customlib::is_login(),
-                'get_frequent' => $get_frequent
+                'get_frequent' => $get_frequent,
             ]);
         }
     }
@@ -274,7 +273,7 @@ class DatasetController extends Controller
                 'resource' => $tbl_resource,
                 'get_lcs' => $get_lcs,
                 'get_cat' => $get_cat,
-                'get_frequent' => $get_frequent
+                'get_frequent' => $get_frequent,
             ]);
         }
     }
@@ -314,7 +313,7 @@ class DatasetController extends Controller
             'dts_permission' => $request->dts_permission,
             'dts_frequent' => $request->dts_frequent,
             'update_date' => date('Y-m-d H:i:s'),
-            'update_by' => 1,
+            'update_by' => \Cookie::get('token'),
             'record_status' => 'A',
         );
 
@@ -360,63 +359,59 @@ class DatasetController extends Controller
         }
     }
 
-
     public function update_metadata(Request $request)
     {
-                $field_name = $request->field_name;
-                $description = $request->description;
-                $field_type = $request->field_type;
-                $unit = $request->unit;
-                $type = $request->type;
-                $dts_id = $request->dts_id;
-                $slug_url = $request->slug_url;
-                
-                $size = count($field_name);
-                $result = "";
-                if($size>0){
-                    for($x = 0; $x <$size; $x++){
-                    $metadata = [];
-                    $metadata['mtd_field_name'] = $field_name[$x];
-                    $metadata['mtd_description'] = ($description[$x]=="" ?" ":$description[$x]);
-                    $metadata['mtd_field_type'] = $field_type[$x];
-                    $metadata['mtd_unit'] = ($unit[$x]=="" ?" ":$unit[$x]);
-                    $metadata['dts_id'] = $dts_id;
+        $field_name = $request->field_name;
+        $description = $request->description;
+        $field_type = $request->field_type;
+        $unit = $request->unit;
+        $type = $request->type;
+        $dts_id = $request->dts_id;
+        $slug_url = $request->slug_url;
 
-                    
-                    if($type[$x]=='1'){
+        $size = count($field_name);
+        $result = "";
+        if ($size > 0) {
+            for ($x = 0; $x < $size; $x++) {
+                $metadata = [];
+                $metadata['mtd_field_name'] = $field_name[$x];
+                $metadata['mtd_description'] = ($description[$x] == "" ? " " : $description[$x]);
+                $metadata['mtd_field_type'] = $field_type[$x];
+                $metadata['mtd_unit'] = ($unit[$x] == "" ? " " : $unit[$x]);
+                $metadata['dts_id'] = $dts_id;
+
+                if ($type[$x] == '1') {
                     $result = DB::table('tbl_metadata')->insert($metadata);
-                    }else{ 
-                    $result = DB::table('tbl_metadata')->where('mtd_id', $request->mtd_id[$x])->update($metadata);   
-                    }
+                } else {
+                    $result = DB::table('tbl_metadata')->where('mtd_id', $request->mtd_id[$x])->update($metadata);
                 }
             }
-            if ($result) {
-                return redirect('/dataset/edit/'. $slug_url)->with('status', 'Success');
-            } else {
-                return redirect('/dataset/edit/'. $slug_url);
-            }
+        }
+        if ($result) {
+            return redirect('/dataset/edit/' . $slug_url)->with('status', 'Success');
+        } else {
+            return redirect('/dataset/edit/' . $slug_url);
+        }
     }
 
-public function view_metadata($dts_id)
+    public function view_metadata($dts_id)
     {
         $tbl_data = null;
         if ($dts_id != "") {
             $tbl_resource = DB::table('view_metadata')->where('dts_id', $dts_id)->get();
-            $ary=[];
+            $ary = [];
             $size = count($tbl_resource);
-            for($x = 0; $x <$size; $x++){
-                if($tbl_resource[$x]->mtd_field_name != null){
-                $ary[] = [
-                    'mtd_field_name' => $tbl_resource[$x]->mtd_field_name,
-                    'mtd_description' => $tbl_resource[$x]->mtd_description,
-                    'mtd_field_type' => $tbl_resource[$x]->mtd_field_type,
-                    'mtd_unit' => $tbl_resource[$x]->mtd_unit,
-                
-                ];
+            for ($x = 0; $x < $size; $x++) {
+                if ($tbl_resource[$x]->mtd_field_name != null) {
+                    $ary[] = [
+                        'mtd_field_name' => $tbl_resource[$x]->mtd_field_name,
+                        'mtd_description' => $tbl_resource[$x]->mtd_description,
+                        'mtd_field_type' => $tbl_resource[$x]->mtd_field_type,
+                        'mtd_unit' => $tbl_resource[$x]->mtd_unit,
+
+                    ];
                 }
             }
-
-           
 
             $tbl_data = array(
                 'dts_title' => $tbl_resource[0]->dts_title,
@@ -433,9 +428,8 @@ public function view_metadata($dts_id)
                 'meta_data' => $ary,
             );
 
-
         }
-        
+
         return response()->json($tbl_data);
     }
 
@@ -448,7 +442,7 @@ public function view_metadata($dts_id)
                 $args = array(
                     'dts_status' => $type,
                     'update_date' => date('Y-m-d H:i:s'),
-                    'update_by' => 1,
+                    'update_by' => \Cookie::get('token'),
                 );
                 $dts_id = Customlib::get_id("dts", $v);
                 $result = DB::table('tbl_dataset')->where('dts_id', $dts_id)->update($args);

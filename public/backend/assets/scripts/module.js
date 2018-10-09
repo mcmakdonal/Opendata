@@ -24,14 +24,14 @@ function get_data(page = 1) {
     var organization_name = ($(".organization.menu-active").attr('data-id') === undefined) ? "" : $(".organization.menu-active").attr('data-name');
     var categories_name = ($(".categories.menu-active").attr('data-id') === undefined) ? "" : $(".categories.menu-active").attr('data-name');
 
-    if(organization_name==''&categories_name==''){
+    if (organization_name == '' & categories_name == '') {
         $("#title_dataset").html('DATASET');
-    }else if(organization_name!==''&categories_name==''){
+    } else if (organization_name !== '' & categories_name == '') {
         $("#title_dataset").html(organization_name);
-    }else if (organization_name==''&categories_name!==''){
+    } else if (organization_name == '' & categories_name !== '') {
         $("#title_dataset").html(categories_name);
-    }else{
-        $("#title_dataset").html(organization_name+' > '+categories_name);
+    } else {
+        $("#title_dataset").html(organization_name + ' > ' + categories_name);
     }
 
     update_filter(data);
@@ -53,11 +53,11 @@ function get_data(page = 1) {
             var str = '';
             $.each(result.data, function (index, value) {
                 str += '<div class="col-md-12 featured-responsive"><div class="list-group"><a href="' + full_url + '/dataset/page/' + value.dts_url + '" class="list-group-item list-group-item-action box_data">';
-                str +='<h4 style="float: right;color: #8e2e70;font-size:16px">'+value.cat_title+'</h4>';
+                str += '<h4 style="float: right;color: #8e2e70;font-size:16px">' + value.cat_title + '</h4>';
                 if (result.is_login) {
                     var status = (value.dts_status == "pb") ? "Public" : "Private";
                     str += '<h4><img src="' + full_url + '/backend/assets/img/icon_items_pink.png">' + value.dts_title + ' <span class="badge badge-secondary">' + status + '</span> </h4>';
-                    
+
                 } else {
                     str += '<h4><img src="' + full_url + '/backend/assets/img/icon_items_pink.png">' + value.dts_title + ' </h4>';
                 }
@@ -89,7 +89,8 @@ function get_data(page = 1) {
             });
         },
         error(xhr, status, error) {
-            // alert(error);
+            $("#result-data").LoadingOverlay("hide", true);
+            swal("Fail !", error + " Status : " + status, "error");
         }
     });
 }
@@ -111,7 +112,7 @@ function update_filter(data) {
             };
         },
         error(xhr, status, error) {
-            // alert(error);
+            swal("Fail !", error + " Status : " + status, "error");
         }
     });
 
@@ -131,7 +132,7 @@ function update_filter(data) {
             };
         },
         error(xhr, status, error) {
-            // alert(error);
+            swal("Fail !", error + " Status : " + status, "error");
         }
     });
 
@@ -237,26 +238,27 @@ function beautiful_tag() {
 }
 
 
-var x=1000;
-        function add_table(){
-            x++;
-            var html = "<tr id='tr"+x+"' >\n" +
-"												<td><input type=\"text\" value=\"\" class=\"form-control\" name=\"field_name[]\"  required></td>\n" +
-"												<td><input type=\"text\" value=\" \" class=\"form-control\" name=\"description[]\"  ></td>\n" +
-"												<td><input type=\"text\" value=\"\" class=\"form-control\" name=\"field_type[]\"  required></td>\n" +
-"												<td><input type=\"text\" value=\" \" class=\"form-control\" name=\"unit[]\"  ><input type=\"text\" value=\"1\" class=\"form-control\" style=\"display:none\" name=\"type[]\" ></td>\n" +
-"                                               <td><button type=\"button\" class=\"btn btn-danger metadata_btn\" onclick=\"del_btn('"+x+"')\"><i class=\"glyphicon glyphicon-trash\"></i></button></td>\n" +
-"											</tr>";
-            $("#data_body").append(html);
-        }
+var x = 1000;
 
-        function del_btn(x){
-           
-            $("#tr"+x).remove();
-        }
+function add_table() {
+    x++;
+    var html = "<tr id='tr" + x + "' >\n" +
+        "												<td><input type=\"text\" value=\"\" class=\"form-control\" name=\"field_name[]\"  required></td>\n" +
+        "												<td><input type=\"text\" value=\" \" class=\"form-control\" name=\"description[]\"  ></td>\n" +
+        "												<td><input type=\"text\" value=\"\" class=\"form-control\" name=\"field_type[]\"  required></td>\n" +
+        "												<td><input type=\"text\" value=\" \" class=\"form-control\" name=\"unit[]\"  ><input type=\"text\" value=\"1\" class=\"form-control\" style=\"display:none\" name=\"type[]\" ></td>\n" +
+        "                                               <td><button type=\"button\" class=\"btn btn-danger metadata_btn\" onclick=\"del_btn('" + x + "')\"><i class=\"glyphicon glyphicon-trash\"></i></button></td>\n" +
+        "											</tr>";
+    $("#data_body").append(html);
+}
+
+function del_btn(x) {
+
+    $("#tr" + x).remove();
+}
 
 
-        function remove_metadata(id,url) {
+function remove_metadata(id, url) {
     swal("คุณต้องการลบ Metadata นี้ ?", {
         buttons: {
             yes: {
@@ -271,30 +273,30 @@ var x=1000;
     }).then(value => {
         switch (value) {
             case "yes":
-               
+
                 $.ajax({
                     headers: {
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
                             "content"
                         )
                     },
-                    url: "/dataset/delete_metadata/"+id,
+                    url: "/dataset/delete_metadata/" + id,
                     method: "get",
                     beforeSend() {
                         $.LoadingOverlay("show");
                     },
                     success: function (result) {
-                        console.log(result);
                         var obj = result;
                         $.LoadingOverlay("hide");
                         if (obj.status) {
-                            window.location.replace("/dataset/edit/"+url);
+                            window.location.replace("/dataset/edit/" + url);
                         } else {
                             swal("Fail !", "ไม่สามารถลบข้อมูลได้", "error");
                         }
                     },
                     error(xhr, status, error) {
-                        alert(error);
+                        $.LoadingOverlay("hide");
+                        swal("Fail !", error + " Status : " + status, "error");
                     }
                 });
                 break;

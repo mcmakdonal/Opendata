@@ -16,6 +16,11 @@
                     </ul>
                 </div>
                 @endif
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
                 {!! Form::open(['url' => '/administrator','class' => 'form-auth-small', 'method' => 'post','files' => true]) !!}
                 <div class="row">
                     <div class="col-md-6">

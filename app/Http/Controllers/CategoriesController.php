@@ -112,7 +112,7 @@ class CategoriesController extends Controller
         $args = array(
             'cat_title' => $request->cat_title,
             'update_date' => date('Y-m-d H:i:s'),
-            'update_by' => 1,
+            'update_by' => \Cookie::get('token'),
             'record_status' => 'A',
         );
 

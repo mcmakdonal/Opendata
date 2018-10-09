@@ -71,9 +71,9 @@ class IndexController extends Controller
             'last_name' => $request->last_name,
             'description' => $request->description,
             'create_date' => date('Y-m-d H:i:s'),
-            'create_by' => 1,
+            'create_by' => 0,
             'update_date' => date('Y-m-d H:i:s'),
-            'update_by' => 1,
+            'update_by' => 0,
             'record_status' => 'A',
         ];
 

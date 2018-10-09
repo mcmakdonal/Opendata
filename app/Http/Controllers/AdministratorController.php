@@ -72,9 +72,9 @@ class AdministratorController extends Controller
             // 'password' => Crypt::encryptString($request->password),
             'password' => Hash::make($request->password),
             'create_date' => date('Y-m-d H:i:s'),
-            'create_by' => 1,
+            'create_by' => \Cookie::get('token'),
             'update_date' => date('Y-m-d H:i:s'),
-            'update_by' => 1,
+            'update_by' => \Cookie::get('token'),
             'record_status' => 'A',
         );
 
@@ -142,7 +142,7 @@ class AdministratorController extends Controller
             'last_name' => $request->last_name,
             'password' => ($request->password != "") ? Hash::make($request->password) : $request->old_password,
             'update_date' => date('Y-m-d H:i:s'),
-            'update_by' => 1,
+            'update_by' => \Cookie::get('token'),
             'record_status' => 'A',
         );
 

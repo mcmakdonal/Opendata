@@ -106,7 +106,7 @@ class Customlib extends ServiceProvider
             $matchThese[] = ['tbl_dataset.dts_status', '=', "pb"];
         }
         // return $matchThese;
-        $select = ['tbl_dataset.dts_id', 'tbl_dataset.dts_title', 'tbl_dataset.dts_url', 'tbl_dataset.dts_status', 'tbl_dataset.dts_description','tbl_dataset.dts_res_point','tbl_categories.cat_title'];
+        $select = ['tbl_dataset.dts_id', 'tbl_dataset.dts_title', 'tbl_dataset.dts_url', 'tbl_dataset.dts_status', 'tbl_dataset.dts_description', 'tbl_dataset.dts_res_point', 'tbl_categories.cat_title'];
         $tbl_dataset = DB::table('tbl_dataset')
             ->select($select)
         // ->join('tbl_organization', 'tbl_organization.ogz_id', '=', 'tbl_dataset.ogz_id')
@@ -148,7 +148,6 @@ class Customlib extends ServiceProvider
         return $args;
     }
 
-	
     public static function get_ogz($slug = "", $title = "", $pagi = false)
     {
         $matchThese = [];
@@ -182,16 +181,16 @@ class Customlib extends ServiceProvider
         return $tbl_organization;
     }
 
-	public static function get_metadata($dts_id = "")
+    public static function get_metadata($dts_id = "")
     {
-       
+
         if ($dts_id != "") {
             $matchThese['tbl_metadata.dts_id'] = $dts_id;
         }
         $tbl_resource = DB::table('tbl_metadata')->where($matchThese)->get()->toArray();
         return $tbl_resource;
     }
-	
+
     public static function get_dts($ogz_id = "", $title = "", $slug_url = "")
     {
         $matchThese = [];
@@ -208,7 +207,7 @@ class Customlib extends ServiceProvider
             $matchThese[] = ['tbl_dataset.dts_status', '=', "pb"];
         }
         $tbl_dataset = DB::table('tbl_dataset')
-            ->select('tbl_dataset.*','ogz_title','license','cat_title')
+            ->select('tbl_dataset.*', 'ogz_title', 'license', 'cat_title')
             ->where($matchThese)
             ->join('tbl_license', 'tbl_license.lcs_id', '=', 'tbl_dataset.lcs_id')
             ->join('tbl_categories', 'tbl_categories.cat_id', '=', 'tbl_dataset.cat_id')
@@ -373,21 +372,21 @@ class Customlib extends ServiceProvider
             ->get()
             ->toArray();
 
-        if(count($check_has_username) > 0){
+        if (count($check_has_username) > 0) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
 
-    public static function log_download($log_id = "",$search = "")
+    public static function log_download($log_id = "", $search = "")
     {
         $matchThese = [];
         if ($search != "") {
             $matchThese[] = ['tbl_dataset.dts_status', '=', "pb"];
         }
         $tbl_userdownload = DB::table('tbl_userdownload')
-            ->select('tbl_userdownload.*','file_name')
+            ->select('tbl_userdownload.*', 'file_name')
             ->join('tbl_resource', 'tbl_resource.res_id', '=', 'tbl_userdownload.res_id')
             ->where($matchThese)
             ->get()
@@ -464,6 +463,39 @@ class Customlib extends ServiceProvider
     {
         $arg = ['Not updated(historical only)', 'Annual', 'Quarterly', 'Monthly'];
         return $arg;
+    }
 
+    public static function my_curl($path, $port = "3000", $method = "GET", $args = ['' => ''])
+    {
+        $curl = curl_init();
+        $args = json_encode($args, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        curl_setopt_array($curl, array(
+            CURLOPT_PORT => $port,
+            CURLOPT_URL => $path,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => $method,
+            CURLOPT_POSTFIELDS => "$args",
+            CURLOPT_HTTPHEADER => array(
+                "cache-control: no-cache",
+                "Content-Type: application/json",
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+            exit();
+        } else {
+            $result = json_decode($response);
+            return $result;
+        }
     }
 }

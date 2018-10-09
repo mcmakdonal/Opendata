@@ -102,8 +102,9 @@ Route::delete('/organization/delete/{slug}', 'OrganizationController@delete');
 
 /////////////////////////////////////////////////////////////////////////
 
-// index ogz
-Route::get('/datamanagement', 'DatamanagementController@index');
+// Data management
+Route::resource('/datamanagement', 'DatamanagementController');
+Route::post('/datamanagement/export/{id}', 'DatamanagementController@export');
 //////////////////
 
 Route::resource('administrator', 'AdministratorController');

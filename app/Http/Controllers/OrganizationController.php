@@ -86,9 +86,9 @@ class OrganizationController extends Controller
             'ogz_status' => $request->ogz_status,
             'ogz_image' => $image,
             'create_date' => date('Y-m-d H:i:s'),
-            'create_by' => 1,
+            'create_by' => \Cookie::get('token'),
             'update_date' => date('Y-m-d H:i:s'),
-            'update_by' => 1,
+            'update_by' => \Cookie::get('token'),
             'record_status' => 'A',
         );
 
@@ -174,7 +174,7 @@ class OrganizationController extends Controller
             'ogz_status' => $request->ogz_status,
             'ogz_image' => $image,
             'update_date' => date('Y-m-d H:i:s'),
-            'update_by' => 1,
+            'update_by' => \Cookie::get('token'),
             'record_status' => 'A',
         );
         $slug_url = $request->slug_url;
