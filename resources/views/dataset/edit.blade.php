@@ -311,7 +311,6 @@
                 });
                 break;
             case "no":
-                swal("Message!", "Cancel", "warning");
                 break;
             default:
         }

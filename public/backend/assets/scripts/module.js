@@ -90,7 +90,7 @@ function get_data(page = 1) {
         },
         error(xhr, status, error) {
             $("#result-data").LoadingOverlay("hide", true);
-            swal("Fail !", error + " Status : " + status, "error");
+            // swal("Fail !", error + " Status : " + status, "error");
         }
     });
 }
@@ -112,7 +112,7 @@ function update_filter(data) {
             };
         },
         error(xhr, status, error) {
-            swal("Fail !", error + " Status : " + status, "error");
+            // swal("Fail !", error + " Status : " + status, "error");
         }
     });
 
@@ -132,7 +132,7 @@ function update_filter(data) {
             };
         },
         error(xhr, status, error) {
-            swal("Fail !", error + " Status : " + status, "error");
+            // swal("Fail !", error + " Status : " + status, "error");
         }
     });
 
@@ -301,7 +301,6 @@ function remove_metadata(id, url) {
                 });
                 break;
             case "no":
-                swal("Message!", "Cancel", "warning");
                 break;
             default:
         }
