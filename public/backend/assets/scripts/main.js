@@ -347,7 +347,7 @@ function export_datamanagement(e) {
                             $(e).attr("disabled", "disabled");
                             swal("Success !", "Export สำเร็จ", "success");
                         } else {
-                            swal("Fail !", "ผิดพลาด", "error");
+                            swal("Fail !", "ผิดพลาด : " + obj.message, "error");
                         }
                     },
                     error(xhr, status, error) {
