@@ -197,7 +197,7 @@ class DatamanagementController extends Controller
         $tbl_exportdata = DB::table('tbl_exportdata')->where('ep_id', $id)->get()->toArray();
         // dd($tbl_exportdata);
         $args = [];
-        foreach($tbl_exportdata as $k => $v){
+        foreach ($tbl_exportdata as $k => $v) {
             $args['view'] = $v->ep_view;
             $args['ogz_id'] = $v->ogz_id;
             $args['dts_title'] = $v->ep_title;
@@ -220,14 +220,15 @@ class DatamanagementController extends Controller
             $args['record_status'] = $v->record_status;
         }
 
-        $result = Customlib::my_curl("http://oae-social.demotoday.net:3000/input", "3000","POST",$args);
-        if ($result->status) {
+        $result = Customlib::my_curl("http://oae-social.demotoday.net:3000/input", "3000", "POST", $args);
+        if ($result->status === true) {
             return response()->json([
                 'status' => true,
             ]);
         } else {
             return response()->json([
                 'status' => false,
+                'message' => ($result->message != "") ? $result->message : "not found error message",
             ]);
         }
     }
