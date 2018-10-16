@@ -19,17 +19,17 @@
     @csrf
         <div class="row" style="margin-bottom: 10px;">
             <div class="col-md-6">
-                <button type="button" class="btn btn-block btn-success">1. Create dataset</button>
+                <button type="button" class="btn btn-block btn-success">1. สร้าง ชุดข้อมูล</button>
             </div>
             <div class="col-md-6">
-                <button type="button" class="btn btn-block btn-success" style="opacity : 0.5;cursor: not-allowed">2. Add data</button>
+                <button type="button" class="btn btn-block btn-success" style="opacity : 0.5;cursor: not-allowed">2. เพิ่ม ชุดข้อมูล</button>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="title" class="control-label">ชื่อ Dataset : </label>
-                    <input type="text" class="form-control" id="dts_title" name="dts_title" value="" placeholder="ชื่อ Dataset" required>
+                    <label for="title" class="control-label">ชื่อ ชุดข้อมูล : </label>
+                    <input type="text" class="form-control" id="dts_title" name="dts_title" value="" placeholder="ชื่อ ชุดข้อมูล" required>
                 </div>
             </div>
 
@@ -106,7 +106,7 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="" class="control-label">License : </label>
+                    <label for="" class="control-label">การอนุญาต : </label>
                     <select class="form-control use-select2" name="lcs_id" id="lcs_id" required>
                         @foreach($get_lcs as $k => $v)
                             <option value="{{ $v->lcs_id }}">{{ $v->license }}</option>
@@ -117,7 +117,7 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="" class="control-label">Organization : </label>
+                    <label for="" class="control-label">องค์กร : </label>
                     <select class="form-control use-select2" name="ogz_id" id="ogz_id" required>
                         @foreach($get_ogz as $k => $v)
                             <option value="{{ $v->ogz_id }}" {{ ($v->ogz_url == $lock_ogz)? "selected" : "" }} >{{ $v->ogz_title }}</option>
@@ -128,7 +128,7 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="" class="control-label">Categories : </label>
+                    <label for="" class="control-label">หมวดหมู่ : </label>
                     <select class="form-control use-select2" name="cat_id" id="cat_id" required>
                         @foreach($get_cat as $k => $v)
                             <option value="{{ $v->cat_id }}" >{{ $v->cat_title }}</option>
@@ -141,15 +141,15 @@
                 <div class="form-group">
                     <label for="" class="control-label">สถานะ : </label>
                     <select class="form-control use-select2" name="dts_status" id="dts_status">
-                        <option value="pb">Public</option>
-                        <option value="pv">Private</option>
+                        <option value="pb">สาธารณะ</option>
+                        <option value="pv">ส่วนตัว</option>
                     </select>
                 </div>
             </div>
 
             <div class="col-md-12 text-right">
-                <button type="submit" class="btn btn-success">Create Dataset</button>
-                <?=link_to('/dataset', $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null);?>
+                <button type="submit" class="btn btn-success">สร้าง ชุดข้อมูล</button>
+                <?=link_to('/dataset', $title = 'ย้อนกลับ', ['class' => 'btn btn-warning'], $secure = null);?>
             </div>
         </div>
     {!! Form::close() !!}

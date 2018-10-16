@@ -22,8 +22,8 @@ class CategoriesController extends Controller
     {
         $get_cat = Customlib::get_cat();
         return view('categories.index', [
-            'title' => 'Categories',
-            'header' => 'Categories',
+            'title' => 'หมวดหมู่',
+            'header' => 'หมวดหมู่',
             'is_login' => Customlib::is_login(),
             'get_cat' => $get_cat,
         ]);

@@ -172,19 +172,19 @@
     @endif
 
     <div class="form-group has-feedback">
-      <input type="text" id="username" class="form-control login" name="username" placeholder="username">
+      <input type="text" id="username" class="form-control login" name="username" placeholder="ชื่อผู้ใช้">
       <span class="glyphicon glyphicon-envelope "></span>
     </div>
     <div class="form-group has-feedback">
-      <input type="password" id="pass" name="password" class="form-control login" placeholder="Password">
+      <input type="password" id="pass" name="password" class="form-control login" placeholder="รหัสผ่าน">
       <i class="glyphicon glyphicon-lock "></i>
     </div>
     <div class="col-xs-12" style="margin-top: 20px;">
 
-      <button type="submit" class="btn  btn-block btn-login">Sign In</button>
+      <button type="submit" class="btn  btn-block btn-login">เข้าสู่ระบบ</button>
     </div>
     <div class="col-xs-12">
-      <div style="    margin-top: 20px;color: #707478;">
+      <div style="margin-top: 20px;color: #707478;">
 
       </div>
     </div>

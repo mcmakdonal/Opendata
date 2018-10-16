@@ -24,14 +24,14 @@
             <div class="panel panel-primary box_gradient" style="padding-top:10px;padding-bottom: 10px;">
                 <div class="row">
                     <div class="col-md-12" style="margin-bottom: 10px;">
-                        <?=link_to('#', $title = 'Add Categories', ['class' => 'btn btn-primary', 'onclick' => 'manage_cat("add")'], $secure = null);?>
+                        <?=link_to('#', $title = 'เพิ่ม หมวดหมู่', ['class' => 'btn btn-primary', 'onclick' => 'manage_cat("add")'], $secure = null);?>
                     </div>
                 </div>
                 <table class="table table-bordered datatable">
                     <thead>
                     <tr>
                         <th style="width: 5%;">#</th>
-                        <th>Categories Title</th>
+                        <th>ชื่อหมวดหมู่</th>
                         <th class="text-center" style="width: 5%;">แก้ไข</th>
                         <th class="text-center" style="width: 5%;">ลบ</th>
                     </tr>
@@ -42,10 +42,10 @@
                             <td>{{$k + 1}}</td>
                             <td id="cat_title_{{$v->cat_id}}">{{$v->cat_title}}</td>
                             <td>
-                                <button onclick="manage_cat('edit','{{$v->cat_id}}')" class="btn btn-warning">Edit</button>
+                                <button onclick="manage_cat('edit','{{$v->cat_id}}')" class="btn btn-warning">แก้ไข</button>
                             </td>
                             <td>
-                                <button onclick="manage_cat('del','{{$v->cat_id}}')" class="btn btn-danger" data="">Delete</button>
+                                <button onclick="manage_cat('del','{{$v->cat_id}}')" class="btn btn-danger" data="">ลบ</button>
                             </td>
                         </tr>
                         @endforeach

@@ -60,7 +60,7 @@
 				</div>
 				 {!! Form::open(['url' => "/dataset",'class' => 'navbar-form navbar-left', 'method' => 'get']) !!}
 					<div class="input-group">
-						<input type="text" value="" name="title" class="form-control" placeholder="ค้นหา dataset">
+						<input type="text" value="" name="title" class="form-control" placeholder="ค้นหา ชุดข้อมูล">
 						<span class="input-group-btn"><button type="submit" class="btn btn-primary">ค้นหา</button></span>
 					</div>
 				{!! Form::close() !!} -->
@@ -87,13 +87,13 @@
 							<ul class="dropdown-menu">
 							
 								@if (Cookie::get('token') !== null)
-								<li><a href="/categories"><i class="fa fa-newspaper-o" aria-hidden="true"></i> <span>Categories</span></a></li>
-								<li><a href="/administrator"><i class="fa fa-user" aria-hidden="true"></i> <span>Administrator</span></a></li>
+								<li><a href="/categories"><i class="fa fa-newspaper-o" aria-hidden="true"></i> <span>หมวดหมู่</span></a></li>
+								<li><a href="/administrator"><i class="fa fa-user" aria-hidden="true"></i> <span>ผู้ดูแลระบบ</span></a></li>
 								<li><a href="/datamanagement"><i class="fa fa-database" aria-hidden="true"></i><span>Management Data</span></a></li>
 								<li><a href="/log-download"><i class="fa fa-download" aria-hidden="true"></i><span>Log Download</span></a></li>
-								<li><a href="{{ url('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i><span>Logout</span></a></li>
+								<li><a href="{{ url('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i><span>ออกจากระบบ</span></a></li>
 								@else
-									<li><a href="{{ url('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> <span>Login</span></a></li>
+									<li><a href="{{ url('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> <span>เข้าสู่ระบบ</span></a></li>
 								@endif
 							</ul>
 						</li>
@@ -108,8 +108,8 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="{{ url('/dataset') }}" class="{{ (strpos(url()->current(),'dataset') ) ? 'active' : '' }}"><i class="lnr lnr-home"></i> <span>Dataset</span></a></li>
-						<li><a href="{{ url('/organization') }}" class="{{ (strpos(url()->current(),'organization') ) ? 'active' : '' }}"><i class="lnr lnr-user"></i> <span>Organization</span></a></li>
+						<li><a href="{{ url('/dataset') }}" class="{{ (strpos(url()->current(),'dataset') ) ? 'active' : '' }}"><i class="lnr lnr-home"></i> <span>ชุดข้อมูล</span></a></li>
+						<li><a href="{{ url('/organization') }}" class="{{ (strpos(url()->current(),'organization') ) ? 'active' : '' }}"><i class="lnr lnr-user"></i> <span>องค์กร</span></a></li>
 					</ul>
 				</nav>
 			</div>
@@ -130,7 +130,7 @@
 		<div class="clearfix"></div>
 		<footer>
 			<div class="container-fluid">
-				<p class="copyright">&copy; 2018 MC. All Rights Reserved.</p>
+				<p class="copyright">&copy; 2018 Opendata. All Rights Reserved.</p>
 			</div>
 		</footer>
 	</div>

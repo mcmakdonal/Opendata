@@ -28,8 +28,8 @@ class DatasetController extends Controller
         $get_cat = Customlib::get_cat();
 
         return view('dataset.index', [
-            'title' => 'Dataset',
-            'header' => 'Dataset',
+            'title' => 'ชุดข้อมูล',
+            'header' => 'ชุดข้อมูล',
             'get_ogz_count' => $get_ogz_count,
             'file_format' => $file_format,
             'get_lcs' => $get_lcs,
@@ -46,8 +46,8 @@ class DatasetController extends Controller
         $uniq = uniqid() . md5(date('Y-m-d H:i:s'));
 
         return view('dataset.new', [
-            'title' => 'Create an Dataset',
-            'header' => 'Create an Dataset',
+            'title' => 'สร้าง ชุดข้อมูล',
+            'header' => 'สร้าง ชุดข้อมูล',
             'get_ogz' => $get_ogz,
             'get_lcs' => $get_lcs,
             'get_cat' => $get_cat,
@@ -113,8 +113,8 @@ class DatasetController extends Controller
     {
         if ($request->session()->has('new_dataset')) {
             return view('dataset.new_res', [
-                'title' => 'Create an Dataset',
-                'header' => 'Create an Dataset',
+                'title' => 'สร้าง ชุดข้อมูล',
+                'header' => 'สร้าง ชุดข้อมูล',
             ]);
         } else {
             return redirect('/dataset/new');
@@ -236,8 +236,8 @@ class DatasetController extends Controller
             $get_frequent = Customlib::frequent();
             // dd($tbl_resource);
             return view('dataset.page', [
-                'title' => 'Dataset',
-                'header' => 'Dataset',
+                'title' => 'ชุดข้อมูล',
+                'header' => 'ชุดข้อมูล',
                 'content' => $tbl_dataset,
                 'resource' => $tbl_resource,
                 'metadata' => $tbl_metadata,
@@ -264,8 +264,8 @@ class DatasetController extends Controller
             $get_frequent = Customlib::frequent();
 
             return view('dataset.edit', [
-                'title' => 'Dataset Edit',
-                'header' => 'Dataset Edit',
+                'title' => 'แก้ไข ชุดข้อมูล',
+                'header' => 'แก้ไข ชุดข้อมูล',
                 'tbl_dataset' => $tbl_dataset,
                 'get_ogz' => $get_ogz,
                 'slug_url' => $slug_url,

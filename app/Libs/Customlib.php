@@ -70,11 +70,11 @@ class Customlib extends ServiceProvider
     {
 
         $limit = 10;
-        if ($page == 1) {
-            $offset = 0;
-        } else {
-            $offset = ($limit * $page) - 1;
-        }
+        // if ($page == 1) {
+        //     $offset = 0;
+        // } else {
+        //     $offset = ($limit * $page) - 1;
+        // }
         $matchThese = [];
         if ($organization != "") {
             $matchThese[] = ['tbl_dataset.ogz_id', '=', $organization];
@@ -107,6 +107,17 @@ class Customlib extends ServiceProvider
         }
         // return $matchThese;
         $select = ['tbl_dataset.dts_id', 'tbl_dataset.dts_title', 'tbl_dataset.dts_url', 'tbl_dataset.dts_status', 'tbl_dataset.dts_description', 'tbl_dataset.dts_res_point', 'tbl_categories.cat_title'];
+
+        $count = DB::table('tbl_dataset')
+            ->select('tbl_dataset.dts_id')
+            // ->leftJoin('tbl_resource', 'tbl_resource.dts_id', '=', 'tbl_dataset.dts_id')
+            ->join('tbl_categories', 'tbl_categories.cat_id', '=', 'tbl_dataset.cat_id')
+            ->where($matchThese)
+            ->get()->toArray();
+
+        $total = ceil(count($count) / $limit);
+        $offset = ($page - 1) * $limit;
+
         $tbl_dataset = DB::table('tbl_dataset')
             ->select($select)
         // ->join('tbl_organization', 'tbl_organization.ogz_id', '=', 'tbl_dataset.ogz_id')
@@ -134,16 +145,10 @@ class Customlib extends ServiceProvider
             $tbl_dataset[$k]->format = $str;
         }
 
-        $count = DB::table('tbl_dataset')
-            ->select('tbl_dataset.dts_id')
-            ->leftJoin('tbl_resource', 'tbl_resource.dts_id', '=', 'tbl_dataset.dts_id')
-            ->where($matchThese)
-            ->get()->toArray();
 
-        $ceil = ceil(count($count) / $limit);
         $args = [
             'table' => $tbl_dataset,
-            'totalPages' => (($ceil == 0) ? 1 : $ceil),
+            'totalPages' => $total,
         ];
         return $args;
     }

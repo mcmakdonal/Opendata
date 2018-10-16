@@ -18,16 +18,16 @@
     {!! Form::open(['url' => '/dataset/save','class' => 'form-auth-small', 'method' => 'post','files' => true]) !!}
     <div class="row" style="margin-bottom: 10px;">
         <div class="col-md-6">
-            <button type="button" class="btn btn-block btn-success" style="opacity : 0.5">1. Create dataset</button>
+            <button type="button" class="btn btn-block btn-success" style="opacity : 0.5">1. สร้าง ชุดข้อมูล</button>
         </div>
         <div class="col-md-6">
-            <button type="button" class="btn btn-block btn-success">2. Add data</button>
+            <button type="button" class="btn btn-block btn-success">2. เพิ่ม ชุดข้อมูล</button>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="file" class="control-label">เลือกชนิดของ Resource : </label>
+                <label for="file" class="control-label">เลือกชนิดของ ทรัพยากร : </label>
                 <select class="form-control use-select2" id="file_type" name="file_type">
                     <option value="f">File Upload</option>
                     <option value="w">Web URL</option>
@@ -97,7 +97,7 @@
         </div> -->
 
         <div class="col-md-12 text-right">
-            <button type="submit" class="btn btn-success">สร้าง Dataset</button>
+            <button type="submit" class="btn btn-success">สร้าง ชุดข้อมูล</button>
             <?=link_to('/dataset', $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null);?>
         </div>
     </div>

@@ -24,8 +24,8 @@ class OrganizationController extends Controller
         $get_ogz = Customlib::get_ogz("", $title, true);
         // dd($get_ogz);
         return view('organization.index', [
-            'title' => 'Organization',
-            'header' => 'Organization',
+            'title' => 'องค์กร',
+            'header' => 'องค์กร',
             'get_ogz' => $get_ogz,
             'is_login' => Customlib::is_login(),
         ]);
@@ -34,7 +34,7 @@ class OrganizationController extends Controller
     function new () {
         $uniq = uniqid() . md5(date('Y-m-d H:i:s'));
         return view('organization.new', [
-            'title' => 'Create an Organization', 'uniq' => $uniq,
+            'title' => 'สร้าง องค์กร', 'uniq' => $uniq,
         ]);
     }
 
@@ -111,8 +111,8 @@ class OrganizationController extends Controller
             }
             $get_cat = Customlib::get_cat();
             return view('organization.page', [
-                'title' => 'Organization',
-                'header' => 'Organization',
+                'title' => 'องค์กร',
+                'header' => 'องค์กร',
                 'slug_url' => $slug_url,
                 'ogz_id' => $ogz_id,
                 'is_login' => Customlib::is_login(),
@@ -132,8 +132,8 @@ class OrganizationController extends Controller
             $ogz_id = $get_ogz[0]->ogz_id;
             $tbl_dataset = DB::table('tbl_dataset')->where('ogz_id', $ogz_id)->get();
             return view('organization.edit', [
-                'title' => 'Manage Organization',
-                'header' => 'Manage Organization',
+                'title' => 'แก้ไข องค์กร',
+                'header' => 'แก้ไข องค์กร',
                 'content' => $get_ogz,
                 'dataset' => $tbl_dataset,
                 'slug_url' => $slug_url,

@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="title" class="control-label">Title : </label>
+                <label for="title" class="control-label">หัวข้อ : </label>
                 <input type="text" class="form-control" id="ogz_title" name="ogz_title" value="" placeholder="ชื่อ" required>
             </div>
         </div>
@@ -36,7 +36,7 @@
 
         <div class="col-md-12">
             <div class="form-group">
-                <label for="description" class="control-label">Description : </label>
+                <label for="description" class="control-label">รายละเอียด : </label>
                 <textarea class="form-control" id="ogz_description" name="ogz_description" rows="3" style="resize : none;"></textarea>
             </div>
         </div>
@@ -52,14 +52,14 @@
             <div class="form-group">
                 <label for="" class="control-label">สถานะ : </label>
                 <select class="form-control use-select2" name="ogz_status" id="ogz_status">
-                    <option value="pb">Public</option>
-                    <option value="pv">Private</option>
+                    <option value="pb">สาธารณะ</option>
+                    <option value="pv">ส่วนตัว</option>
                 </select>
             </div>
         </div>
 
         <div class="col-md-12 text-right">
-            <button type="submit" class="btn btn-success">Create Organization</button>
+            <button type="submit" class="btn btn-success">สร้าง องค์กร</button>
             <?= link_to('/organization', $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null); ?>
         </div>
     </div>

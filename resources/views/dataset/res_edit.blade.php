@@ -24,7 +24,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="file" class="control-label">เลือกชนิดของ Resource : </label>
+                <label for="file" class="control-label">เลือกชนิดของ ทรัพยากร : </label>
                 <select class="form-control use-select2" id="file_type" name="file_type">
                     <option value="f" {{ ($get_res[0]->file_type == "f")? "selected" : "" }} >File Upload</option>
                     <option value="w" {{ ($get_res[0]->file_type == "w")? "selected" : "" }} >Web URL</option>
@@ -80,7 +80,7 @@
         </div> -->
 
         <div class="col-md-6">
-            <button class="btn btn-danger" type="button" onclick="remove_res(this,'{{$slug_url}}','{{ $get_res[0]->res_id }}')" data="{{ url('/resource/delete') }}">Delete Resource</button>
+            <button class="btn btn-danger" type="button" onclick="remove_res(this,'{{$slug_url}}','{{ $get_res[0]->res_id }}')" data="{{ url('/resource/delete') }}">ลบ ทรัพยากร</button>
         </div>
 
         <div class="col-md-6 text-right">
@@ -89,8 +89,8 @@
             <input type="hidden" value="{{ $get_res[0]->file_ext }}" name="old_file_ext">
             <input type="hidden" value="{{ $get_res[0]->res_id }}" name="res_id">
             <input type="hidden" value="{{ $get_res[0]->dts_id }}" name="dts_id">
-            <button type="submit" class="btn btn-success">Update Resource</button>
-            <?=link_to('/dataset/page/' . $slug_url, $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null);?>
+            <button type="submit" class="btn btn-success">แก้ไข ทรัพยากร</button>
+            <?=link_to('/dataset/page/' . $slug_url, $title = 'ยกเลิก', ['class' => 'btn btn-warning'], $secure = null);?>
         </div>
     </div>
     {!! Form::close() !!}

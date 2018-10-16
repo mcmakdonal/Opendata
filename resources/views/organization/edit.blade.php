@@ -15,12 +15,12 @@
    
 
     <ul class="nav nav-tabs" role="tablist">
-        <li class="active"><a data-toggle="tab" href="#edit"><span class="lnr lnr-pencil"></span> Edit</a></li>
-        <li><a data-toggle="tab" href="#datasets"><span class="lnr lnr-cloud-download"></span> Datasets</a></li>
+        <li class="active"><a data-toggle="tab" href="#edit"><span class="lnr lnr-pencil"></span> แก้ไข </a></li>
+        <li><a data-toggle="tab" href="#datasets"><span class="lnr lnr-cloud-download"></span> ชุดข้อมูล </a></li>
         <!-- <li><a data-toggle="tab" href="#member"><span class="lnr lnr-users"></span> Members</a></li> -->
         <div class="text-right">
         <a href="{{url('/organization/page/'.$slug_url)}}">
-            <button type="submit" class="btn btn-primary"><span class="lnr lnr-eye"></span> View Organization</button>
+            <button type="submit" class="btn btn-primary"><span class="lnr lnr-eye"></span> ดู องค์กร</button>
         </a>
     </div>
     </ul>
@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="title" class="control-label">Title : </label>
+                        <label for="title" class="control-label">หัวข้อ : </label>
                         <input type="text" class="form-control" id="ogz_title" name="ogz_title" value="{{ $content[0]->ogz_title }}" placeholder="ชื่อ" required>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="description" class="control-label">Description : </label>
+                        <label for="description" class="control-label">รายละเอียด : </label>
                         <textarea class="form-control" id="ogz_description" name="ogz_description" rows="3" style="resize : none;">{{ $content[0]->ogz_description }}</textarea>
                     </div>
                 </div>
@@ -83,19 +83,19 @@
                     <div class="form-group">
                         <label for="" class="control-label">สถานะ : </label>
                         <select class="form-control use-select2" name="ogz_status" id="ogz_status">
-                            <option value="pb" {{ ($content[0]->ogz_status == "pb")? "selected" : "" }} >Public</option>
-                            <option value="pv" {{ ($content[0]->ogz_status == "pv")? "selected" : "" }} >Private</option>
+                            <option value="pb" {{ ($content[0]->ogz_status == "pb")? "selected" : "" }} >สาธารณะ</option>
+                            <option value="pv" {{ ($content[0]->ogz_status == "pv")? "selected" : "" }} >ส่วนตัว</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <button type="button" class="btn btn-danger" onclick="remove_ogz(this,'{{$slug_url}}')" data="{{ url('/organization/delete') }}" >Delete Organization</button>
+                    <button type="button" class="btn btn-danger" onclick="remove_ogz(this,'{{$slug_url}}')" data="{{ url('/organization/delete') }}" >ลบ องค์กร</button>
                 </div>
 
                 <div class="col-md-6 text-right">
                     <input type="hidden" value="{{ $slug_url }}" name="slug_url">
-                    <button type="submit" class="btn btn-success">Update Organization</button>
+                    <button type="submit" class="btn btn-success">แก้ไข องค์กร</button>
                     <?=link_to('/organization', $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null);?>
                 </div>
             </div>
@@ -106,7 +106,7 @@
         <div id="datasets" class="tab-pane fade">
             <div class="row">
                 <div class="col-md-12" style="margin-bottom: 10px;">
-                    <?= link_to('/dataset/new?ogz='.$slug_url, $title = 'Add Daataset', ['class' => 'btn btn-primary'], $secure = null); ?>
+                    <?= link_to('/dataset/new?ogz='.$slug_url, $title = 'เพิ่ม ชุดข้อมูล', ['class' => 'btn btn-primary'], $secure = null); ?>
                 </div>
             </div>
             <div class="row">
@@ -115,8 +115,8 @@
                         <thead>
                             <tr>
                                 <th style="width: 5%;">#</th>
-                                <th><button type="button" class="btn btn-block" onclick="set_status_dts('pb')"><i class="fa fa-eye" aria-hidden="true"></i> Make Public</button></th>
-                                <th><button type="button" class="btn btn-block" onclick="set_status_dts('pv')"><i class="fa fa-eye-slash" aria-hidden="true"></i> Make Private</button></th>
+                                <th><button type="button" class="btn btn-block" onclick="set_status_dts('pb')"><i class="fa fa-eye" aria-hidden="true"></i> ทำให้เป็น สาธารณะ</button></th>
+                                <th><button type="button" class="btn btn-block" onclick="set_status_dts('pv')"><i class="fa fa-eye-slash" aria-hidden="true"></i> ทำให้เป็น ส่วนตัว</button></th>
                                 <th><button type="button" class="btn btn-block btn-danger" onclick="set_status_dts('del')"><i class="fa fa-chain-broken" aria-hidden="true"></i> Delete</button></th>
                             </tr>
                         </thead>
@@ -129,7 +129,7 @@
                                     </div>
                                 </td>
                                 <td colspan="3">
-                                    <h5> <span class="badge badge-secondary">{{ ($v->dts_status == "pb")?"Public":"Private" }}</span> {{$v->dts_title}} </h5>
+                                    <h5> <span class="badge badge-secondary">{{ ($v->dts_status == "pb")?"สาธารณะ":"ส่วนตัว" }}</span> {{$v->dts_title}} </h5>
                                 </td>
                             </tr>
                             @endforeach
