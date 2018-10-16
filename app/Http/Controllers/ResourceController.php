@@ -22,8 +22,8 @@ class ResourceController extends Controller
         $get_res = Customlib::get_res($res_id);
         // dd($get_res);
         return view('dataset.preview', [
-            'title' => 'Preview Resource',
-            'header' => 'Preview Resource',
+            'title' => 'ตัวอย่าง ทรัพยากร',
+            'header' => 'ตัวอย่าง ทรัพยากร',
             'is_login' => Customlib::is_login(),
             'get_res' => $get_res,
             'slug_url' => $slug,
@@ -35,8 +35,8 @@ class ResourceController extends Controller
     {
         if ($slug_url != "") {
             return view('dataset.add_resource', [
-                'title' => 'Add an Resource',
-                'header' => 'Add an Resource',
+                'title' => 'เพิ่ม ทรัพยากร',
+                'header' => 'เพิ่ม ทรัพยากร',
                 'slug_url' => $slug_url,
             ]);
         }
@@ -115,8 +115,8 @@ class ResourceController extends Controller
         $get_res = Customlib::get_res($res_id);
         // dd($get_res);
         return view('dataset.res_edit', [
-            'title' => 'Edit Resource',
-            'header' => 'Edit Resource',
+            'title' => 'แก้ไข ทรัพยากร',
+            'header' => 'แก้ไข ทรัพยากร',
             'is_login' => Customlib::is_login(),
             'get_res' => $get_res,
             'slug_url' => $slug,

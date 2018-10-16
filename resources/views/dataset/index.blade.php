@@ -85,7 +85,7 @@
                 @if($is_login)
                 <div class="row">
                     <div class="col-md-12" style="margin-bottom: 10px;">
-                        <?=link_to('/dataset/new', $title = 'Add Dataset', ['class' => 'btn btn-primary'], $secure = null);?>
+                        <?=link_to('/dataset/new', $title = 'เพิ่ม ชุดข้อมูล', ['class' => 'btn btn-primary'], $secure = null);?>
                     </div>
                 </div>
                 @endif
@@ -133,7 +133,7 @@
                         <div class="box_headder">
                         <div class="text_box_title" >
                         <img src="{{ url('backend/assets/img/icon_topic.png') }}" >  
-                         <label id="title_dataset">DATASET</label>  
+                         <label id="title_dataset">ชุดข้อมูล</label>  
                         </div>   
                         <img src="{{ url('backend/assets/img/topic_fx.png') }}" style="float:right">
                         </div>

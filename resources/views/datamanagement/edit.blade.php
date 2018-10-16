@@ -25,8 +25,8 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="ep_title" class="control-label">ชื่อ Dataset : </label>
-                            <input type="text" class="form-control" id="ep_title" name="ep_title" value="{{ $content[0]->ep_title }}" placeholder="ชื่อ Dataset" required>
+                                <label for="ep_title" class="control-label">ชื่อ ชุดข้อมูล : </label>
+                            <input type="text" class="form-control" id="ep_title" name="ep_title" value="{{ $content[0]->ep_title }}" placeholder="ชื่อ ชุดข้อมูล" required>
                             </div>
                         </div>
 
@@ -50,7 +50,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="" class="control-label">Organization : </label>
+                                <label for="" class="control-label">องค์กร : </label>
                                 <select class="form-control use-select2" name="ogz_id" id="ogz_id" required>
                                     @foreach($get_ogz as $k => $v)
                                         <option value="{{ $v->ogz_id }}" {{ ($content[0]->ogz_id == $v->ogz_id)? "selected" : "" }} >{{ $v->ogz_title }}</option>
@@ -61,7 +61,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="" class="control-label">Categories : </label>
+                                <label for="" class="control-label">หมวดหมู่ : </label>
                                 <select class="form-control use-select2" name="cat_id" id="cat_id" required>
                                     @foreach($get_cat as $k => $v)
                                         <option value="{{ $v->cat_id }}" {{ ($content[0]->cat_id == $v->cat_id)? "selected" : "" }} >{{ $v->cat_title }}</option>
@@ -74,15 +74,15 @@
                             <div class="form-group">
                                 <label for="ep_status" class="control-label">สถานะ : </label>
                                 <select class="form-control use-select2" name="ep_status" id="ep_status" required>
-                                    <option value="pb" {{ ($content[0]->ep_status == "pb")? "selected" : "" }} >Public</option>
-                                    <option value="pv" {{ ($content[0]->ep_status == "pv")? "selected" : "" }} >Private</option>
+                                    <option value="pb" {{ ($content[0]->ep_status == "pb")? "selected" : "" }} >สาธารณะ</option>
+                                    <option value="pv" {{ ($content[0]->ep_status == "pv")? "selected" : "" }} >ส่วนตัว</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="lcs_id" class="control-label">License : </label>
+                                <label for="lcs_id" class="control-label">การอนุญาต : </label>
                                 <select class="form-control use-select2" name="lcs_id" id="lcs_id" required>
                                     @foreach($get_lcs as $k => $v)
                                         <option value="{{ $v->lcs_id }}" {{ ($content[0]->lcs_id == $v->lcs_id)? "selected" : "" }} >{{ $v->license }}</option>

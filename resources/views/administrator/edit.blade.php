@@ -20,14 +20,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group required">
-                            <label for="first_name" class="control-label">Firstname : </label>
+                            <label for="first_name" class="control-label">ชื่อ : </label>
                         <input type="text" class="form-control" id="first_name" name="first_name" value="{{$tbl_administrator[0]->first_name}}" placeholder="ชื่อ" required>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group required">
-                            <label for="last_name" class="control-label">Lastname : </label>
+                            <label for="last_name" class="control-label">นามสกุล : </label>
                             <input type="text" class="form-control" id="last_name" name="last_name" value="{{$tbl_administrator[0]->last_name}}" placeholder="นามสกุล" required>
                         </div>
                     </div>
@@ -48,8 +48,8 @@
                     </div>
 
                     <div class="col-md-12 text-right">
-                        <button type="submit" class="btn btn-success">Update Administrator</button>
-                        <?= link_to('/administrator', $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null); ?>
+                        <button type="submit" class="btn btn-success">แก้ไข ผู้ดูแลระบบ</button>
+                        <?= link_to('/administrator', $title = 'ยกเลิก', ['class' => 'btn btn-warning'], $secure = null); ?>
                     </div>
                 </div>
                 {!! Form::close() !!}

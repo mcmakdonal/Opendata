@@ -13,12 +13,12 @@
     
 
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#dataset"><span class="lnr lnr-pencil"></span>Dataset</a></li>
-        <li><a data-toggle="tab" href="#resouce"><span class="lnr lnr-cloud-download"></span> Resource</a></li>
+        <li class="active"><a data-toggle="tab" href="#dataset"><span class="lnr lnr-pencil"></span>ชุดข้อมูล</a></li>
+        <li><a data-toggle="tab" href="#resouce"><span class="lnr lnr-cloud-download"></span> ทรัพยากร</a></li>
         <li><a data-toggle="tab" href="#metadata"><span class="fa fa-database"></span> Metadata</a></li>
         <div class="text-right">
         <a href="{{url('/dataset/page/'.$slug_url)}}">
-            <button type="button" class="btn btn-primary"><span class="lnr lnr-eye"></span> View Dataset</button>
+            <button type="button" class="btn btn-primary"><span class="lnr lnr-eye"></span> ดู ชุดข้อมูล</button>
         </a>
     </div>
     </ul>
@@ -40,8 +40,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="title" class="control-label">ชื่อ Dataset : </label>
-                            <input type="text" class="form-control" id="dts_title" name="dts_title" value="{{ $tbl_dataset[0]->dts_title }}" placeholder="ชื่อ Dataset" required>
+                            <label for="title" class="control-label">ชื่อ ชุดข้อมูล : </label>
+                            <input type="text" class="form-control" id="dts_title" name="dts_title" value="{{ $tbl_dataset[0]->dts_title }}" placeholder="ชื่อ ชุดข้อมูล" required>
                         </div>
                     </div>
 
@@ -117,7 +117,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="" class="control-label">License : </label>
+                            <label for="" class="control-label">การอนุญาต : </label>
                             <select class="form-control use-select2" name="lcs_id" id="lcs_id" required>
                                 @foreach($get_lcs as $k => $v)
                                     <option value="{{ $v->lcs_id }}" {{ ($tbl_dataset[0]->lcs_id == $v->lcs_id)? "selected" : "" }} >{{ $v->license }}</option>
@@ -128,7 +128,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="" class="control-label">Organization : </label>
+                            <label for="" class="control-label">องค์กร : </label>
                             <select class="form-control use-select2" name="ogz_id" id="ogz_id" required>
                                 @foreach($get_ogz as $k => $v)
                                     <option value="{{ $v->ogz_id }}" {{ ($tbl_dataset[0]->ogz_id == $v->ogz_id)? "selected" : "" }} >{{ $v->ogz_title }}</option>
@@ -139,7 +139,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="" class="control-label">Categories : </label>
+                            <label for="" class="control-label">หมวดหมู่ : </label>
                             <select class="form-control use-select2" name="cat_id" id="cat_id" required>
                                 @foreach($get_cat as $k => $v)
                                     <option value="{{ $v->cat_id }}" {{ ($tbl_dataset[0]->cat_id == $v->cat_id)? "selected" : "" }} >{{ $v->cat_title }}</option>
@@ -152,19 +152,19 @@
                         <div class="form-group">
                             <label for="" class="control-label">สถานะ : </label>
                             <select class="form-control use-select2" name="dts_status" id="dts_status">
-                                <option value="pb" {{ ($tbl_dataset[0]->dts_status == "pb")? "selected" : "" }} >Public</option>
-                                <option value="pv" {{ ($tbl_dataset[0]->dts_status == "pv")? "selected" : "" }} >Private</option>
+                                <option value="pb" {{ ($tbl_dataset[0]->dts_status == "pb")? "selected" : "" }} >สาธารณะ</option>
+                                <option value="pv" {{ ($tbl_dataset[0]->dts_status == "pv")? "selected" : "" }} >ส่วนตัว</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <button class="btn btn-danger" type="button" onclick="remove_dts(this,'{{$slug_url}}')" data="{{ url('/dataset/delete') }}">Delete Dataset</button>
+                        <button class="btn btn-danger" type="button" onclick="remove_dts(this,'{{$slug_url}}')" data="{{ url('/dataset/delete') }}">ลบ ชุดข้อมูล</button>
                     </div>
 
                     <div class="col-md-6 text-right">
                         <input type="hidden" value="{{ $tbl_dataset[0]->dts_id }}" name="dts_id">
-                        <button type="submit" class="btn btn-success">Update Dataset</button>
+                        <button type="submit" class="btn btn-success">ลบ ชุดข้อมูล</button>
                         <?=link_to('/dataset/page/'.$slug_url, $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null);?>
                     </div>
                 </div>
@@ -173,7 +173,7 @@
         <div id="resouce" class="tab-pane fade"><br>
             <div class="row">
                 <div class="col-md-12 featured-responsive">
-                    <?=link_to('/resource/new_resource/' . $slug_url, $title = 'Add New Resource', ['class' => 'btn btn-primary'], $secure = null);?>
+                    <?=link_to('/resource/new_resource/' . $slug_url, $title = 'เพิ่ม ทรัพยากร', ['class' => 'btn btn-primary'], $secure = null);?>
                     <div class="list-group" style="margin-top: 10px;">
                         @foreach($resource as $k => $v)
                         <div class="list-group-item list-group-item-action">

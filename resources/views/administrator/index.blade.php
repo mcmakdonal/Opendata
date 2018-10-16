@@ -9,15 +9,15 @@
             <div class="panel panel-primary box_gradient" style="padding-top:10px;padding-bottom: 10px;">
                 <div class="row">
                     <div class="col-md-12" style="margin-bottom: 10px;">
-                        <?= link_to('/administrator/create', $title = 'Add Administrator', ['class' => 'btn btn-primary'], $secure = null); ?>
+                        <?= link_to('/administrator/create', $title = 'เพิ่ม ผู้ดูแลระบบ', ['class' => 'btn btn-primary'], $secure = null); ?>
                     </div>
                 </div>
                 <table class="table table-bordered datatable">
                     <thead>
                     <tr>
                         <th style="width: 5%;">#</th>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
+                        <th>ชื่อ</th>
+                        <th>นามสกุล</th>
                         <th>Username</th>
                         <th class="text-center" style="width: 5%;">แก้ไข</th>
                         <th class="text-center" style="width: 5%;">ลบ</th>

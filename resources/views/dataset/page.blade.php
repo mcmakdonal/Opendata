@@ -64,7 +64,7 @@
                     <div class="col-md-12" style="margin-bottom: 10px;margin-top: 10px;">
                         <div class="box_headder">
                             <div class="text_box_title">
-                                <img src="{{ url('backend/assets/img/icon_topic.png') }}"> DATASET
+                                <img src="{{ url('backend/assets/img/icon_topic.png') }}"> ชุดข้อมูล
                             </div>
                             <img src="{{ url('backend/assets/img/topic_fx.png') }}" style="float:right">
                         </div>
@@ -111,7 +111,7 @@
                                 </div>
                                 @if(($is_login) && $v->dts_status == "pv")
                                 <div class="col-md-12 col-xs-12 ">
-                                    <h3 class="text-right"> <span class="label label-primary"> <span class="lnr lnr-lock"></span> Private </span>
+                                    <h3 class="text-right"> <span class="label label-primary"> <span class="lnr lnr-lock"></span> ส่วนตัว </span>
                                     </h3>
                                 </div>
                                 @endif
@@ -190,7 +190,7 @@
                                             </tr>
                                             <tr>
                                                 <td>ระดับการเข้าถึง</td>
-                                                <td>{{ ($content[0]->dts_status == "pb")? "Public" : "Private" }}</td>
+                                                <td>{{ ($content[0]->dts_status == "pb")? "สาธารณะ" : "ส่วนตัว" }}</td>
                                             </tr>
 
                                             <tr>

@@ -13,21 +13,21 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="first_name" class="control-label">Firstname : </label>
+                        <label for="first_name" class="control-label">ชื่อ : </label>
                         <input type="text" class="form-control" id="first_name" name="first_name" value="" placeholder="ชื่อ" required>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="last_name" class="control-label">Lastname : </label>
+                        <label for="last_name" class="control-label">นามสกุล : </label>
                         <input type="text" class="form-control" id="last_name" name="last_name" value="" placeholder="นามสกุล" required>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="description" class="control-label">Description : </label>
+                        <label for="description" class="control-label">รายละเอียด : </label>
                         <textarea class="form-control" name="description" id="description" style="resize: none;" placeholder="รายละเอียดการ Download"></textarea>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-success last-download">Download</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
         </div>
         </div>
         

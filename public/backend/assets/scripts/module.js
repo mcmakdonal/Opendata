@@ -1,6 +1,11 @@
 var $pagination = $('#pagination');
 var defaultOpts = {
-    totalPages: 1
+    totalPages: 1,
+    // Text labels
+    first: 'หน้าแรก',
+    prev: 'ก่อนหน้า',
+    next: 'หน้าต่อไป',
+    last: 'หน้าสุดท้าย',
 };
 $pagination.twbsPagination(defaultOpts);
 
@@ -25,7 +30,7 @@ function get_data(page = 1) {
     var categories_name = ($(".categories.menu-active").attr('data-id') === undefined) ? "" : $(".categories.menu-active").attr('data-name');
 
     if (organization_name == '' & categories_name == '') {
-        $("#title_dataset").html('DATASET');
+        $("#title_dataset").html('ชุดข้อมูล');
     } else if (organization_name !== '' & categories_name == '') {
         $("#title_dataset").html(organization_name);
     } else if (organization_name == '' & categories_name !== '') {
@@ -55,7 +60,7 @@ function get_data(page = 1) {
                 str += '<div class="col-md-12 featured-responsive"><div class="list-group"><a href="' + full_url + '/dataset/page/' + value.dts_url + '" class="list-group-item list-group-item-action box_data">';
                 str += '<h4 style="float: right;color: #8e2e70;font-size:16px">' + value.cat_title + '</h4>';
                 if (result.is_login) {
-                    var status = (value.dts_status == "pb") ? "Public" : "Private";
+                    var status = (value.dts_status == "pb") ? "สาธารณะ" : "ส่วนตัว";
                     str += '<h4><img src="' + full_url + '/backend/assets/img/icon_items_pink.png">' + value.dts_title + ' <span class="badge badge-secondary">' + status + '</span> </h4>';
 
                 } else {

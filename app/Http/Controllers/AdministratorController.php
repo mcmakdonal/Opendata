@@ -24,8 +24,8 @@ class AdministratorController extends Controller
     {
         $administrator = DB::table('tbl_administrator')->select('*')->get()->toArray();
         return view('administrator.index', [
-            'title' => 'Administrator',
-            'header' => 'Administrator',
+            'title' => 'ผู้ดูแลระบบ',
+            'header' => 'ผู้ดูแลระบบ',
             'administrator' => $administrator,
         ]);
     }
@@ -38,8 +38,8 @@ class AdministratorController extends Controller
     public function create()
     {
         return view('administrator.create', [
-            'title' => 'Create Administrator',
-            'header' => 'Create Administrator',
+            'title' => 'เพิ่ม ผู้ดูแลระบบ',
+            'header' => 'เพิ่ม ผู้ดูแลระบบ',
         ]);
     }
 
@@ -110,8 +110,8 @@ class AdministratorController extends Controller
     {
         $tbl_administrator = DB::table('tbl_administrator')->where('admin_id', $id)->get()->toArray();
         return view('administrator.edit', [
-            'title' => 'Edit Administrator',
-            'header' => 'Edit Administrator',
+            'title' => 'แก้ไข ผู้ดูแลระบบ',
+            'header' => 'แก้ไข ผู้ดูแลระบบ',
             'tbl_administrator' => $tbl_administrator,
         ]);
     }

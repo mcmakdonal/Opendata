@@ -42,7 +42,7 @@
                             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                                 <ul class="navbar-nav">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="{{ url('/dataset') }}">Dataset</a>
+                                        <a class="nav-link" href="{{ url('/dataset') }}">ชุดข้อมูล</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('/organization') }}">Organization</a>

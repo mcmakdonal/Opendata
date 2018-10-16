@@ -5,7 +5,22 @@ $(document).ready(function ($) {
     Body.addClass("preloader-site");
     $(".use-select2").select2();
 
-    $('.datatable').DataTable();
+    $('.datatable').DataTable({
+        "language": {
+            "paginate": {
+                "first": "หน้าแรก",
+                "previous": "ก่อนหน้า",
+                "next": "ถัดไป",
+                "last": "หน้าสุดท้าย"
+            },
+            "info": "กำลังแสดงหน้า _PAGE_ จาก _PAGES_",
+            "lengthMenu": "แสดงผล _MENU_ records",
+            "zeroRecords": "ไม่พบข้อมูลที่ตรงกัน",
+            "infoFiltered": "(กรองจากทั้งหมด _MAX_)",
+            "search": "ค้นหา : ",
+        }
+
+    });
 
     $('.tag-input').tagsInput({
         'width': '100%',
@@ -36,7 +51,7 @@ function read_filename(e) {
 }
 
 function remove_dts(e, slug) {
-    swal("คุณต้องการลบ Dataset นี้ ?", {
+    swal("คุณต้องการลบ ชุดข้อมูล นี้ ?", {
         buttons: {
             yes: {
                 text: "Yes",
@@ -86,7 +101,7 @@ function remove_dts(e, slug) {
 }
 
 function remove_ogz(e, slug) {
-    swal("คุณต้องการลบ Organization นี้ ?", {
+    swal("คุณต้องการลบ องค์กร นี้ ?", {
         buttons: {
             yes: {
                 text: "Yes",
@@ -136,7 +151,7 @@ function remove_ogz(e, slug) {
 }
 
 function remove_res(e, slug_url, res_id) {
-    swal("คุณต้องการลบ Resource นี้ ?", {
+    swal("คุณต้องการลบ ทรัพยากร นี้ ?", {
         buttons: {
             yes: {
                 text: "Yes",
@@ -453,7 +468,7 @@ function manage_cat(type, id = '') {
         $(".form-cat").attr('action', full_url + '/categories/' + id)
         $("#cat_title").val(str);
     } else if (type == 'del') {
-        swal("คุณต้องการลบ Categories นี้ ?", {
+        swal("คุณต้องการลบ หมวดหมู่ นี้ ?", {
             buttons: {
                 yes: {
                     text: "Yes",

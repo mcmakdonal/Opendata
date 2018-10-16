@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="file" class="control-label">เลือกชนิดของ Resource : </label>
+                <label for="file" class="control-label">เลือกชนิดของ ทรัพยากร : </label>
                 <select class="form-control use-select2" id="file_type" name="file_type">
                     <option value="f">File Upload</option>
                     <option value="w">Web URL</option>
@@ -68,7 +68,7 @@
 
         <div class="col-md-12 text-right">
             <input type="hidden" value="{{$slug_url}}" name="slug_url">
-            <button type="submit" class="btn btn-success">เพิ่ม Resource</button>
+            <button type="submit" class="btn btn-success">เพิ่ม ทรัพยากร</button>
             <?= link_to('/dataset/page/'.$slug_url, $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null); ?>
         </div>
     </div>
