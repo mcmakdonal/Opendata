@@ -18,10 +18,10 @@
                   <input type="text" class="form-control form_style" id="title" name="title" value="" style="border-radius: 5px;" placeholder="คำค้นหา" required>
                   <div class="input-group-addon box_btn_search">
                   <button type="submit" class="btn search-data btn_search">
-                        <img  src="{{ url('backend/assets/img/icon_search.png') }}" > Search
+                        <img  src="{{ url('backend/assets/img/icon_search.png') }}" > ค้นหา
                         </button>
                         <a href="/organization"><button type="button" class="btn clear-data btn_search" style="margin-left:5px">
-                        <img  src="{{ url('backend/assets/img/icon_reset.png') }}" > Reset
+                        <img  src="{{ url('backend/assets/img/icon_reset.png') }}" > ค่าเริ่มเต้น
                         </button></a>
                   </div>
                 </div>
