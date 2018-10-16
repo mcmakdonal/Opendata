@@ -8,7 +8,7 @@
         {!! Form::open(['url' => "/dataset",'class' => '', 'method' => 'get']) !!}
         <div class="input-group">
             <input class="form-control" type="text" name="title">
-            <span class="input-group-btn"><button class="btn btn-primary" type="submit">Search</button></span>
+            <span class="input-group-btn"><button class="btn btn-primary" type="submit"> ค้นหา </button></span>
         </div>
         {!! Form::close() !!}
     </section>

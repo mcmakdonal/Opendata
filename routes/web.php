@@ -17,7 +17,7 @@ Route::get('/env',function(){
 });
 
 // หน้าแรก
-Route::get('/', 'DatasetController@index')->name('index');
+// Route::get('/', 'DatasetController@index')->name('index');
 
 // index dts
 Route::get('/dataset', 'DatasetController@index');
@@ -80,7 +80,7 @@ Route::delete('/resource/delete/{res_id}', 'ResourceController@delete');
 ////////////////////////////////////////////////////////////////////////////////////
 
 // index ogz
-Route::get('/organization', 'OrganizationController@index');
+Route::get('/', 'OrganizationController@index');
 
 // หน้า new ogz
 Route::get('/organization/new', 'OrganizationController@new');

@@ -108,10 +108,10 @@
 
                     <div class="input-group-addon box_btn_search">
                     <button type="button" class="btn search-data btn_search">
-                            <img  src="{{ url('backend/assets/img/icon_search.png') }}" > Search
+                            <img  src="{{ url('backend/assets/img/icon_search.png') }}" > ค้นหา
                             </button>
                             <button type="button" class="btn clear-data btn_search" style="margin-left:5px">
-                            <img  src="{{ url('backend/assets/img/icon_reset.png') }}" > Reset
+                            <img  src="{{ url('backend/assets/img/icon_reset.png') }}" > ค่าเริ่มต้น
                             </button>
                     </div>
                     </div>

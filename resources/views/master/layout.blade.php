@@ -60,8 +60,8 @@
 				</div>
 				 {!! Form::open(['url' => "/dataset",'class' => 'navbar-form navbar-left', 'method' => 'get']) !!}
 					<div class="input-group">
-						<input type="text" value="" name="title" class="form-control" placeholder="Search dataset">
-						<span class="input-group-btn"><button type="submit" class="btn btn-primary">Search</button></span>
+						<input type="text" value="" name="title" class="form-control" placeholder="ค้นหา dataset">
+						<span class="input-group-btn"><button type="submit" class="btn btn-primary">ค้นหา</button></span>
 					</div>
 				{!! Form::close() !!} -->
 				<div id="navbar-menu">
