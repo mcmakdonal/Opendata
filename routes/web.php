@@ -81,6 +81,7 @@ Route::delete('/resource/delete/{res_id}', 'ResourceController@delete');
 
 // index ogz
 Route::get('/', 'OrganizationController@index');
+Route::get('/organization', 'OrganizationController@index');
 
 // หน้า new ogz
 Route::get('/organization/new', 'OrganizationController@new');
