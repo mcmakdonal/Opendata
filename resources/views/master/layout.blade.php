@@ -47,7 +47,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top" style="background-image: url({{ url('backend/assets/img/header_bg.png') }});">
 			<div class="brand">
-				<a href="{{ url('/') }}"> <img src="{{ url('backend/assets/img/header_logo.png') }}" class="img-responsive"> </a>
+				<a href="{{ url('/') }}"> <img src="{{ url('backend/assets/img/header_logo_.png') }}" class="img-responsive"> </a>
 				
 			</div>
 			<div class="container-fluid">
