@@ -69,7 +69,7 @@
         <div class="col-md-12 text-right">
             <input type="hidden" value="{{$slug_url}}" name="slug_url">
             <button type="submit" class="btn btn-success">เพิ่ม ทรัพยากร</button>
-            <?= link_to('/dataset/page/'.$slug_url, $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null); ?>
+            <?= link_to('/dataset/page/'.$slug_url, $title = 'ยกเลิก', ['class' => 'btn btn-warning'], $secure = null); ?>
         </div>
     </div>
     {!! Form::close() !!}

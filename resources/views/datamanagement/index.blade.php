@@ -32,11 +32,11 @@
                                 <td>{{$v->ep_view}}</td>
                                 <td>
                                     <a href="{{ url('/datamanagement/'.$v->ep_id.'/edit') }}">
-                                        <button class="btn btn-warning">Edit</button>
+                                        <button class="btn btn-warning">แก้ไข</button>
                                     </a>
                                 </td>
                                 <td>
-                                    <button onclick="delete_datamanagement(this)" class="btn btn-danger" data="{{$v->ep_id}}">Delete</button>
+                                    <button onclick="delete_datamanagement(this)" class="btn btn-danger" data="{{$v->ep_id}}">ลบ</button>
                                 </td>
                             </tr>
                         @endforeach

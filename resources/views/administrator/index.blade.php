@@ -33,11 +33,11 @@
                                     <td>{{$v->username}}</td>
                                     <td>
                                         <a href="{{ url('/administrator/'.$v->admin_id.'/edit') }}">
-                                            <button class="btn btn-warning">Edit</button>
+                                            <button class="btn btn-warning">แก้ไข</button>
                                         </a>
                                     </td>
                                     <td>
-                                        <button onclick="delete_admin(this)" class="btn btn-danger" data="{{$v->admin_id}}">Delete</button>
+                                        <button onclick="delete_admin(this)" class="btn btn-danger" data="{{$v->admin_id}}">ลบ</button>
                                     </td>
                                 </tr>
                             @endif

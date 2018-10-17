@@ -132,7 +132,7 @@
                                                     <div class="text-right">
                                                         @if($is_login)
                                                         <a href="{{ url('/dataset/page/'.$slug_url.'/resource_edit/'.$v->file_slug) }}">
-                                                                <button type="button" class="btn btn-primary">Edit</button>
+                                                                <button type="button" class="btn btn-primary">แก้ไข</button>
                                                             </a>                                                        @endif
                                                         <a href="javascript:void(0)" class="download-file" data="{{ url($v->file_path) }}" data-id="{{ $v->res_id }}">
                                                             <button type="button" class="btn btn-success">ดาวน์โหลด</button>

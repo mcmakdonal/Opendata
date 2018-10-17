@@ -98,7 +98,7 @@
 
         <div class="col-md-12 text-right">
             <button type="submit" class="btn btn-success">สร้าง ชุดข้อมูล</button>
-            <?=link_to('/dataset', $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null);?>
+            <?=link_to('/dataset', $title = 'ยกเลิก', ['class' => 'btn btn-warning'], $secure = null);?>
         </div>
     </div>
     {!! Form::close() !!}

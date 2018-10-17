@@ -165,7 +165,7 @@
                     <div class="col-md-6 text-right">
                         <input type="hidden" value="{{ $tbl_dataset[0]->dts_id }}" name="dts_id">
                         <button type="submit" class="btn btn-success">แก้ไข ชุดข้อมูล</button>
-                        <?=link_to('/dataset/page/'.$slug_url, $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null);?>
+                        <?=link_to('/dataset/page/'.$slug_url, $title = 'ยกเลิก', ['class' => 'btn btn-warning'], $secure = null);?>
                     </div>
                 </div>
             {!! Form::close() !!}
@@ -235,7 +235,7 @@
              <div class="col-md-12 text-right">
              <input type="hidden" value="{{ $tbl_dataset[0]->dts_id }}" name="dts_id">
              <input type="hidden" value="{{$slug_url}}" name="slug_url">
-                        <button type="submit" class="btn btn-success">Update Metadata</button>
+                        <button type="submit" class="btn btn-success">แก้ไข Metadata</button>
              
                                     </div>               
          {!! Form::close() !!}
