@@ -164,7 +164,7 @@
 
                     <div class="col-md-6 text-right">
                         <input type="hidden" value="{{ $tbl_dataset[0]->dts_id }}" name="dts_id">
-                        <button type="submit" class="btn btn-success">ลบ ชุดข้อมูล</button>
+                        <button type="submit" class="btn btn-success">แก้ไข ชุดข้อมูล</button>
                         <?=link_to('/dataset/page/'.$slug_url, $title = 'Cancel', ['class' => 'btn btn-warning'], $secure = null);?>
                     </div>
                 </div>
