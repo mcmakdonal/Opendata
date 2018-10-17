@@ -70,7 +70,6 @@ class DatasetController extends Controller
             'dts_scope_geo' => 'string|required',
             'dts_tag' => 'string|nullable',
             'dts_contact_name' => 'string|required',
-            'dts_contact_email' => 'string|required',
             'dts_permission' => 'string|required',
         ]);
 
@@ -291,7 +290,6 @@ class DatasetController extends Controller
             'dts_scope_geo' => 'string|required',
             'dts_tag' => 'string|nullable',
             'dts_contact_name' => 'string|required',
-            'dts_contact_email' => 'string|required',
             'dts_permission' => 'string|required',
         ]);
 

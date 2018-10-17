@@ -76,7 +76,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="dts_contact_email" class="control-label">อีเมลผู้ให้ข้อมูล : </label>
-                    <input type="email" class="form-control" id="dts_contact_email" name="dts_contact_email" value="" placeholder="อีเมลผู้ให้ข้อมูล" required>
+                    <input type="text" class="form-control" id="dts_contact_email" name="dts_contact_email" value="" placeholder="อีเมลผู้ให้ข้อมูล" >
                 </div>
             </div>
 
