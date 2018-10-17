@@ -9,7 +9,7 @@
             <div class="panel panel-primary box_gradient" style="padding-top:10px;padding-bottom: 10px;">
                 <div class="row">
                     <div class="col-md-12" style="margin-bottom: 10px;">
-                        <?= link_to('/datamanagement/create', $title = 'Add Data management', ['class' => 'btn btn-primary'], $secure = null); ?>
+                        <?= link_to('/datamanagement/create', $title = 'เพิ่ม บริหารจัดการข้อมูล', ['class' => 'btn btn-primary'], $secure = null); ?>
                     </div>
                 </div>
                 <table class="table table-bordered datatable">

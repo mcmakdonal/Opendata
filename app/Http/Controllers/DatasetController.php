@@ -80,7 +80,7 @@ class DatasetController extends Controller
 
         $url = Customlib::make_slug("url", $request->dts_url);
         if (Customlib::get_url("dts", $url)) {
-            return redirect()->back()->withErrors("Url ถูกใช้ไปแล้ว กรุณาเปลี่ยน url ใหม่");
+            return redirect()->back()->withErrors("ลิงก์ถาวร ถูกใช้ไปแล้ว กรุณาเปลี่ยน ลิงก์ถาวร ใหม่");
         }
 
         $args = array(

@@ -12,8 +12,8 @@
                     <tr>
                         <th style="width: 5%;">#</th>
                         <th>ชื่อไฟล์</th>
-                        <th>Download โดย</th>
-                        <th>วันที่ Download</th>
+                        <th>ดาวน์โหลด โดย</th>
+                        <th>วันที่ ดาวน์โหลด</th>
                         <th class="text-center" style="width: 10%;">รายละเอียด</th>
                         <th class="text-center hidden">data</th>
                     </tr>
@@ -25,7 +25,7 @@
                                 <td>{{ $v->file_name }}</td>
                                 <td>{{ $v->first_name }}  {{ $v->last_name }} </td>
                                 <td>{{ \AppHelper::instance()->DateThai($v->create_date) }}</td>
-                                <td class="text-center"><button class="btn btn-info show-log-desc" data-id="{{ $v->dnl_id }}" type="button">Detail</button></td>
+                                <td class="text-center"><button class="btn btn-info show-log-desc" data-id="{{ $v->dnl_id }}" type="button">รายละเอียด</button></td>
                                 <td class="hidden" id="data_{{ $v->dnl_id }}">{{$v->description}}</td>
                             </tr>
                         @endforeach
@@ -52,7 +52,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="cat_title" class="control-label">รายละเอียดการ Download : </label>
+                            <label for="cat_title" class="control-label">รายละเอียดการ ดาวน์โหลด : </label>
                             <textarea class="form-control" id="description_txt" rows="5" style="resize:none;" disabled></textarea>
                         </div>
                     </div>

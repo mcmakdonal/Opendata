@@ -28,14 +28,14 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="description" class="control-label">รายละเอียด : </label>
-                        <textarea class="form-control" name="description" id="description" style="resize: none;" placeholder="รายละเอียดการ Download"></textarea>
+                        <textarea class="form-control" name="description" id="description" style="resize: none;" placeholder="รายละเอียดการ ดาวน์โหลด"></textarea>
                     </div>
                 </div>
             </div>
             {!! Form::close() !!}
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-success last-download">Download</button>
+            <button type="button" class="btn btn-success last-download">ดาวน์โหลด</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
         </div>
         </div>

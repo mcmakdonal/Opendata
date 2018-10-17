@@ -20,8 +20,8 @@ class DatamanagementController extends Controller
     {
         $tbl_exportdata = DB::table('tbl_exportdata')->select('*')->get()->toArray();
         return view('datamanagement.index', [
-            'title' => 'Data Management',
-            'header' => 'Data Management',
+            'title' => 'บริหารจัดการข้อมูล',
+            'header' => 'บริหารจัดการข้อมูล',
             'content' => $tbl_exportdata,
         ]);
     }
@@ -35,8 +35,8 @@ class DatamanagementController extends Controller
         $view = Customlib::my_curl("http://oae-social.demotoday.net:3000/getview", "3000");
 
         return view('datamanagement.create', [
-            'title' => 'Create Data Management',
-            'header' => 'Create Data Management',
+            'title' => 'สร้าง บริหารจัดการข้อมูล',
+            'header' => 'สร้าง บริหารจัดการข้อมูล',
             'get_ogz' => $get_ogz,
             'get_lcs' => $get_lcs,
             'get_cat' => $get_cat,
@@ -113,8 +113,8 @@ class DatamanagementController extends Controller
         $tbl_exportdata = DB::table('tbl_exportdata')->where('ep_id', $id)->get()->toArray();
 
         return view('datamanagement.edit', [
-            'title' => 'Edit Data Management',
-            'header' => 'Edit Data Management',
+            'title' => 'แก้ไข บริหารจัดการข้อมูล',
+            'header' => 'แก้ไข บริหารจัดการข้อมูล',
             'get_ogz' => $get_ogz,
             'get_lcs' => $get_lcs,
             'get_cat' => $get_cat,

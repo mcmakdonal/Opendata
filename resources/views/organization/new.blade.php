@@ -26,7 +26,7 @@
 
         <div class="col-md-12 hidden">
             <div class="form-group">
-                <label for="URL" class="control-label">Url : </label>
+                <label for="URL" class="control-label">ลิงก์ถาวร : </label>
                 <div class="input-group">
                     <span class="input-group-addon">/organization/page/</span>
                     <input type="text" name="ogz_url" id="ogz_url" class="form-control" value="{{ $uniq }}" placeholder="my-organization">
@@ -43,7 +43,7 @@
 
         <div class="col-md-12">
             <div class="form-group">
-                <label for="Image" class="control-label">Image : </label>
+                <label for="Image" class="control-label">รูปภาพ : </label>
                 <input class="form-control" type="file" name="ogz_image" id="ogz_image" required>
             </div>
         </div>

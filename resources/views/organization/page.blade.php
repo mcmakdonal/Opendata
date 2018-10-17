@@ -14,7 +14,7 @@
             <div class="col-md-12">
                 <div class="text-right">
                     <a href="{{url('/organization/edit/'.$slug_url)}}">
-                        <button type="submit" class="btn btn-primary"><span class="lnr lnr-cog"></span> Manage</button>
+                        <button type="submit" class="btn btn-primary"><span class="lnr lnr-cog"></span> จัดการ </button>
                     </a>
                 </div>
             </div>

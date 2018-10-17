@@ -47,7 +47,7 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="URL" class="control-label">Url : </label>
+                            <label for="URL" class="control-label">ลิงก์ถาวร : </label>
                             <div class="input-group">
                                 <span class="input-group-addon">/dataset/page/</span>
                                 <input type="text" name="dts_url" id="dts_url" value="{{ $tbl_dataset[0]->dts_url }}" class="form-control" placeholder="my-dataset" readonly>
