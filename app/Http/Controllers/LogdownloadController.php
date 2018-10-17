@@ -15,8 +15,8 @@ class LogdownloadController extends Controller
     {
         $log = Customlib::log_download();
         return view('log.index', [
-            'title' => 'Log Download',
-            'header' => 'Log Download',
+            'title' => 'ประวัติดาวน์โหลด',
+            'header' => 'ประวัติดาวน์โหลด',
             'log' => $log,
         ]);
     }

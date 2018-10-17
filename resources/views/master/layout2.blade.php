@@ -45,7 +45,7 @@
                                         <a class="nav-link" href="{{ url('/dataset') }}">ชุดข้อมูล</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/organization') }}">Organization</a>
+                                        <a class="nav-link" href="{{ url('/organization') }}">องค์กร</a>
                                     </li>
                                 </ul>
                             </div>

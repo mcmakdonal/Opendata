@@ -285,7 +285,7 @@ function delete_admin(e) {
 }
 
 function delete_datamanagement(e) {
-    swal("คุณต้องการลบ Data management นี้ ?", {
+    swal("คุณต้องการลบการ บริหารจัดการข้อมูล นี้ ?", {
         buttons: {
             yes: {
                 text: "Yes",
@@ -417,7 +417,7 @@ $(".last-download").click(function (e) {
     var file = $(this).attr('data');
     var res_id = $(this).attr('data-id');
     if (first_name == "" || last_name == "" || description == "") {
-        swal("Information !", "กรุณากรอก ชื่อ และ นามสกุล และรายละเอียดการ Download", "warning");
+        swal("Information !", "กรุณากรอก ชื่อ และ นามสกุล และรายละเอียดการ ดาวน์โหลด", "warning");
         return false;
     } else {
         $.ajax({

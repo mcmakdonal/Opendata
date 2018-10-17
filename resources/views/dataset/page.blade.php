@@ -73,7 +73,7 @@
                         <div class="col-md-12" style="margin-bottom:10px">
                             <div class="text-right">
                                 <a href="{{url('/dataset/edit/'.$slug_url)}}">
-                                    <button type="submit" class="btn btn-primary"><span class="lnr lnr-cog"></span> Manage</button>
+                                    <button type="submit" class="btn btn-primary"><span class="lnr lnr-cog"></span> จัดการ</button>
                                 </a>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                                             }} </p>
                                         <p class="tags">{{ $v->dts_tag }}</p>
                                         <p>Metadata : <a href="/get_matadata/{{ $v->dts_id }}" target="_blank">ดูข้อมูล</a>
-                                            <a href="/get_matadata/{{ $v->dts_id }}" style="margin-left:15px" target="_blank" download>downlaod</a>
+                                            <a href="/get_matadata/{{ $v->dts_id }}" style="margin-left:15px" target="_blank" download>ดาวน์โหลด</a>
                                         </p>
                                     </div>
                                 </div>
@@ -135,7 +135,7 @@
                                                                 <button type="button" class="btn btn-primary">Edit</button>
                                                             </a>                                                        @endif
                                                         <a href="javascript:void(0)" class="download-file" data="{{ url($v->file_path) }}" data-id="{{ $v->res_id }}">
-                                                            <button type="button" class="btn btn-success">Download</button>
+                                                            <button type="button" class="btn btn-success">ดาวน์โหลด</button>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -157,11 +157,11 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Organization</td>
+                                                <td>องค์กร</td>
                                                 <td>{{ $content[0]->ogz_title }}</td>
                                             </tr>
                                             <tr>
-                                                <td>Licenses</td>
+                                                <td>การอนุญาต</td>
                                                 <td>{{ $content[0]->license }}</td>
                                             </tr>
                                             <tr>

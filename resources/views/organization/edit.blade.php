@@ -49,7 +49,7 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="URL" class="control-label">Url : </label>
+                        <label for="URL" class="control-label">ลิงก์ถาวร : </label>
                         <div class="input-group">
                             <span class="input-group-addon">/organization/page/</span>
                             <input type="text" name="ogz_url" id="ogz_url" value="{{ $content[0]->ogz_url }}" class="form-control" placeholder="my-organization" readonly>
@@ -66,14 +66,14 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="Image" class="control-label">Image : </label>
+                        <label for="Image" class="control-label">รูปภาพ : </label>
                         <input class="form-control" type="file" name="ogz_image" id="ogz_image">
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="Image" class="control-label">Image : </label>
+                        <label for="Image" class="control-label">รูปภาพ : </label>
                         <img src="{{ url($content[0]->ogz_image) }}" class="img-responsive" style="width: 120px;">
                         <input type="hidden" value="{{$content[0]->ogz_image}}" name="ogz_old_image">
                     </div>

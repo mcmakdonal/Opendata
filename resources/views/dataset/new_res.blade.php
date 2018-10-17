@@ -44,7 +44,7 @@
 
         <div class="col-md-12" id="div-web" style="display: none;">
             <div class="form-group">
-                <label for="file" class="control-label">Web URL : </label>
+                <label for="file" class="control-label">เว็บลิงก์ : </label>
                 <input class="form-control" type="url" name="file" id="file" placeholder="Web URL" disabled>
             </div>
         </div>

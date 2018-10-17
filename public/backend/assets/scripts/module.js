@@ -230,7 +230,7 @@ function beautiful_star() {
 function beautiful_tag() {
     if ($(".tags").length > 0) {
         var arr = $(".tags").html().split(',');
-        var str = 'Tag : ';
+        var str = 'ป้ายกำกับ : ';
         var style = ['default', 'primary', 'success', 'info', 'warning', 'danger'];
         for (i = 0; i < arr.length; i++) {
             var random = style[Math.floor(Math.random() * style.length)];
