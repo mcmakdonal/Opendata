@@ -1,4 +1,4 @@
-var full_url = window.location.protocol + "//" + window.location.hostname;
+var full_url = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
 // preload window
 $(document).ready(function ($) {
     var Body = $("body");

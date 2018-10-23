@@ -246,7 +246,7 @@ class Customlib extends ServiceProvider
             ->select('tbl_license.lcs_id', 'tbl_license.license', DB::raw('count(tbl_dataset.lcs_id) num'))
             ->leftJoin('tbl_dataset', 'tbl_dataset.lcs_id', '=', 'tbl_license.lcs_id')
             ->where($matchThese)
-            ->groupBy('lcs_id', 'license')
+            ->groupBy('tbl_license.lcs_id', 'license')
             ->get()
             ->toArray();
 
@@ -263,7 +263,7 @@ class Customlib extends ServiceProvider
             ->select('tbl_categories.cat_id', 'tbl_categories.cat_title', DB::raw('count(tbl_dataset.cat_id) num'))
             ->leftJoin('tbl_dataset', 'tbl_dataset.cat_id', '=', 'tbl_categories.cat_id')
             ->where($matchThese)
-            ->groupBy('cat_id', 'cat_title')
+            ->groupBy('tbl_categories.cat_id', 'cat_title')
             ->get()
             ->toArray();
 
@@ -284,7 +284,7 @@ class Customlib extends ServiceProvider
             ->select('tbl_organization.ogz_id', 'tbl_organization.ogz_title', 'tbl_organization.ogz_url', DB::raw('count(tbl_dataset.dts_id) num'))
             ->leftJoin('tbl_dataset', 'tbl_dataset.ogz_id', '=', 'tbl_organization.ogz_id')
             ->where($matchThese)
-            ->groupBy('ogz_id', 'ogz_title', 'ogz_url')
+            ->groupBy('tbl_organization.ogz_id', 'ogz_title', 'ogz_url')
             ->get()
             ->toArray();
 
