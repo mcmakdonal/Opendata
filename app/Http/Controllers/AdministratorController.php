@@ -78,7 +78,7 @@ class AdministratorController extends Controller
             'record_status' => 'A',
         );
 
-        $id = DB::table('tbl_administrator')->insertGetId($args);
+        $id = DB::table('tbl_administrator')->insertGetId($args,'admin_id');
         // dd($result);
         if ($id) {
             return redirect("/administrator/$id/edit")->with('status', 'Success');
