@@ -94,7 +94,7 @@ class DatamanagementController extends Controller
             'record_status' => 'A',
         );
 
-        $id = DB::table('tbl_exportdata')->insertGetId($args);
+        $id = DB::table('tbl_exportdata')->insertGetId($args,'ep_id');
         // dd($result);
         if ($id) {
             return redirect("/datamanagement/$id/edit")->with('status', 'Success');

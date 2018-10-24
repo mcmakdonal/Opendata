@@ -165,7 +165,7 @@ class DatasetController extends Controller
                 $file_arg['file_ext'] = $file_arg['file_format'] = (in_array($ext, $format)) ? "web" : $ext;
             }
 
-            $dts_id = DB::table('tbl_dataset')->insertGetId($new_dataset);
+            $dts_id = DB::table('tbl_dataset')->insertGetId($new_dataset,'dts_id');
             if ($dts_id) {
                 $file_arg['dts_id'] = $dts_id;
                 $file_arg['file_name'] = $request->file_name;

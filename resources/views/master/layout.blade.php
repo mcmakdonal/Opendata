@@ -39,7 +39,7 @@
 <body class="layout-fullwidth" >
 <div class="preloader-wrapper">
     <div class="preloader">
-        <img src="{{ asset('backend/assets/img/preloader.gif') }}" alt="NILA">
+        <img src="{{ asset('backend/assets/img/preloader.gif') }}" alt="">
     </div>
 </div>
 	<!-- WRAPPER -->
