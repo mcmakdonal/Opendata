@@ -154,7 +154,7 @@
 
   <div class="right-box">
     <div id="box-header">
-      <img src="/backend/assets/img/login_logo_.png">
+      <img src="/backend/assets/img/logo_login_.png">
     </div>
     {!! Form::open(['url' => '/chk_login','class' => 'form-auth-small', 'method' => 'post','files' => true]) !!}
 
