@@ -146,10 +146,6 @@
 
   <div class="feed-box">
     <div class="fedd-img" style="background-image: url(/backend/assets/img/login_bg_.png)"></div>
-    <div class="caption">
-      <h4 class="caption-title"><b>Open Data</b> </h4>
-      <p></p>
-    </div>
   </div>
 
   <div class="right-box">
