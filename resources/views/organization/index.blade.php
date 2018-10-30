@@ -7,7 +7,7 @@
     @if($is_login)
         <div class="row">
             <div class="col-md-12" style="margin-bottom: 10px;">
-                <?= link_to('/organization/new', $title = 'เพิ่ม องค์กร', ['class' => 'btn btn-primary'], $secure = null); ?>
+                <?= link_to('/organization/new', $title = 'เพิ่ม หน่วยงาน', ['class' => 'btn btn-primary'], $secure = null); ?>
             </div>
         </div>
     @endif
@@ -31,7 +31,7 @@
                 <div class="col-md-12 featured-responsive" style="margin-top:15px">
                     <div class="box_headder" style="margin-bottom:0px">
                      <div class="text_box_title" >
-                     <img src="{{ url('backend/assets/img/icon_topic.png') }}" >  องค์กร
+                     <img src="{{ url('backend/assets/img/icon_topic.png') }}" >  หน่วยงาน
                     </div>   
                     <img src="{{ url('backend/assets/img/topic_fx.png') }}" style="float:right">
                     </div>

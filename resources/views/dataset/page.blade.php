@@ -157,7 +157,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>องค์กร</td>
+                                                <td>หน่วยงาน</td>
                                                 <td>{{ $content[0]->ogz_title }}</td>
                                             </tr>
                                             <tr>

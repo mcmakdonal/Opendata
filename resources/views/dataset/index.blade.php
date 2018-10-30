@@ -29,7 +29,7 @@
                 <div class="panel panel-primary">
                 <img src="{{ url('backend/assets/img/menu_fx.png') }}" class="img_top" >
                     <div class="panel-heading" style="padding-top: 10px;padding-bottom: 10px;">
-                        <h3><img src="{{ url('backend/assets/img/icon_org.png') }}" > องค์กร </h3>
+                        <h3><img src="{{ url('backend/assets/img/icon_org.png') }}" > หน่วยงาน </h3>
                     </div>
                     <ul class="list-group" style="list-style: none;">
                         @foreach($get_ogz_count as $k => $v)

@@ -59,7 +59,7 @@
         </div>
 
         <div class="col-md-12 text-right">
-            <button type="submit" class="btn btn-success">สร้าง องค์กร</button>
+            <button type="submit" class="btn btn-success">สร้าง หน่วยงาน</button>
             <?= link_to('/organization', $title = 'ยกเลิก', ['class' => 'btn btn-warning'], $secure = null); ?>
         </div>
     </div>

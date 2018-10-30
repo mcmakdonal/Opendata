@@ -109,7 +109,7 @@
 				<nav>
 					<ul class="nav">
 						<li><a href="{{ url('/dataset') }}" class="{{ (strpos(url()->current(),'dataset') ) ? 'active' : '' }}"><i class="lnr lnr-home"></i> <span>ชุดข้อมูล</span></a></li>
-						<li><a href="{{ url('/organization') }}" class="{{ (strpos(url()->current(),'organization') ) ? 'active' : '' }}"><i class="lnr lnr-user"></i> <span>องค์กร</span></a></li>
+						<li><a href="{{ url('/organization') }}" class="{{ (strpos(url()->current(),'organization') ) ? 'active' : '' }}"><i class="lnr lnr-user"></i> <span>หน่วยงาน</span></a></li>
 					</ul>
 				</nav>
 			</div>

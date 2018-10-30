@@ -101,7 +101,7 @@ function remove_dts(e, slug) {
 }
 
 function remove_ogz(e, slug) {
-    swal("คุณต้องการลบ องค์กร นี้ ?", {
+    swal("คุณต้องการลบ หน่วยงาน นี้ ?", {
         buttons: {
             yes: {
                 text: "Yes",

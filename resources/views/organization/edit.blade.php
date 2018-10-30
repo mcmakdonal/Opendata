@@ -20,7 +20,7 @@
         <!-- <li><a data-toggle="tab" href="#member"><span class="lnr lnr-users"></span> Members</a></li> -->
         <div class="text-right">
         <a href="{{url('/organization/page/'.$slug_url)}}">
-            <button type="submit" class="btn btn-primary"><span class="lnr lnr-eye"></span> ดู องค์กร</button>
+            <button type="submit" class="btn btn-primary"><span class="lnr lnr-eye"></span> ดู หน่วยงาน</button>
         </a>
     </div>
     </ul>
@@ -90,12 +90,12 @@
                 </div>
 
                 <div class="col-md-6">
-                    <button type="button" class="btn btn-danger" onclick="remove_ogz(this,'{{$slug_url}}')" data="{{ url('/organization/delete') }}" >ลบ องค์กร</button>
+                    <button type="button" class="btn btn-danger" onclick="remove_ogz(this,'{{$slug_url}}')" data="{{ url('/organization/delete') }}" >ลบ หน่วยงาน</button>
                 </div>
 
                 <div class="col-md-6 text-right">
                     <input type="hidden" value="{{ $slug_url }}" name="slug_url">
-                    <button type="submit" class="btn btn-success">แก้ไข องค์กร</button>
+                    <button type="submit" class="btn btn-success">แก้ไข หน่วยงาน</button>
                     <?=link_to('/organization', $title = 'ยกเลิก', ['class' => 'btn btn-warning'], $secure = null);?>
                 </div>
             </div>

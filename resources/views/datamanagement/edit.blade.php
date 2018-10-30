@@ -50,7 +50,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="" class="control-label">องค์กร : </label>
+                                <label for="" class="control-label">หน่วยงาน : </label>
                                 <select class="form-control use-select2" name="ogz_id" id="ogz_id" required>
                                     @foreach($get_ogz as $k => $v)
                                         <option value="{{ $v->ogz_id }}" {{ ($content[0]->ogz_id == $v->ogz_id)? "selected" : "" }} >{{ $v->ogz_title }}</option>
