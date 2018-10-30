@@ -66,12 +66,12 @@
 						
 					<li>
 					<a  href="{{ url('/dataset') }}" class="menu_button" style="padding-right:0">
-					<img src="{{ url('backend/assets/img/btn_datasets.png') }}" >
+					<img src="{{ url('backend/assets/img/001.png') }}" >
 					</a>
 					</li>
 					<li>
 					<a  href="{{ url('/organization') }}" class="menu_button" >
-					<img src="{{ url('backend/assets/img/btn_org.png') }}" >
+					<img src="{{ url('backend/assets/img/002.png') }}" >
 					</a>
 					</li>
 
