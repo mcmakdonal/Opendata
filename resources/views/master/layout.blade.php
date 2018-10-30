@@ -27,9 +27,6 @@
 	<!-- GOOGLE FONTS -->
 	{{ \AppHelper::instance()->gen_script('css','backend/assets/css/custom.css') }}
 
-
-	
-
 	<link href="https://fonts.googleapis.com/css?family=Pridi:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('backend/assets/img/apple-icon.png') }}">
@@ -47,7 +44,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top" style="background-image: url({{ url('backend/assets/img/header_bg.png') }});">
 			<div class="brand">
-				<a href="{{ url('/') }}"> <img src="{{ url('backend/assets/img/header_logo_.png') }}" class="img-responsive"> </a>
+				<a href="{{ url('/') }}"> <img src="{{ url('backend/assets/img/header_logo_2.png') }}" class="img-responsive"> </a>
 				
 			</div>
 			<div class="container-fluid">
