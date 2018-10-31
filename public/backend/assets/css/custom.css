@@ -304,7 +304,11 @@ div.tagsinput input {
     border: solid #ffffff80 1px;
     border-radius: 5px;
     font-size: 1.2em;
-    color: white !important;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
 }
 
 .btn-top:hover{
