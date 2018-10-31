@@ -81,7 +81,7 @@ class AdministratorController extends Controller
         $id = DB::table('tbl_administrator')->insertGetId($args,'admin_id');
         // dd($result);
         if ($id) {
-            return redirect("/administrator/$id/edit")->with('status', 'สำเร็จ');
+            return redirect("/administrator/$id/edit")->with('status', 'บันทึกสำเร็จ');
         } else {
             return redirect()->back()->withErrors(array('error' => 'error'));
         }
@@ -149,7 +149,7 @@ class AdministratorController extends Controller
         $result = DB::table('tbl_administrator')->where('admin_id', $id)->update($args);
         // dd($result);
         if ($result) {
-            return redirect("/administrator/$id/edit")->with('status', 'แก้ไข สำเร็จ');
+            return redirect("/administrator/$id/edit")->with('status', 'แก้ไขสำเร็จ');
         } else {
             return redirect()->back()->withErrors(array('error' => 'error'));
         }

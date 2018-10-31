@@ -96,7 +96,7 @@ class OrganizationController extends Controller
         $result = DB::table('tbl_organization')->insert($args);
         // dd($result);
         if ($result) {
-            return redirect("/organization/page/$url")->with('status', 'สำเร็จ');
+            return redirect("/organization/page/$url")->with('status', 'บันทึกสำเร็จ');
         } else {
             return redirect()->back()->withErrors(array('error' => 'error'));
         }
@@ -184,7 +184,7 @@ class OrganizationController extends Controller
         $result = DB::table('tbl_organization')->where('ogz_id', $ogz_id)->update($args);
         // dd($result);
         if ($result) {
-            return redirect()->back()->with('status', 'สำเร็จ');
+            return redirect()->back()->with('status', 'บันทึกสำเร็จ');
         } else {
             return redirect()->back()->withErrors(array('error' => 'error'));
         }

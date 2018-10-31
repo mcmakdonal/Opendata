@@ -211,7 +211,7 @@ class DatasetController extends Controller
 
                     //$url = iconv(mb_detect_encoding($url, mb_detect_order(), true), "UTF-8", $url);
 
-                    return redirect('/dataset/page/' . $url)->with('status', 'สำเร็จ');
+                    return redirect('/dataset/page/' . $url)->with('status', 'บันทึกสำเร็จ');
                 } else {
                     return redirect('/dataset/new');
                 }
@@ -318,7 +318,7 @@ class DatasetController extends Controller
 
         $result = DB::table('tbl_dataset')->where('dts_id', $request->dts_id)->update($args);
         if ($result) {
-            return redirect()->back()->with('status', 'สำเร็จ');
+            return redirect()->back()->with('status', 'บันทึกสำเร็จ');
         } else {
             return redirect()->back()->withErrors(array('error' => 'error'));
         }
@@ -387,7 +387,7 @@ class DatasetController extends Controller
             }
         }
         if ($result) {
-            return redirect('/dataset/edit/' . $slug_url)->with('status', 'สำเร็จ');
+            return redirect('/dataset/edit/' . $slug_url)->with('status', 'บันทึกสำเร็จ');
         } else {
             return redirect('/dataset/edit/' . $slug_url);
         }

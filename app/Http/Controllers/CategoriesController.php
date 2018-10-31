@@ -64,7 +64,7 @@ class CategoriesController extends Controller
         $args['record_status'] = "A";
         $result = DB::table('tbl_categories')->insert($args);
         if ($result) {
-            return redirect('/categories')->with('status', 'สำเร็จ');
+            return redirect('/categories')->with('status', 'บันทึกสำเร็จ');
         } else {
             return redirect('/categories');
         }
@@ -118,7 +118,7 @@ class CategoriesController extends Controller
 
         $result = DB::table('tbl_categories')->where('cat_id', $id)->update($args);
         if ($result) {
-            return redirect()->back()->with('status', 'สำเร็จ');
+            return redirect()->back()->with('status', 'บันทึกสำเร็จ');
         } else {
             return redirect()->back()->withErrors(array('error' => 'error'));
         }

@@ -101,7 +101,7 @@ class ResourceController extends Controller
             if ($result) {
                 // อัพเดตคะแนนดาว
                 Customlib::update_rate_star($dts_id);
-                return redirect('/dataset/page/' . $request->slug_url)->with('status', 'สำเร็จ');
+                return redirect('/dataset/page/' . $request->slug_url)->with('status', 'บันทึกสำเร็จ');
             } else {
                 return redirect('/dataset/page/' . $request->slug_url)->withErrors("Issue With upload file");
             }
@@ -180,7 +180,7 @@ class ResourceController extends Controller
         if ($result) {
             // อัพเดตคะแนนดาว
             Customlib::update_rate_star($request->dts_id);
-            return redirect()->back()->with('status', 'สำเร็จ');
+            return redirect()->back()->with('status', 'บันทึกสำเร็จ');
         } else {
             return redirect()->back()->withErrors(array('error' => 'error'));
         }
