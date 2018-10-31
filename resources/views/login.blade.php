@@ -10,6 +10,8 @@
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Pridi:300,400,600,700" rel="stylesheet">
   <!------ Include the above in your HEAD tag ---------->
   <!-- ICONS -->
   <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('backend/assets/img/apple-icon.png') }}">
@@ -34,11 +36,12 @@
   body {
     height: 100%;
     background: #dddddd;
+    font-family: 'Pridi';
   }
 
   .right-box {
     float: right;
-    width: 500px;
+    width: 30%;
     height: 100%;
     padding: 10px 60px 0px;
   }
@@ -58,9 +61,10 @@
   .feed-box {
     position: fixed;
     left: 0;
-    right: 500px;
+    /* right: 500px; */
     top: 0;
     bottom: 0;
+    width: 70%;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     overflow: hidden;
