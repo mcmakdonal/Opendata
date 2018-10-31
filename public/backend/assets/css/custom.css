@@ -297,3 +297,16 @@ div.tagsinput input {
 .tagsinput div input {
     width: 100% !important;
 }
+
+.btn-top {
+    padding: 10px 20px 10px 20px;
+    background-color: #0303034d;
+    border: solid #ffffff80 1px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    color: white !important;
+}
+
+.btn-top:hover{
+    color: white !important;
+}

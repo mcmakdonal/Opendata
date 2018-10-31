@@ -32,7 +32,7 @@
                                     <td>{{$v->first_name}}</td>
                                     <td>{{$v->last_name}}</td>
                                     <td>{{$v->username}}</td>
-                                    <td>{{ ($v->admin_type == "A")? "ผู้ดูแลระบบสูงสุด" : "ผู้ดูแลหน่วยงาน" }}</td>
+                                    <td>{{ ($v->admin_type == "A")? "ผู้ดูแลระบบสูงสุด" : "ผู้ดูแล".Define::OGZ }}</td>
                                     <td>
                                         <a href="{{ url('/administrator/'.$v->admin_id.'/edit') }}">
                                             <button class="btn btn-warning">แก้ไข</button>

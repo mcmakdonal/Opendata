@@ -63,18 +63,16 @@
 				{!! Form::close() !!} -->
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
-						
-					<li>
-					<a  href="{{ url('/dataset') }}" class="menu_button" style="padding-right:0">
-					<img src="{{ url('backend/assets/img/001.png') }}" >
-					</a>
-					</li>
-					<li>
-					<a  href="{{ url('/organization') }}" class="menu_button" >
-					<img src="{{ url('backend/assets/img/002.png') }}" >
-					</a>
-					</li>
-
+						<li>
+							<a  href="{{ url('/dataset') }}" class="menu_button" style="padding-right:0">
+								<button class="btn-top">{{ Define::DTS }}</button>
+							</a>
+						</li>
+						<li>
+							<a  href="{{ url('/organization') }}" class="menu_button" style="padding-right:10px;">
+								<button class="btn-top">{{ Define::OGZ }}</button>
+							</a>
+						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle btn btn_pink" data-toggle="dropdown"><span> 
 							<!-- <i class="fa fa-sliders" aria-hidden="true"></i>  {{ Cookie::get('name') }}  </span> 
@@ -82,7 +80,6 @@
 							<i class="glyphicon glyphicon-cog"></i>
 							</a>
 							<ul class="dropdown-menu">
-							
 								@if (Cookie::get('token') !== null)
 								<li><a href="/categories"><i class="fa fa-newspaper-o" aria-hidden="true"></i> <span>หมวดหมู่</span></a></li>
 								<li><a href="/administrator"><i class="fa fa-user" aria-hidden="true"></i> <span>ผู้ดูแลระบบ</span></a></li>
@@ -94,7 +91,6 @@
 								@endif
 							</ul>
 						</li>
-					
 					</ul>
 				</div>
 			</div>

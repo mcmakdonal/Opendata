@@ -248,12 +248,12 @@ var x = 1000;
 function add_table() {
     x++;
     var html = "<tr id='tr" + x + "' >\n" +
-        "												<td><input type=\"text\" value=\"\" class=\"form-control\" name=\"field_name[]\"  required></td>\n" +
-        "												<td><input type=\"text\" value=\" \" class=\"form-control\" name=\"description[]\"  ></td>\n" +
-        "												<td><input type=\"text\" value=\"\" class=\"form-control\" name=\"field_type[]\"  required></td>\n" +
-        "												<td><input type=\"text\" value=\" \" class=\"form-control\" name=\"unit[]\"  ><input type=\"text\" value=\"1\" class=\"form-control\" style=\"display:none\" name=\"type[]\" ></td>\n" +
-        "                                               <td><button type=\"button\" class=\"btn btn-danger metadata_btn\" onclick=\"del_btn('" + x + "')\"><i class=\"glyphicon glyphicon-trash\"></i></button></td>\n" +
-        "											</tr>";
+        "<td><input type=\"text\" value=\"\" class=\"form-control\" name=\"field_name[]\"  required></td>\n" +
+        "<td><input type=\"text\" value=\" \" class=\"form-control\" name=\"description[]\"  ></td>\n" +
+        "<td><input type=\"text\" value=\"\" class=\"form-control\" name=\"field_type[]\"  required></td>\n" +
+        "<td><input type=\"text\" value=\" \" class=\"form-control\" name=\"unit[]\"  ><input type=\"text\" value=\"1\" class=\"form-control\" style=\"display:none\" name=\"type[]\" ></td>\n" +
+        "<td><button type=\"button\" class=\"btn btn-danger metadata_btn\" onclick=\"del_btn('" + x + "')\"><i class=\"glyphicon glyphicon-trash\"></i></button></td>\n" +
+        "</tr>";
     $("#data_body").append(html);
 }
 
@@ -311,6 +311,7 @@ function remove_metadata(id, url) {
         }
     });
 }
+
 var elements = document.querySelectorAll('input,select,textarea');
 
 for (var i = elements.length; i--;) {
@@ -318,3 +319,5 @@ for (var i = elements.length; i--;) {
         this.scrollIntoView(false);
     });
 }
+
+

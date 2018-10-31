@@ -14,7 +14,7 @@ $(document).ready(function ($) {
                 "last": "หน้าสุดท้าย"
             },
             "info": "กำลังแสดงหน้า _PAGE_ จาก _PAGES_",
-            "lengthMenu": "แสดงผล _MENU_ records",
+            "lengthMenu": "แสดงผล _MENU_ เนื้อหา",
             "zeroRecords": "ไม่พบข้อมูลที่ตรงกัน",
             "infoFiltered": "(กรองจากทั้งหมด _MAX_)",
             "search": "ค้นหา : ",
@@ -613,3 +613,12 @@ $(".show-log-desc").click(function (e) {
         backdrop: true
     });
 });
+
+function change_admin() {
+    var admin_type = $("#admin_type").val();
+    if (admin_type == "A") {
+        $("#admin_ogz").attr("disabled","disabled");
+    } else {
+        $("#admin_ogz").removeAttr("disabled");
+    }
+}

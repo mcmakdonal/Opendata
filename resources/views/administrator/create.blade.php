@@ -26,9 +26,9 @@
                     <div class="col-md-6">
                         <div class="form-group required">
                             <label for="admin_type" class="control-label">บทบาท : </label>
-                            <select class="form-control" name="admin_type">
+                            <select class="form-control" name="admin_type" id="admin_type" onchange="change_admin();">
                                 <option value="A">ผู้ดูแลระบบ</option>
-                                <option value="O">ผู้ดูแลหน่วยงาน</option>
+                                <option value="O">ผู้ดูแล{{ Define::OGZ }}</option>
                             </select>
                         </div>
                     </div>
@@ -36,9 +36,10 @@
                     <div class="col-md-6">
                         <div class="form-group required">
                             <label for="admin_ogz" class="control-label">หน่วยงาน : </label>
-                            <select class="form-control" name="admin_ogz">
+                            <select class="form-control" name="admin_ogz" id="admin_ogz">
+                                <option value="0">เลือก {{ Define::OGZ }}</option>
                                 @foreach($ogz as $k => $v)
-                                
+                                    <option value="{{ $v->ogz_id }}">{{ $v->ogz_title }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -84,4 +85,7 @@
     </div>
 </div>
 </section>
+@endsection
+@section('script')
+    change_admin();
 @endsection

@@ -40,7 +40,7 @@ class AdministratorController extends Controller
         return view('administrator.create', [
             'title' => 'เพิ่ม ผู้ดูแลระบบ',
             'header' => 'เพิ่ม ผู้ดูแลระบบ',
-            'ogz' => $ogz
+            'ogz' => $ogz,
         ]);
     }
 
@@ -57,6 +57,8 @@ class AdministratorController extends Controller
             'last_name' => 'required|string|max:250',
             'username' => 'required|string|max:250',
             'password' => 'required|string|max:250',
+            'admin_type' => 'required',
+            'admin_ogz' => 'nullable',
         ]);
 
         if ($validator->fails()) {
@@ -70,8 +72,9 @@ class AdministratorController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'username' => $request->username,
-            // 'password' => Crypt::encryptString($request->password),
             'password' => Hash::make($request->password),
+            'admin_type' => $request->admin_type,
+            'admin_ogz' => ($request->admin_type == "A") ? 0 : $request->admin_ogz,
             'create_date' => date('Y-m-d H:i:s'),
             'create_by' => \Cookie::get('token'),
             'update_date' => date('Y-m-d H:i:s'),
@@ -110,10 +113,12 @@ class AdministratorController extends Controller
     public function edit($id)
     {
         $tbl_administrator = DB::table('tbl_administrator')->where('admin_id', $id)->get()->toArray();
+        $ogz = Customlib::get_ogz();
         return view('administrator.edit', [
             'title' => 'แก้ไข ผู้ดูแลระบบ',
             'header' => 'แก้ไข ผู้ดูแลระบบ',
             'tbl_administrator' => $tbl_administrator,
+            'ogz' => $ogz,
         ]);
     }
 
@@ -132,6 +137,8 @@ class AdministratorController extends Controller
             'username' => 'required|string|max:250',
             'password' => 'string|max:250|nullable',
             'old_password' => 'required|string|max:250',
+            'admin_type' => 'required',
+            'admin_ogz' => 'nullable',
         ]);
 
         if ($validator->fails()) {
@@ -142,6 +149,8 @@ class AdministratorController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'password' => ($request->password != "") ? Hash::make($request->password) : $request->old_password,
+            'admin_type' => $request->admin_type,
+            'admin_ogz' => ($request->admin_type == "A") ? 0 : $request->admin_ogz,
             'update_date' => date('Y-m-d H:i:s'),
             'update_by' => \Cookie::get('token'),
             'record_status' => 'A',
