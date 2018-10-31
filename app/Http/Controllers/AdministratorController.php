@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
-use Validator;
 use App\Libs\Customlib;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Validator;
 
 class AdministratorController extends Controller
 {
     public function __construct()
     {
         $this->middleware(['islogin']);
-    }    
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +21,7 @@ class AdministratorController extends Controller
      */
     public function index()
     {
-        $administrator = DB::table('tbl_administrator')->select('*')->get()->toArray();
+        $administrator = DB::table('tbl_administrator')->select('*')->where('admin_id', '!=', 1)->get()->toArray();
         return view('administrator.index', [
             'title' => 'ผู้ดูแลระบบ',
             'header' => 'ผู้ดูแลระบบ',
@@ -37,9 +36,11 @@ class AdministratorController extends Controller
      */
     public function create()
     {
+        $ogz = Customlib::get_ogz();
         return view('administrator.create', [
             'title' => 'เพิ่ม ผู้ดูแลระบบ',
             'header' => 'เพิ่ม ผู้ดูแลระบบ',
+            'ogz' => $ogz
         ]);
     }
 
@@ -61,7 +62,7 @@ class AdministratorController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        if(Customlib::check_has_username($request->username)){
+        if (Customlib::check_has_username($request->username)) {
             return redirect()->back()->withErrors(array('error' => 'Username already exists'));
         }
 
@@ -78,7 +79,7 @@ class AdministratorController extends Controller
             'record_status' => 'A',
         );
 
-        $id = DB::table('tbl_administrator')->insertGetId($args,'admin_id');
+        $id = DB::table('tbl_administrator')->insertGetId($args, 'admin_id');
         // dd($result);
         if ($id) {
             return redirect("/administrator/$id/edit")->with('status', 'บันทึกสำเร็จ');

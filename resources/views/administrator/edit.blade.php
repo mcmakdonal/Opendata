@@ -34,15 +34,15 @@
 
                     <div class="col-md-6">
                         <div class="form-group required">
-                            <label for="username" class="control-label">Username : </label>
-                            <input type="text" class="form-control" id="username" name="username" value="{{$tbl_administrator[0]->username}}" placeholder="Username" readonly>
+                            <label for="username" class="control-label">ชื่อผู้ใช้งานระบบ : </label>
+                            <input type="text" class="form-control" id="username" name="username" value="{{$tbl_administrator[0]->username}}" placeholder="ชื่อผู้ใช้งานระบบ" readonly>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group required">
-                            <label for="password" class="control-label">Password : </label>
-                            <input type="password" class="form-control" id="password" name="password" value="" placeholder="Password">
+                            <label for="password" class="control-label">รหัสผ่าน : </label>
+                            <input type="password" class="form-control" id="password" name="password" value="" placeholder="รหัสผ่าน">
                             <input type="hidden" name="old_password" value="{{$tbl_administrator[0]->password}}">
                         </div>
                     </div>

@@ -25,6 +25,27 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group required">
+                            <label for="admin_type" class="control-label">บทบาท : </label>
+                            <select class="form-control" name="admin_type">
+                                <option value="A">ผู้ดูแลระบบ</option>
+                                <option value="O">ผู้ดูแลหน่วยงาน</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label for="admin_ogz" class="control-label">หน่วยงาน : </label>
+                            <select class="form-control" name="admin_ogz">
+                                @foreach($ogz as $k => $v)
+                                
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group required">
                             <label for="first_name" class="control-label">ชื่อ : </label>
                             <input type="text" class="form-control" id="first_name" name="first_name" value="" placeholder="ชื่อ" required>
                         </div>
@@ -39,16 +60,16 @@
 
                     <div class="col-md-6">
                         <div class="form-group required">
-                            <label for="username" class="control-label">Username : </label>
-                            <input type="text" class="form-control" id="username" name="username" value="" placeholder="Username" required>
-                            <span class="label label-danger" style="display:none;">Username already exists</span>
+                            <label for="username" class="control-label">ชื่อผู้ใช้งานระบบ : </label>
+                            <input type="text" class="form-control" id="username" name="username" value="" placeholder="ชื่อผู้ใช้งานระบบ" required>
+                            <span class="label label-danger" style="display:none;">ชื่อผู้ใช้งานระบบนี้ถูกใช้ไปแล้ว</span>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group required">
                             <label for="password" class="control-label">รหัสผ่าน : </label>
-                            <input type="password" class="form-control" id="password" name="password" value="" placeholder="Password" required>
+                            <input type="password" class="form-control" id="password" name="password" value="" placeholder="รหัสผ่าน" required>
                         </div>
                     </div>
 

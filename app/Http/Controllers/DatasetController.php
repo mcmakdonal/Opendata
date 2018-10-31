@@ -389,7 +389,7 @@ class DatasetController extends Controller
         if ($result) {
             return redirect('/dataset/edit/' . $slug_url)->with('status', 'บันทึกสำเร็จ');
         } else {
-            return redirect('/dataset/edit/' . $slug_url)->with('status', 'กรุณากรอก Metadta ก่อนบันทึกครับ');
+            return redirect('/dataset/edit/' . $slug_url)->with('status', 'กรุณากรอก Metadta ก่อนบันทึก');
         }
     }
 
