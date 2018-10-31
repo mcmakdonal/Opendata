@@ -368,8 +368,8 @@ class DatasetController extends Controller
         $dts_id = $request->dts_id;
         $slug_url = $request->slug_url;
 
-        $size = count($field_name);
-        $result = "";
+        $size = ($field_name == null || $field_name == "") ? 0 : count($field_name);
+        $result = false;
         if ($size > 0) {
             for ($x = 0; $x < $size; $x++) {
                 $metadata = [];
@@ -389,7 +389,7 @@ class DatasetController extends Controller
         if ($result) {
             return redirect('/dataset/edit/' . $slug_url)->with('status', 'บันทึกสำเร็จ');
         } else {
-            return redirect('/dataset/edit/' . $slug_url);
+            return redirect('/dataset/edit/' . $slug_url)->with('status', 'กรุณากรอก Metadta ก่อนบันทึกครับ');
         }
     }
 

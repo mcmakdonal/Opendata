@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="col-md-12 text-right">
-                        <button type="submit" class="btn btn-success">แก้ไข ผู้ดูแลระบบ</button>
+                        <button type="submit" class="btn btn-success">บันทึก ผู้ดูแลระบบ</button>
                         <?= link_to('/administrator', $title = 'ยกเลิก', ['class' => 'btn btn-warning'], $secure = null); ?>
                     </div>
                 </div>
