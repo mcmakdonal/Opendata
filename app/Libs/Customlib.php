@@ -170,7 +170,8 @@ class Customlib extends ServiceProvider
                 ->select('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status', DB::raw('count(tbl_dataset.ogz_id) num'))
                 ->leftJoin('tbl_dataset', 'tbl_dataset.ogz_id', '=', 'tbl_organization.ogz_id')
                 ->where($matchThese)
-                ->groupBy('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status')
+                ->groupBy('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status','tbl_organization.update_date')
+                ->orderBy('tbl_organization.update_date', 'desc')
                 ->get()
                 ->toArray();
         } else {
@@ -178,7 +179,8 @@ class Customlib extends ServiceProvider
                 ->select('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status', DB::raw('count(tbl_dataset.ogz_id) num'))
                 ->leftJoin('tbl_dataset', 'tbl_dataset.ogz_id', '=', 'tbl_organization.ogz_id')
                 ->where($matchThese)
-                ->groupBy('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status')
+                ->groupBy('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status','tbl_organization.update_date')
+                ->orderBy('tbl_organization.update_date', 'desc')
                 ->get()
                 ->toArray();
         }
