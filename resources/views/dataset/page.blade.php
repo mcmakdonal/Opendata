@@ -64,7 +64,7 @@
                     <div class="col-md-12" style="margin-bottom: 10px;margin-top: 10px;">
                         <div class="box_headder">
                             <div class="text_box_title">
-                                <img src="{{ url('backend/assets/img/icon_topic.png') }}"> ชุดข้อมูล
+                                <img src="{{ url('backend/assets/img/icon_topic.png') }}"> {{ Define::DTS }}
                             </div>
                             <img src="{{ url('backend/assets/img/topic_fx.png') }}" style="float:right">
                         </div>
@@ -100,7 +100,7 @@
                                         <h3> <img src="{{ url('backend/assets/img/icon_items_pink.png') }}"> {{ $v->dts_title
                                             }} <span class="star"> {{ $v->dts_res_point }} </span> </h3>
                                         <p>{{ $v->dts_description }}</p>
-                                        <p>หน่วยงาน : {{ $v->ogz_title }} - ลิขสิทธิ์ : {{ $v->license }} </p>
+                                        <p>{{ Define::OGZ }} : {{ $v->ogz_title }} - ลิขสิทธิ์ : {{ $v->license }} </p>
                                         <p>หมวดหมู่ : {{ $v->cat_title }} - วันที่ปรับปรุงข้อมูล : {{ \AppHelper::instance()->DateThai($v->update_date)
                                             }} </p>
                                         <p class="tags">{{ $v->dts_tag }}</p>
@@ -157,7 +157,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>หน่วยงาน</td>
+                                                <td>{{ Define::OGZ }}</td>
                                                 <td>{{ $content[0]->ogz_title }}</td>
                                             </tr>
                                             <tr>

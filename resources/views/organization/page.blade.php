@@ -54,7 +54,7 @@
                             @if($is_login)
                             <div class="row">
                                 <div class="col-md-12" style="margin-bottom: 10px;">
-                                    <?=link_to('/dataset/new', $title = 'เพิ่ม ชุดข้อมูล', ['class' => 'btn btn-primary'], $secure = null);?>
+                                    <?=link_to('/dataset/new', $title = 'เพิ่ม ' . Define::DTS , ['class' => 'btn btn-primary'], $secure = null);?>
                                 </div>
                             </div>
                             @endif

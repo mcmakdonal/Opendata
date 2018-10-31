@@ -59,7 +59,7 @@
         </div>
 
         <div class="col-md-12 text-right">
-            <button type="submit" class="btn btn-success">สร้าง หน่วยงาน</button>
+            <button type="submit" class="btn btn-success">สร้าง {{ Define::OGZ }}</button>
             <?= link_to('/organization', $title = 'ยกเลิก', ['class' => 'btn btn-warning'], $secure = null); ?>
         </div>
     </div>

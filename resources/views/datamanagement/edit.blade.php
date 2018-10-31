@@ -25,8 +25,8 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="ep_title" class="control-label">ชื่อ ชุดข้อมูล : </label>
-                            <input type="text" class="form-control" id="ep_title" name="ep_title" value="{{ $content[0]->ep_title }}" placeholder="ชื่อ ชุดข้อมูล" required>
+                                <label for="ep_title" class="control-label">ชื่อ {{ Define::DTS }} : </label>
+                            <input type="text" class="form-control" id="ep_title" name="ep_title" value="{{ $content[0]->ep_title }}" placeholder="ชื่อ {{ Define::DTS }}" required>
                             </div>
                         </div>
 
@@ -50,7 +50,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="" class="control-label">หน่วยงาน : </label>
+                                <label for="" class="control-label">{{ Define::OGZ }} : </label>
                                 <select class="form-control use-select2" name="ogz_id" id="ogz_id" required>
                                     @foreach($get_ogz as $k => $v)
                                         <option value="{{ $v->ogz_id }}" {{ ($content[0]->ogz_id == $v->ogz_id)? "selected" : "" }} >{{ $v->ogz_title }}</option>

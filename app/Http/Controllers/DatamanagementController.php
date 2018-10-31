@@ -97,7 +97,7 @@ class DatamanagementController extends Controller
         $id = DB::table('tbl_exportdata')->insertGetId($args,'ep_id');
         // dd($result);
         if ($id) {
-            return redirect("/datamanagement/$id/edit")->with('status', 'Success');
+            return redirect("/datamanagement/$id/edit")->with('status', 'สำเร็จ');
         } else {
             return redirect()->back()->withErrors(array('error' => 'error'));
         }
@@ -172,7 +172,7 @@ class DatamanagementController extends Controller
         $result = DB::table('tbl_exportdata')->where('ep_id', $id)->update($args);
         // dd($result);
         if ($result) {
-            return redirect("/datamanagement/$id/edit")->with('status', 'Success');
+            return redirect("/datamanagement/$id/edit")->with('status', 'สำเร็จ');
         } else {
             return redirect()->back()->withErrors(array('error' => 'error'));
         }

@@ -18,10 +18,10 @@
     {!! Form::open(['url' => '/dataset/save','class' => 'form-auth-small', 'method' => 'post','files' => true]) !!}
     <div class="row" style="margin-bottom: 10px;">
         <div class="col-md-6">
-            <button type="button" class="btn btn-block btn-success" style="opacity : 0.5">1. สร้าง ชุดข้อมูล</button>
+            <button type="button" class="btn btn-block btn-success" style="opacity : 0.5">1. สร้าง {{ Define::DTS }}</button>
         </div>
         <div class="col-md-6">
-            <button type="button" class="btn btn-block btn-success">2. เพิ่ม ชุดข้อมูล</button>
+            <button type="button" class="btn btn-block btn-success">2. เพิ่ม {{ Define::DTS }}</button>
         </div>
     </div>
     <div class="row">
@@ -97,7 +97,7 @@
         </div> -->
 
         <div class="col-md-12 text-right">
-            <button type="submit" class="btn btn-success">สร้าง ชุดข้อมูล</button>
+            <button type="submit" class="btn btn-success">สร้าง {{ Define::DTS }}</button>
             <?=link_to('/dataset', $title = 'ยกเลิก', ['class' => 'btn btn-warning'], $secure = null);?>
         </div>
     </div>

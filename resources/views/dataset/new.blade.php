@@ -19,17 +19,17 @@
     @csrf
         <div class="row" style="margin-bottom: 10px;">
             <div class="col-md-6">
-                <button type="button" class="btn btn-block btn-success">1. สร้าง ชุดข้อมูล</button>
+                <button type="button" class="btn btn-block btn-success">1. สร้าง {{ Define::DTS }}</button>
             </div>
             <div class="col-md-6">
-                <button type="button" class="btn btn-block btn-success" style="opacity : 0.5;cursor: not-allowed">2. เพิ่ม ชุดข้อมูล</button>
+                <button type="button" class="btn btn-block btn-success" style="opacity : 0.5;cursor: not-allowed">2. เพิ่ม {{ Define::DTS }}</button>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="title" class="control-label">ชื่อ ชุดข้อมูล : </label>
-                    <input type="text" class="form-control" id="dts_title" name="dts_title" value="" placeholder="ชื่อ ชุดข้อมูล" required>
+                    <label for="title" class="control-label">ชื่อ {{ Define::DTS }} : </label>
+                    <input type="text" class="form-control" id="dts_title" name="dts_title" value="" placeholder="ชื่อ {{ Define::DTS }}" required>
                 </div>
             </div>
 
@@ -117,7 +117,7 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="" class="control-label">หน่วยงาน : </label>
+                    <label for="" class="control-label">{{ Define::OGZ }} : </label>
                     <select class="form-control use-select2" name="ogz_id" id="ogz_id" required>
                         @foreach($get_ogz as $k => $v)
                             <option value="{{ $v->ogz_id }}" {{ ($v->ogz_url == $lock_ogz)? "selected" : "" }} >{{ $v->ogz_title }}</option>
@@ -148,7 +148,7 @@
             </div>
 
             <div class="col-md-12 text-right">
-                <button type="submit" class="btn btn-success">สร้าง ชุดข้อมูล</button>
+                <button type="submit" class="btn btn-success">สร้าง {{ Define::DTS }}</button>
                 <?=link_to('/dataset', $title = 'ย้อนกลับ', ['class' => 'btn btn-warning'], $secure = null);?>
             </div>
         </div>

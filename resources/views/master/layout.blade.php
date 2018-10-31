@@ -57,7 +57,7 @@
 				</div>
 				 {!! Form::open(['url' => "/dataset",'class' => 'navbar-form navbar-left', 'method' => 'get']) !!}
 					<div class="input-group">
-						<input type="text" value="" name="title" class="form-control" placeholder="ค้นหา ชุดข้อมูล">
+						<input type="text" value="" name="title" class="form-control" placeholder="ค้นหา {{ Define::DTS }}">
 						<span class="input-group-btn"><button type="submit" class="btn btn-primary">ค้นหา</button></span>
 					</div>
 				{!! Form::close() !!} -->
@@ -105,8 +105,8 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="{{ url('/dataset') }}" class="{{ (strpos(url()->current(),'dataset') ) ? 'active' : '' }}"><i class="lnr lnr-home"></i> <span>ชุดข้อมูล</span></a></li>
-						<li><a href="{{ url('/organization') }}" class="{{ (strpos(url()->current(),'organization') ) ? 'active' : '' }}"><i class="lnr lnr-user"></i> <span>หน่วยงาน</span></a></li>
+						<li><a href="{{ url('/dataset') }}" class="{{ (strpos(url()->current(),'dataset') ) ? 'active' : '' }}"><i class="lnr lnr-home"></i> <span>{{ Define::DTS }}</span></a></li>
+						<li><a href="{{ url('/organization') }}" class="{{ (strpos(url()->current(),'organization') ) ? 'active' : '' }}"><i class="lnr lnr-user"></i> <span>{{ Define::OGZ }}</span></a></li>
 					</ul>
 				</nav>
 			</div>

@@ -13,12 +13,12 @@
     
 
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#dataset"><span class="lnr lnr-pencil"></span>ชุดข้อมูล</a></li>
+        <li class="active"><a data-toggle="tab" href="#dataset"><span class="lnr lnr-pencil"></span>{{ Define::DTS }}</a></li>
         <li><a data-toggle="tab" href="#resouce"><span class="lnr lnr-cloud-download"></span> ทรัพยากร</a></li>
         <li><a data-toggle="tab" href="#metadata"><span class="fa fa-database"></span> Metadata</a></li>
         <div class="text-right">
         <a href="{{url('/dataset/page/'.$slug_url)}}">
-            <button type="button" class="btn btn-primary"><span class="lnr lnr-eye"></span> ดู ชุดข้อมูล</button>
+            <button type="button" class="btn btn-primary"><span class="lnr lnr-eye"></span> ดู {{ Define::DTS }}</button>
         </a>
     </div>
     </ul>
@@ -40,8 +40,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="title" class="control-label">ชื่อ ชุดข้อมูล : </label>
-                            <input type="text" class="form-control" id="dts_title" name="dts_title" value="{{ $tbl_dataset[0]->dts_title }}" placeholder="ชื่อ ชุดข้อมูล" required>
+                            <label for="title" class="control-label">ชื่อ {{ Define::DTS }} : </label>
+                            <input type="text" class="form-control" id="dts_title" name="dts_title" value="{{ $tbl_dataset[0]->dts_title }}" placeholder="ชื่อ {{ Define::DTS }}" required>
                         </div>
                     </div>
 
@@ -128,7 +128,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="" class="control-label">หน่วยงาน : </label>
+                            <label for="" class="control-label">{{ Define::OGZ }} : </label>
                             <select class="form-control use-select2" name="ogz_id" id="ogz_id" required>
                                 @foreach($get_ogz as $k => $v)
                                     <option value="{{ $v->ogz_id }}" {{ ($tbl_dataset[0]->ogz_id == $v->ogz_id)? "selected" : "" }} >{{ $v->ogz_title }}</option>
@@ -159,12 +159,12 @@
                     </div>
 
                     <div class="col-md-6">
-                        <button class="btn btn-danger" type="button" onclick="remove_dts(this,'{{$slug_url}}')" data="{{ url('/dataset/delete') }}">ลบ ชุดข้อมูล</button>
+                        <button class="btn btn-danger" type="button" onclick="remove_dts(this,'{{$slug_url}}')" data="{{ url('/dataset/delete') }}">ลบ {{ Define::DTS }}</button>
                     </div>
 
                     <div class="col-md-6 text-right">
                         <input type="hidden" value="{{ $tbl_dataset[0]->dts_id }}" name="dts_id">
-                        <button type="submit" class="btn btn-success">แก้ไข ชุดข้อมูล</button>
+                        <button type="submit" class="btn btn-success">บันทึก {{ Define::DTS }}</button>
                         <?=link_to('/dataset/page/'.$slug_url, $title = 'ยกเลิก', ['class' => 'btn btn-warning'], $secure = null);?>
                     </div>
                 </div>

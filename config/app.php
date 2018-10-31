@@ -217,6 +217,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
 
+        'Define' => App\Define::class,
+
     ],
 
 ];

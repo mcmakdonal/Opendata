@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Image;
 use Validator;
+use App\Define;
 
 class OrganizationController extends Controller
 {
@@ -24,8 +25,8 @@ class OrganizationController extends Controller
         $get_ogz = Customlib::get_ogz("", $title, true);
         // dd($get_ogz);
         return view('organization.index', [
-            'title' => 'หน่วยงาน',
-            'header' => 'หน่วยงาน',
+            'title' => Define::OGZ,
+            'header' => Define::OGZ,
             'get_ogz' => $get_ogz,
             'is_login' => Customlib::is_login(),
         ]);
@@ -34,7 +35,7 @@ class OrganizationController extends Controller
     function new () {
         $uniq = uniqid() . md5(date('Y-m-d H:i:s'));
         return view('organization.new', [
-            'title' => 'สร้าง หน่วยงาน', 'uniq' => $uniq,
+            'title' => 'สร้าง ' . Define::OGZ , 'uniq' => $uniq,
         ]);
     }
 
@@ -95,7 +96,7 @@ class OrganizationController extends Controller
         $result = DB::table('tbl_organization')->insert($args);
         // dd($result);
         if ($result) {
-            return redirect("/organization/page/$url")->with('status', 'Success');
+            return redirect("/organization/page/$url")->with('status', 'สำเร็จ');
         } else {
             return redirect()->back()->withErrors(array('error' => 'error'));
         }
@@ -111,8 +112,8 @@ class OrganizationController extends Controller
             }
             $get_cat = Customlib::get_cat();
             return view('organization.page', [
-                'title' => 'หน่วยงาน',
-                'header' => 'หน่วยงาน',
+                'title' => Define::OGZ,
+                'header' => Define::OGZ,
                 'slug_url' => $slug_url,
                 'ogz_id' => $ogz_id,
                 'is_login' => Customlib::is_login(),
@@ -132,8 +133,8 @@ class OrganizationController extends Controller
             $ogz_id = $get_ogz[0]->ogz_id;
             $tbl_dataset = DB::table('tbl_dataset')->where('ogz_id', $ogz_id)->get();
             return view('organization.edit', [
-                'title' => 'แก้ไข หน่วยงาน',
-                'header' => 'แก้ไข หน่วยงาน',
+                'title' => 'แก้ไข ' . Define::OGZ,
+                'header' => 'แก้ไข ' . Define::OGZ,
                 'content' => $get_ogz,
                 'dataset' => $tbl_dataset,
                 'slug_url' => $slug_url,
@@ -183,7 +184,7 @@ class OrganizationController extends Controller
         $result = DB::table('tbl_organization')->where('ogz_id', $ogz_id)->update($args);
         // dd($result);
         if ($result) {
-            return redirect()->back()->with('status', 'Success');
+            return redirect()->back()->with('status', 'สำเร็จ');
         } else {
             return redirect()->back()->withErrors(array('error' => 'error'));
         }

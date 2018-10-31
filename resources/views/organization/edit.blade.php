@@ -16,11 +16,11 @@
 
     <ul class="nav nav-tabs" role="tablist">
         <li class="active"><a data-toggle="tab" href="#edit"><span class="lnr lnr-pencil"></span> แก้ไข </a></li>
-        <li><a data-toggle="tab" href="#datasets"><span class="lnr lnr-cloud-download"></span> ชุดข้อมูล </a></li>
+        <li><a data-toggle="tab" href="#datasets"><span class="lnr lnr-cloud-download"></span> {{ Define::DTS }} </a></li>
         <!-- <li><a data-toggle="tab" href="#member"><span class="lnr lnr-users"></span> Members</a></li> -->
         <div class="text-right">
         <a href="{{url('/organization/page/'.$slug_url)}}">
-            <button type="submit" class="btn btn-primary"><span class="lnr lnr-eye"></span> ดู หน่วยงาน</button>
+            <button type="submit" class="btn btn-primary"><span class="lnr lnr-eye"></span> ดู {{ Define::OGZ }}</button>
         </a>
     </div>
     </ul>
@@ -90,12 +90,12 @@
                 </div>
 
                 <div class="col-md-6">
-                    <button type="button" class="btn btn-danger" onclick="remove_ogz(this,'{{$slug_url}}')" data="{{ url('/organization/delete') }}" >ลบ หน่วยงาน</button>
+                    <button type="button" class="btn btn-danger" onclick="remove_ogz(this,'{{$slug_url}}')" data="{{ url('/organization/delete') }}" >ลบ {{ Define::OGZ }}</button>
                 </div>
 
                 <div class="col-md-6 text-right">
                     <input type="hidden" value="{{ $slug_url }}" name="slug_url">
-                    <button type="submit" class="btn btn-success">แก้ไข หน่วยงาน</button>
+                    <button type="submit" class="btn btn-success">แก้ไข {{ Define::OGZ }}</button>
                     <?=link_to('/organization', $title = 'ยกเลิก', ['class' => 'btn btn-warning'], $secure = null);?>
                 </div>
             </div>
@@ -106,7 +106,7 @@
         <div id="datasets" class="tab-pane fade">
             <div class="row">
                 <div class="col-md-12" style="margin-bottom: 10px;">
-                    <?= link_to('/dataset/new?ogz='.$slug_url, $title = 'เพิ่ม ชุดข้อมูล', ['class' => 'btn btn-primary'], $secure = null); ?>
+                    <?= link_to('/dataset/new?ogz='.$slug_url, $title = 'เพิ่ม ' . Define::DTS , ['class' => 'btn btn-primary'], $secure = null); ?>
                 </div>
             </div>
             <div class="row">

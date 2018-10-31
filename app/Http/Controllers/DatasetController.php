@@ -6,6 +6,7 @@ use App\Libs\Customlib;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Validator;
+use App\Define;
 
 class DatasetController extends Controller
 {
@@ -28,8 +29,8 @@ class DatasetController extends Controller
         $get_cat = Customlib::get_cat();
 
         return view('dataset.index', [
-            'title' => 'ชุดข้อมูล',
-            'header' => 'ชุดข้อมูล',
+            'title' => Define::DTS,
+            'header' => Define::DTS,
             'get_ogz_count' => $get_ogz_count,
             'file_format' => $file_format,
             'get_lcs' => $get_lcs,
@@ -46,8 +47,8 @@ class DatasetController extends Controller
         $uniq = uniqid() . md5(date('Y-m-d H:i:s'));
 
         return view('dataset.new', [
-            'title' => 'สร้าง ชุดข้อมูล',
-            'header' => 'สร้าง ชุดข้อมูล',
+            'title' => 'สร้าง ' . Define::DTS,
+            'header' => 'สร้าง ' . Define::DTS,
             'get_ogz' => $get_ogz,
             'get_lcs' => $get_lcs,
             'get_cat' => $get_cat,
@@ -112,8 +113,8 @@ class DatasetController extends Controller
     {
         if ($request->session()->has('new_dataset')) {
             return view('dataset.new_res', [
-                'title' => 'สร้าง ชุดข้อมูล',
-                'header' => 'สร้าง ชุดข้อมูล',
+                'title' => 'สร้าง ' . Define::DTS,
+                'header' => 'สร้าง ' . Define::DTS,
             ]);
         } else {
             return redirect('/dataset/new');
@@ -210,7 +211,7 @@ class DatasetController extends Controller
 
                     //$url = iconv(mb_detect_encoding($url, mb_detect_order(), true), "UTF-8", $url);
 
-                    return redirect('/dataset/page/' . $url)->with('status', 'Success');
+                    return redirect('/dataset/page/' . $url)->with('status', 'สำเร็จ');
                 } else {
                     return redirect('/dataset/new');
                 }
@@ -235,8 +236,8 @@ class DatasetController extends Controller
             $get_frequent = Customlib::frequent();
             // dd($tbl_resource);
             return view('dataset.page', [
-                'title' => 'ชุดข้อมูล',
-                'header' => 'ชุดข้อมูล',
+                'title' => Define::DTS,
+                'header' => Define::DTS,
                 'content' => $tbl_dataset,
                 'resource' => $tbl_resource,
                 'metadata' => $tbl_metadata,
@@ -263,8 +264,8 @@ class DatasetController extends Controller
             $get_frequent = Customlib::frequent();
 
             return view('dataset.edit', [
-                'title' => 'แก้ไข ชุดข้อมูล',
-                'header' => 'แก้ไข ชุดข้อมูล',
+                'title' => 'แก้ไข ' . Define::DTS,
+                'header' => 'แก้ไข ' . Define::DTS,
                 'tbl_dataset' => $tbl_dataset,
                 'get_ogz' => $get_ogz,
                 'slug_url' => $slug_url,
@@ -317,7 +318,7 @@ class DatasetController extends Controller
 
         $result = DB::table('tbl_dataset')->where('dts_id', $request->dts_id)->update($args);
         if ($result) {
-            return redirect()->back()->with('status', 'Success');
+            return redirect()->back()->with('status', 'สำเร็จ');
         } else {
             return redirect()->back()->withErrors(array('error' => 'error'));
         }
@@ -386,7 +387,7 @@ class DatasetController extends Controller
             }
         }
         if ($result) {
-            return redirect('/dataset/edit/' . $slug_url)->with('status', 'Success');
+            return redirect('/dataset/edit/' . $slug_url)->with('status', 'สำเร็จ');
         } else {
             return redirect('/dataset/edit/' . $slug_url);
         }
