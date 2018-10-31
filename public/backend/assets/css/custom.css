@@ -311,6 +311,6 @@ div.tagsinput input {
     vertical-align: middle;
 }
 
-.btn-top:hover , a.menu_button:hover , a:hover {
+.btn-top:hover , a.menu_button:hover {
     color: white !important;
 }
