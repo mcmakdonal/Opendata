@@ -85,9 +85,9 @@
                                 <div class="col-md-12 col-xs-12">
                                     <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button"
                                         style="position: static; visibility: visible; width: 60px; height: 20px;float:right;margin-left:5px"
-                                        title="Twitter Tweet Button" src="https://platform.twitter.com/widgets/tweet_button.4ddf50b7ac5c5f06f6679f003b742641.en.html#dnt=false&amp;lang=en&amp;original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Foverview.html&amp;related=twitterapi%2Ctwitter&amp;size=m&amp;time=1538465345598&amp;type=share&amp;url=http%3A%2F%2Fopendata.mc%2Fdataset%2Fpage%2F{{ $v->dts_url }}"
+                                        title="Twitter Tweet Button" src="https://platform.twitter.com/widgets/tweet_button.4ddf50b7ac5c5f06f6679f003b742641.en.html#dnt=false&amp;lang=en&amp;original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Foverview.html&amp;related=twitterapi%2Ctwitter&amp;size=m&amp;time=1538465345598&amp;type=share&amp;url={{ url()->current() }}"
                                         data-url="http%3A%2F%2Fopendata.mc%2Fdataset%2Fpage%2F{{ $v->dts_url }}"></iframe>
-                                    <iframe style="float:right" src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fgoo.gl%2FHDWS3H&layout=button_count&size=small&mobile_iframe=true&appId=1740813262901995&width=64&height=20"
+                                    <iframe style="float:right" src="https://www.facebook.com/plugins/share_button.php?href={{ url()->current() }}&layout=button_count&size=small&mobile_iframe=true&appId=1740813262901995&width=64&height=20"
                                         width="72" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
                                         allowTransparency="true" allow="encrypted-media"></iframe>
                                     <div>
