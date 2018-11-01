@@ -122,7 +122,8 @@ Route::resource('categories', 'CategoriesController');
 Route::get('/login', 'IndexController@login');
 Route::post('/chk_login', 'IndexController@chk_login');
 Route::get('/logout', function () {
-    return redirect('/')->withCookie(Cookie::forget('token'))->withCookie(Cookie::forget('name'));
+    return redirect('/')->withCookie(Cookie::forget('token'))
+    ->withCookie(Cookie::forget('m_type'))->withCookie(Cookie::forget('m_ogz'));
 });
 
 // Check login
