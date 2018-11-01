@@ -230,9 +230,9 @@ div.tagsinput input {
 }
 
 .pagination>.active>a {
-    background: #fff !important;
+    background: #c42191 !important;
     border-radius: 50% !important;
-    color: #c42191 !important;
+    color: #fff !important;
     height: 30px;
     width: 30px;
     text-align: center;
@@ -250,9 +250,9 @@ div.tagsinput input {
 }
 
 .current {
-    background: #fff !important;
+    background: #c42191 !important;
     border-radius: 50% !important;
-    color: #c42191 !important;
+    color: #fff !important;
     height: 30px;
     width: 30px;
     text-align: center;
