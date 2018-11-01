@@ -81,11 +81,14 @@
 							</a>
 							<ul class="dropdown-menu">
 								@if (Cookie::get('token') !== null)
-								<li><a href="/categories"><i class="fa fa-newspaper-o" aria-hidden="true"></i> <span>หมวดหมู่</span></a></li>
-								<li><a href="/administrator"><i class="fa fa-user" aria-hidden="true"></i> <span>ผู้ดูแลระบบ</span></a></li>
-								<li><a href="/datamanagement"><i class="fa fa-database" aria-hidden="true"></i><span>บริหารจัดการข้อมูล</span></a></li>
-								<li><a href="/log-download"><i class="fa fa-download" aria-hidden="true"></i><span>ประวัติการดาวน์โหลด</span></a></li>
-								<li><a href="{{ url('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i><span>ออกจากระบบ</span></a></li>
+									@if (Cookie::get('m_type') === "A")
+										<li><a href="/categories"><i class="fa fa-newspaper-o" aria-hidden="true"></i> <span>หมวดหมู่</span></a></li>
+										<li><a href="/administrator"><i class="fa fa-user" aria-hidden="true"></i> <span>ผู้ดูแลระบบ</span></a></li>
+										<li><a href="/datamanagement"><i class="fa fa-database" aria-hidden="true"></i><span>บริหารจัดการข้อมูล</span></a></li>
+										<li><a href="/log-download"><i class="fa fa-download" aria-hidden="true"></i><span>ประวัติการดาวน์โหลด</span></a></li>
+									@endif
+										<li><a href="{{ url('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i><span>ออกจากระบบ</span></a></li>
+
 								@else
 									<li><a href="{{ url('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> <span>เข้าสู่ระบบ</span></a></li>
 								@endif
@@ -157,6 +160,7 @@
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/scripts/klorofil-common.js') }}
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/scripts/main.js') }}
 	{{ \AppHelper::instance()->gen_script('js','backend/assets/scripts/module.js') }}
+	{{ \AppHelper::instance()->gen_script('js','backend/assets/scripts/ogz_script.js') }}
 	<script>
 		$(document).ready(function ($) {
 			@yield('script')

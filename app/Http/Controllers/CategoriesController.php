@@ -11,7 +11,7 @@ class CategoriesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('islogin');
+        $this->middleware('islogin:A');
     }
     /**
      * Display a listing of the resource.

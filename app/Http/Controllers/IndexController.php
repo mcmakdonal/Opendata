@@ -42,7 +42,11 @@ class IndexController extends Controller
         }
 
         if (Hash::check($request->password, $tbl_administrator[0]->password)) {
-            return redirect("/")->cookie('token', $tbl_administrator[0]->admin_id, 14660)->cookie('name', $tbl_administrator[0]->first_name, 14660);
+            return redirect("/")
+            ->cookie('token', $tbl_administrator[0]->admin_id, 14660)
+            ->cookie('name', $tbl_administrator[0]->first_name, 14660)
+            ->cookie('m_type', $tbl_administrator[0]->admin_type, 14660)
+            ->cookie('m_ogz', $tbl_administrator[0]->admin_ogz, 14660);
         } else {
             return redirect()->back()->withErrors(array('error' => 'Username or Password Incorrect'));
         }

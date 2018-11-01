@@ -54,11 +54,11 @@ function remove_dts(e, slug) {
     swal("คุณต้องการลบ ชุดข้อมูล นี้ ?", {
         buttons: {
             yes: {
-                text: "Yes",
+                text: "ยืนยัน",
                 className: "btn-danger"
             },
             no: {
-                text: "No",
+                text: "ยกเลิก",
                 className: "btn-default"
             }
         }
@@ -104,11 +104,11 @@ function remove_ogz(e, slug) {
     swal("คุณต้องการลบ หน่วยงาน นี้ ?", {
         buttons: {
             yes: {
-                text: "Yes",
+                text: "ยืนยัน",
                 className: "btn-danger"
             },
             no: {
-                text: "No",
+                text: "ยกเลิก",
                 className: "btn-default"
             }
         }
@@ -154,11 +154,11 @@ function remove_res(e, slug_url, res_id) {
     swal("คุณต้องการลบ ทรัพยากร นี้ ?", {
         buttons: {
             yes: {
-                text: "Yes",
+                text: "ยืนยัน",
                 className: "btn-danger"
             },
             no: {
-                text: "No",
+                text: "ยกเลิก",
                 className: "btn-default"
             }
         }
@@ -218,20 +218,21 @@ function set_status_dts(type) {
             type: type
         },
         beforeSend() {
-            $.LoadingOverlay("show");
+            $("table.ogz-dts tbody").LoadingOverlay("show", {
+                fontawesome: "fa fa-circle-o-notch fa-spin"
+            });
         },
         success: function (result) {
             var obj = result;
-            // console.log(obj.status);
-            $.LoadingOverlay("hide");
+            $("table.ogz-dts tbody").LoadingOverlay("hide", true);
             if (obj.status) {
-                location.reload(true);
+                get_dts_data();
             } else {
                 swal("Fail !", "ผิดพลาด", "error");
             }
         },
         error(xhr, status, error) {
-            $.LoadingOverlay("hide");
+            $("table.ogz-dts tbody").LoadingOverlay("hide", true);
             swal("Fail !", error + " Status : " + status, "error");
         }
     });
@@ -241,11 +242,11 @@ function delete_admin(e) {
     swal("คุณต้องการลบ ผู้ดูแลระบบ นี้ ?", {
         buttons: {
             yes: {
-                text: "Yes",
+                text: "ยืนยัน",
                 className: "btn-danger"
             },
             no: {
-                text: "No",
+                text: "ยกเลิก",
                 className: "btn-default"
             }
         }
@@ -288,11 +289,11 @@ function delete_datamanagement(e) {
     swal("คุณต้องการลบการ บริหารจัดการข้อมูล นี้ ?", {
         buttons: {
             yes: {
-                text: "Yes",
+                text: "ยืนยัน",
                 className: "btn-danger"
             },
             no: {
-                text: "No",
+                text: "ยกเลิก",
                 className: "btn-default"
             }
         }
@@ -471,11 +472,11 @@ function manage_cat(type, id = '') {
         swal("คุณต้องการลบ หมวดหมู่ นี้ ?", {
             buttons: {
                 yes: {
-                    text: "Yes",
+                    text: "ยืนยัน",
                     className: "btn-danger"
                 },
                 no: {
-                    text: "No",
+                    text: "ยกเลิก",
                     className: "btn-default"
                 }
             }

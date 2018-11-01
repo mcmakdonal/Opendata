@@ -70,21 +70,10 @@ class Customlib extends ServiceProvider
     {
 
         $limit = 10;
-        // if ($page == 1) {
-        //     $offset = 0;
-        // } else {
-        //     $offset = ($limit * $page) - 1;
-        // }
         $matchThese = [];
         if ($organization != "") {
             $matchThese[] = ['tbl_dataset.ogz_id', '=', $organization];
         }
-        // if ($format != "") {
-        //     $matchThese[] = ['tbl_resource.file_format', '=', $format];
-        // }
-        // if ($license != "") {
-        //     $matchThese[] = ['tbl_license.lcs_id', '=', "$license"];
-        // }
         if ($categories != "") {
             $matchThese[] = ['tbl_dataset.cat_id', '=', $categories];
         }
@@ -105,12 +94,11 @@ class Customlib extends ServiceProvider
         if (!Customlib::is_login()) {
             $matchThese[] = ['tbl_dataset.dts_status', '=', "pb"];
         }
-        // return $matchThese;
+
         $select = ['tbl_dataset.dts_id', 'tbl_dataset.dts_title', 'tbl_dataset.dts_url', 'tbl_dataset.dts_status', 'tbl_dataset.dts_description', 'tbl_dataset.dts_res_point', 'tbl_categories.cat_title'];
 
         $count = DB::table('tbl_dataset')
             ->select('tbl_dataset.dts_id')
-            // ->leftJoin('tbl_resource', 'tbl_resource.dts_id', '=', 'tbl_dataset.dts_id')
             ->join('tbl_categories', 'tbl_categories.cat_id', '=', 'tbl_dataset.cat_id')
             ->where($matchThese)
             ->get()->toArray();
@@ -120,9 +108,6 @@ class Customlib extends ServiceProvider
 
         $tbl_dataset = DB::table('tbl_dataset')
             ->select($select)
-        // ->join('tbl_organization', 'tbl_organization.ogz_id', '=', 'tbl_dataset.ogz_id')
-        // ->leftJoin('tbl_resource', 'tbl_resource.dts_id', '=', 'tbl_dataset.dts_id')
-        // ->leftJoin('tbl_license', 'tbl_license.lcs_id', '=', 'tbl_dataset.lcs_id')
             ->join('tbl_categories', 'tbl_categories.cat_id', '=', 'tbl_dataset.cat_id')
             ->where($matchThese)
             ->orderByRaw($matchOrder)
@@ -144,7 +129,6 @@ class Customlib extends ServiceProvider
             // add ลง array
             $tbl_dataset[$k]->format = $str;
         }
-
 
         $args = [
             'table' => $tbl_dataset,
@@ -170,7 +154,7 @@ class Customlib extends ServiceProvider
                 ->select('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status', DB::raw('count(tbl_dataset.ogz_id) num'))
                 ->leftJoin('tbl_dataset', 'tbl_dataset.ogz_id', '=', 'tbl_organization.ogz_id')
                 ->where($matchThese)
-                ->groupBy('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status','tbl_organization.update_date')
+                ->groupBy('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status', 'tbl_organization.update_date')
                 ->orderBy('tbl_organization.update_date', 'desc')
                 ->get()
                 ->toArray();
@@ -179,7 +163,7 @@ class Customlib extends ServiceProvider
                 ->select('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status', DB::raw('count(tbl_dataset.ogz_id) num'))
                 ->leftJoin('tbl_dataset', 'tbl_dataset.ogz_id', '=', 'tbl_organization.ogz_id')
                 ->where($matchThese)
-                ->groupBy('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status','tbl_organization.update_date')
+                ->groupBy('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status', 'tbl_organization.update_date')
                 ->orderBy('tbl_organization.update_date', 'desc')
                 ->get()
                 ->toArray();
@@ -401,9 +385,31 @@ class Customlib extends ServiceProvider
         return $tbl_userdownload;
     }
 
-    public static function is_login()
+    public static function is_login($permission = "A", $admin_ogz = 0)
     {
-        if ((\Cookie::get('token') !== null)) {
+        // permission is param for check user can view that page ?
+        // admin_ogz is if user is a under admin but have it
+        if ((\Cookie::get('token') !== null) && (\Cookie::get('m_type') !== null) && (\Cookie::get('m_ogz') !== null)) {
+            if ((\Cookie::get('m_type')) === "O") {
+                if ($permission !== "O") {
+                    return false;
+                }
+                if (($admin_ogz !== 0) && ($admin_ogz !== (\Cookie::get('m_ogz')))) {
+                    return false;
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static function check_has_view($ogz)
+    {
+        if ((\Cookie::get('m_type') === "A")) {
+            return true;
+        }
+        if ((\Cookie::get('m_ogz')) == $ogz) {
             return true;
         } else {
             return false;

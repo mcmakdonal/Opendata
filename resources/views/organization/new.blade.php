@@ -19,8 +19,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="title" class="control-label">หัวข้อ : </label>
-                <input type="text" class="form-control" id="ogz_title" name="ogz_title" value="" placeholder="ชื่อ" required>
+                <label for="title" class="control-label">ชื่อ {{ Define::OGZ }} : </label>
+                <input type="text" class="form-control" id="ogz_title" name="ogz_title" value="" placeholder="ชื่อ {{ Define::OGZ }}" required>
             </div>
         </div>
 

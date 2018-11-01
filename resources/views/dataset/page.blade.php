@@ -123,8 +123,7 @@
                                         <div class="list-group-item list-group-item-action">
                                             <div class="row">
                                                 <div class="col-md-8">
-                                                    @php $file_format = "backend/assets/img/".$v->file_format.".png"; 
-@endphp
+                                                    @php $file_format = "backend/assets/img/".$v->file_format.".png"; @endphp
                                                     <!-- <h5> <i class="fa fa-file-{{ $file_format }}-o" aria-hidden="true"></i> {{ $v->file_name }} </h5> -->
                                                     <h5> <img src="{{ url($file_format  ) }}"> {{ $v->file_name }} </h5>
                                                 </div>

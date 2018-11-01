@@ -12,7 +12,7 @@ class AdministratorController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['islogin']);
+        $this->middleware(['islogin:A']);
     }
     /**
      * Display a listing of the resource.
@@ -148,6 +148,7 @@ class AdministratorController extends Controller
         $args = array(
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
+            'username' => $request->username,
             'password' => ($request->password != "") ? Hash::make($request->password) : $request->old_password,
             'admin_type' => $request->admin_type,
             'admin_ogz' => ($request->admin_type == "A") ? 0 : $request->admin_ogz,
@@ -159,7 +160,7 @@ class AdministratorController extends Controller
         $result = DB::table('tbl_administrator')->where('admin_id', $id)->update($args);
         // dd($result);
         if ($result) {
-            return redirect("/administrator/$id/edit")->with('status', 'แก้ไขสำเร็จ');
+            return redirect("/administrator/$id/edit")->with('status', 'บันทึกสำเร็จ');
         } else {
             return redirect()->back()->withErrors(array('error' => 'error'));
         }

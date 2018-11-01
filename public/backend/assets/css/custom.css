@@ -230,9 +230,9 @@ div.tagsinput input {
 }
 
 .pagination>.active>a {
-    background: #c42191 !important;
-    border-radius: 50%;
-    color: white !important;
+    background: #fff !important;
+    border-radius: 50% !important;
+    color: #c42191 !important;
     height: 30px;
     width: 30px;
     text-align: center;
@@ -240,10 +240,19 @@ div.tagsinput input {
     line-height: 2 !important;
 }
 
+.pagination>.disabled>a,
+.pagination>.disabled>a:focus,
+.pagination>.disabled>a:hover,
+.pagination>.disabled>span,
+.pagination>.disabled>span:focus,
+.pagination>.disabled>span:hover {
+    background-color: transparent !important;
+}
+
 .current {
-    background: #c42191 !important;
+    background: #fff !important;
     border-radius: 50% !important;
-    color: white !important;
+    color: #c42191 !important;
     height: 30px;
     width: 30px;
     text-align: center;
@@ -311,6 +320,7 @@ div.tagsinput input {
     vertical-align: middle;
 }
 
-.btn-top:hover , a.menu_button:hover {
+.btn-top:hover,
+a.menu_button:hover {
     color: white !important;
 }

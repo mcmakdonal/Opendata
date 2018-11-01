@@ -8,7 +8,7 @@ class LogdownloadController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['islogin']);
+        $this->middleware(['islogin:A']);
     }
 
     public function index()

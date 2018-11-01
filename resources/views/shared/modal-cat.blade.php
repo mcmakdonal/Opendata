@@ -6,7 +6,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
-                <h4 class="modal-title">Add Categories</h4>
+                <h4 class="modal-title">เพิ่มหมวดหมู่</h4>
             </div>
             <div class="modal-body">
                 {!! Form::open(['url' => '/categories','class' => 'form-cat', 'method' => 'post']) !!}
@@ -14,7 +14,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="cat_title" class="control-label">ชื่อหมวดหมู่ : </label>
-                            <input type="text" class="form-control" name="cat_title" value="" placeholder="ชื่อหมวดหมู่" required>
+                            <input type="text" class="form-control" name="cat_title" value="" placeholder="" required>
                         </div>
                     </div>
 

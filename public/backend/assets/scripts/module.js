@@ -204,7 +204,6 @@ function set_star(point) {
         str += '<i class="fa fa-star" aria-hidden="true"></i>';
         str += '&nbsp;';
     }
-
     return str;
 }
 
@@ -237,7 +236,6 @@ function beautiful_tag() {
             str += '<span class="label label-' + random + '">' + arr[i] + '</span>';
             str += '&nbsp;';
         }
-
         $(".tags").html(str);
     }
 }
@@ -258,7 +256,6 @@ function add_table() {
 }
 
 function del_btn(x) {
-
     $("#tr" + x).remove();
 }
 
@@ -267,18 +264,17 @@ function remove_metadata(id, url) {
     swal("คุณต้องการลบ Metadata นี้ ?", {
         buttons: {
             yes: {
-                text: "Yes",
+                text: "ยืนยัน",
                 className: "btn-danger"
             },
             no: {
-                text: "No",
+                text: "ยกเลิก",
                 className: "btn-default"
             }
         }
     }).then(value => {
         switch (value) {
             case "yes":
-
                 $.ajax({
                     headers: {
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
@@ -319,5 +315,3 @@ for (var i = elements.length; i--;) {
         this.scrollIntoView(false);
     });
 }
-
-

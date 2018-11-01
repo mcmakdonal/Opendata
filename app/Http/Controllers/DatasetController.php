@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Define;
 use App\Libs\Customlib;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Validator;
-use App\Define;
 
 class DatasetController extends Controller
 {
@@ -35,7 +35,7 @@ class DatasetController extends Controller
             'file_format' => $file_format,
             'get_lcs' => $get_lcs,
             'get_cat' => $get_cat,
-            'is_login' => Customlib::is_login(),
+            'is_login' => Customlib::is_login("O"),
         ]);
     }
 
@@ -166,7 +166,7 @@ class DatasetController extends Controller
                 $file_arg['file_ext'] = $file_arg['file_format'] = (in_array($ext, $format)) ? "web" : $ext;
             }
 
-            $dts_id = DB::table('tbl_dataset')->insertGetId($new_dataset,'dts_id');
+            $dts_id = DB::table('tbl_dataset')->insertGetId($new_dataset, 'dts_id');
             if ($dts_id) {
                 $file_arg['dts_id'] = $dts_id;
                 $file_arg['file_name'] = $request->file_name;
@@ -242,7 +242,7 @@ class DatasetController extends Controller
                 'resource' => $tbl_resource,
                 'metadata' => $tbl_metadata,
                 'slug_url' => $slug_url,
-                'is_login' => Customlib::is_login(),
+                'is_login' => Customlib::is_login("O", $tbl_dataset[0]->ogz_id),
                 'get_frequent' => $get_frequent,
             ]);
         }
@@ -253,6 +253,9 @@ class DatasetController extends Controller
         if ($slug_url != "") {
             $tbl_dataset = DB::table('tbl_dataset')->where('dts_url', $slug_url)->get()->toArray();
             if (!(count($tbl_dataset) > 0)) {
+                abort(404);
+            }
+            if (!Customlib::check_has_view($tbl_dataset[0]->ogz_id)) {
                 abort(404);
             }
             $dts_id = $tbl_dataset[0]->dts_id;

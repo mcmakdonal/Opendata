@@ -13,7 +13,7 @@ class OrganizationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('islogin', ['except' => [
+        $this->middleware('islogin:A', ['except' => [
             'index',
             'page',
         ]]);
@@ -131,12 +131,12 @@ class OrganizationController extends Controller
                 abort(404);
             }
             $ogz_id = $get_ogz[0]->ogz_id;
-            $tbl_dataset = DB::table('tbl_dataset')->where('ogz_id', $ogz_id)->get();
+            // $tbl_dataset = DB::table('tbl_dataset')->where('ogz_id', $ogz_id)->get();
             return view('organization.edit', [
                 'title' => 'แก้ไข ' . Define::OGZ,
                 'header' => 'แก้ไข ' . Define::OGZ,
                 'content' => $get_ogz,
-                'dataset' => $tbl_dataset,
+                'dataset' => [],
                 'slug_url' => $slug_url,
             ]);
         }

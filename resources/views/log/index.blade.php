@@ -21,7 +21,7 @@
                     <tbody>
                         @foreach ($log as $k => $v)
                             <tr>
-                                <td>{{ $v->dnl_id }}</td>
+                                <td>{{ $k+1 }}</td>
                                 <td>{{ $v->file_name }}</td>
                                 <td>{{ $v->first_name }}  {{ $v->last_name }} </td>
                                 <td>{{ \AppHelper::instance()->DateThai($v->create_date) }}</td>

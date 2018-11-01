@@ -11,7 +11,7 @@ class DatamanagementController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('islogin', ['except' => [
+        $this->middleware('islogin:A', ['except' => [
             'index',
         ]]);
     }

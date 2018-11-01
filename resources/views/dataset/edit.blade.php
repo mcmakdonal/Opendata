@@ -129,11 +129,20 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="" class="control-label">{{ Define::OGZ }} : </label>
-                            <select class="form-control use-select2" name="ogz_id" id="ogz_id" required>
+                            @if (Cookie::get('m_type') === "A")
+                                <select class="form-control use-select2" name="ogz_id" id="ogz_id" required>
+                                    @foreach($get_ogz as $k => $v)
+                                        <option value="{{ $v->ogz_id }}" {{ ($tbl_dataset[0]->ogz_id == $v->ogz_id)? "selected" : "" }} >{{ $v->ogz_title }}</option>
+                                    @endforeach
+                                </select>
+                            @else
+                                @php $ogz_title = ""; @endphp
                                 @foreach($get_ogz as $k => $v)
-                                    <option value="{{ $v->ogz_id }}" {{ ($tbl_dataset[0]->ogz_id == $v->ogz_id)? "selected" : "" }} >{{ $v->ogz_title }}</option>
+                                    @php ($tbl_dataset[0]->ogz_id == $v->ogz_id)? $ogz_title = $v->ogz_title : "" @endphp
                                 @endforeach
-                            </select>
+                                <input type="text" class="form-control" id="" name="" value="{{ $ogz_title }}" placeholder="" readonly>
+                                <input type="hidden" class="form-control" id="ogz_id" name="ogz_id" value="{{ $tbl_dataset[0]->ogz_id }}">
+                            @endif
                         </div>
                     </div>
 

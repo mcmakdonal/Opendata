@@ -91,30 +91,28 @@
                 @endif
                 {!! Form::open(['url' => '#','class' => 'form-auth-small', 'method' => 'get']) !!}
                 <div class="row ">
-                    <div class="col-md-7" style="padding-right:10px">
+                    <div class="col-md-7 col-xs-7" style="padding-right:10px">
                         <div class="form-group">
                             <input type="text" class="form-control form_style" id="title" name="title" value="" placeholder="ค้นหา" required>
                         </div>
                     </div>
-                    <div class="col-md-5" style="padding-left:0px;padding-right: 20px;">
-                        
+                    <div class="col-md-5 col-xs-5" style="padding-left:0px;padding-right: 20px;">
                         <div class="input-group my-colorpicker2 colorpicker-element box_select_search">
-                        <select class="form-control use-select2 search-data form_style" >
-                            <option value="">การเรียกดู</option>
-                            <option value="view">ความนิยม</option>
-                            <option value="txt">ตัวอักษร</option>
-                            <option value="update">แก้ไขล่าสุด</option>
-                        </select>
-
-                    <div class="input-group-addon box_btn_search">
-                    <button type="button" class="btn search-data btn_search">
-                            <img  src="{{ url('backend/assets/img/icon_search.png') }}" > ค้นหา
-                            </button>
-                            <button type="button" class="btn clear-data btn_search" style="margin-left:5px">
-                            <img  src="{{ url('backend/assets/img/icon_reset.png') }}" > ค่าเริ่มต้น
-                            </button>
-                    </div>
-                    </div>
+                            <select class="form-control use-select2 search-data form_style" >
+                                <option value="">การเรียกดู</option>
+                                <option value="view">ความนิยม</option>
+                                <option value="txt">ตัวอักษร</option>
+                                <option value="update">แก้ไขล่าสุด</option>
+                            </select>
+                            <div class="input-group-addon box_btn_search">
+                                <button type="button" class="btn search-data btn_search">
+                                    <img  src="{{ url('backend/assets/img/icon_search.png') }}" > ค้นหา
+                                </button>
+                                <button type="button" class="btn clear-data btn_search" style="margin-left:5px">
+                                    <img  src="{{ url('backend/assets/img/icon_reset.png') }}" > ค่าเริ่มต้น
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {!! Form::close() !!}
@@ -140,7 +138,6 @@
                     </div>
                 </div>
                 <div class="row" id="result-data">
-
                 </div>
                 <div class="row">
                     <ul id="pagination" class="pagination pull-right"></ul>
