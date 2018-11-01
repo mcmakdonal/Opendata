@@ -29,8 +29,22 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Pridi:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
-	<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('backend/assets/img/apple-icon.png') }}">
-	<link rel="icon" type="image/png" sizes="96x96" href="{{ asset('backend/assets/img/favicon.png') }}">
+	<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('backend/assets/img/icon_topic.png') }}">
+	<link rel="icon" type="image/png" sizes="96x96" href="{{ asset('backend/assets/img/icon_topic.png') }}">
+
+	<!-- For Facebook -->
+	<meta property="og:title" content="@yield('title')" />
+	<meta property="og:type" content="article" />
+	<meta property="og:image" content="{{ url('backend/assets/img/login_logo.png') }}" />
+	<meta property="og:url" content="{{ url()->current() }}" />
+	<meta property="og:description" content="@yield('title')" />
+
+	<!-- For Twitter -->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="@yield('title')" />
+	<meta name="twitter:description" content="@yield('title')" />
+	<meta name="twitter:image" content="{{ url('backend/assets/img/login_logo.png') }}" />
+
 </head>
 
 <body class="layout-fullwidth" >
