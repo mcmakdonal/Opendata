@@ -45,7 +45,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
-                <h4 class="modal-title">Description</h4>
+                <h4 class="modal-title">รายละเอียด</h4>
             </div>
             <div class="modal-body">
                 {!! Form::open(['url' => '','class' => 'form-cat', 'method' => 'post']) !!}

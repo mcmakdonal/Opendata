@@ -18,13 +18,13 @@
 
                     <table class="table table-bordered" style="text-align:center">
                         <tr>
-                            <td>Field name</td>
-                            <td>Description</td>
-                            <td>Field type</td>
-                            <td>Unit</td>
+                            <td>ชื่อฟิลด์</td>
+                            <td>รายละเอียด</td>
+                            <td>ชนิดฟิลด์</td>
+                            <td>หน่วย</td>
                         </tr>
                         @php
-                            $size =count($metadata); 
+                            $size = count($metadata); 
                         @endphp 
                         @if ($size>0) 
                             @foreach($metadata as $k => $v)
@@ -43,7 +43,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
                 </div>
             </div>
 
@@ -79,16 +79,10 @@
                         </div>
                         @endif
 
-
-
-
                         <div class="col-md-12">
                             @foreach($content as $k => $v)
                             <div class="row">
-
                                 <div class="col-md-12 col-xs-12">
-
-
                                     <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button"
                                         style="position: static; visibility: visible; width: 60px; height: 20px;float:right;margin-left:5px"
                                         title="Twitter Tweet Button" src="https://platform.twitter.com/widgets/tweet_button.4ddf50b7ac5c5f06f6679f003b742641.en.html#dnt=false&amp;lang=en&amp;original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Foverview.html&amp;related=twitterapi%2Ctwitter&amp;size=m&amp;time=1538465345598&amp;type=share&amp;url=http%3A%2F%2Fopendata.mc%2Fdataset%2Fpage%2F{{ $v->dts_url }}"
@@ -142,7 +136,6 @@
                                         </div>
                                         @endforeach
                                     </div>
-
                                 </div>
 
                                 <div class="col-md-12">
