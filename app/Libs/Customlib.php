@@ -137,7 +137,7 @@ class Customlib extends ServiceProvider
         return $args;
     }
 
-    public static function get_ogz($slug = "", $title = "", $pagi = false)
+    public static function get_ogz($slug = "", $title = "")
     {
         $matchThese = [];
         if ($slug != "") {
@@ -149,25 +149,15 @@ class Customlib extends ServiceProvider
         if (!Customlib::is_login()) {
             $matchThese[] = ['tbl_organization.ogz_status', '=', "pb"];
         }
-        if ($pagi) {
-            $tbl_organization = DB::table('tbl_organization')
-                ->select('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status', DB::raw('count(tbl_dataset.ogz_id) num'))
-                ->leftJoin('tbl_dataset', 'tbl_dataset.ogz_id', '=', 'tbl_organization.ogz_id')
-                ->where($matchThese)
-                ->groupBy('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status', 'tbl_organization.update_date')
-                ->orderBy('tbl_organization.update_date', 'desc')
-                ->get()
-                ->toArray();
-        } else {
-            $tbl_organization = DB::table('tbl_organization')
-                ->select('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status', DB::raw('count(tbl_dataset.ogz_id) num'))
-                ->leftJoin('tbl_dataset', 'tbl_dataset.ogz_id', '=', 'tbl_organization.ogz_id')
-                ->where($matchThese)
-                ->groupBy('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status', 'tbl_organization.update_date')
-                ->orderBy('tbl_organization.update_date', 'desc')
-                ->get()
-                ->toArray();
-        }
+        $tbl_organization = DB::table('tbl_organization')
+            ->select('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status','order_ogz', DB::raw('count(tbl_dataset.ogz_id) num'))
+            ->leftJoin('tbl_dataset', 'tbl_dataset.ogz_id', '=', 'tbl_organization.ogz_id')
+            ->where($matchThese)
+            ->groupBy('tbl_organization.ogz_id', 'ogz_title', 'ogz_url', 'ogz_description', 'ogz_image', 'ogz_status','order_ogz', 'tbl_organization.update_date')
+            ->orderBy('tbl_organization.order_ogz', 'asc')
+            ->orderBy('tbl_organization.ogz_id', 'desc')
+            ->get()
+            ->toArray();
 
         return $tbl_organization;
     }

@@ -22,8 +22,7 @@ class OrganizationController extends Controller
     public function index(Request $request)
     {
         $title = $request->title;
-        $get_ogz = Customlib::get_ogz("", $title, true);
-        // dd($get_ogz);
+        $get_ogz = Customlib::get_ogz("", $title);
         return view('organization.index', [
             'title' => Define::OGZ,
             'header' => Define::OGZ,
@@ -91,6 +90,7 @@ class OrganizationController extends Controller
             'update_date' => date('Y-m-d H:i:s'),
             'update_by' => \Cookie::get('token'),
             'record_status' => 'A',
+            'order_ogz' => 10,
         );
 
         $result = DB::table('tbl_organization')->insert($args);
