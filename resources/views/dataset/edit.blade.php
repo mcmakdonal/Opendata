@@ -146,6 +146,10 @@
                         </div>
                     </div>
 
+                    <div class="col-md-12">
+                        <hr />
+                    </div>        
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="" class="control-label">หมวดหมู่ : </label>
