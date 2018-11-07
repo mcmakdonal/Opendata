@@ -43,10 +43,10 @@ class IndexController extends Controller
 
         if (Hash::check($request->password, $tbl_administrator[0]->password)) {
             return redirect("/")
-            ->cookie('token', $tbl_administrator[0]->admin_id, 14660)
-            ->cookie('name', $tbl_administrator[0]->first_name, 14660)
-            ->cookie('m_type', $tbl_administrator[0]->admin_type, 14660)
-            ->cookie('m_ogz', $tbl_administrator[0]->admin_ogz, 14660);
+                ->cookie('token', $tbl_administrator[0]->admin_id, 14660)
+                ->cookie('name', $tbl_administrator[0]->first_name, 14660)
+                ->cookie('m_type', $tbl_administrator[0]->admin_type, 14660)
+                ->cookie('m_ogz', $tbl_administrator[0]->admin_ogz, 14660);
         } else {
             return redirect()->back()->withErrors(array('error' => 'Username or Password Incorrect'));
         }
@@ -115,26 +115,51 @@ class IndexController extends Controller
         return response()->json($arg);
     }
 
-    public function filter_cat(Request $request){
+    public function filter_cat(Request $request)
+    {
         $categories = ($request->categories) ? $request->categories : "";
         $organization = ($request->organization) ? $request->organization : "";
-        $filter_cat = Customlib::filter_cat($categories,$organization);
+        $filter_cat = Customlib::filter_cat($categories, $organization);
         $arg = [
-            'data' => $filter_cat
+            'data' => $filter_cat,
 
         ];
         return response()->json($arg);
     }
 
-    public function filter_ogz(Request $request){
+    public function filter_ogz(Request $request)
+    {
         $organization = ($request->organization) ? $request->organization : "";
         $categories = ($request->categories) ? $request->categories : "";
-        $filter_ogz = Customlib::filter_ogz($organization,$categories);
+        $filter_ogz = Customlib::filter_ogz($organization, $categories);
         $arg = [
-            'data' => $filter_ogz
+            'data' => $filter_ogz,
 
         ];
         return response()->json($arg);
+    }
+
+    public function mass_admin()
+    {
+
+        for ($i = 1; $i <= 30; $i++) {
+            $args = array(
+                'first_name' => "admin" . $i,
+                'last_name' => "admin" . $i,
+                'username' => "admin" . $i,
+                'password' => Hash::make("admin" . $i),
+                'admin_type' => "A",
+                'admin_ogz' => 0,
+                'create_date' => date('Y-m-d H:i:s'),
+                'create_by' => \Cookie::get('token'),
+                'update_date' => date('Y-m-d H:i:s'),
+                'update_by' => \Cookie::get('token'),
+                'record_status' => 'A',
+            );
+
+            $id = DB::table('tbl_administrator')->insertGetId($args, 'admin_id');
+        }
+
     }
 
 }

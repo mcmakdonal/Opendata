@@ -113,6 +113,9 @@ Route::resource('administrator', 'AdministratorController');
 // api metadata
 Route::get('/get_matadata/{dts_id}', 'DatasetController@view_metadata');
 
+// Mass admin
+Route::get('/api/mass-admin', 'IndexController@mass_admin');
+
 ///////////////////////////////////////////////
 
 Route::resource('categories', 'CategoriesController');
