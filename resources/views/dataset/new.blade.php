@@ -127,7 +127,7 @@
                     @else
                         @php $ogz_title = ""; @endphp
                         @foreach($get_ogz as $k => $v)
-                            @php ($tbl_dataset[0]->ogz_id == Cookie::get('m_ogz'))? $ogz_title = $v->ogz_title : "" @endphp
+                            @php (Cookie::get('m_ogz') == $v->ogz_id)? $ogz_title = $v->ogz_title : "" @endphp
                         @endforeach
                         <input type="text" class="form-control" id="" name="" value="{{ $ogz_title }}" placeholder="" readonly>
                         <input type="hidden" class="form-control" id="ogz_id" name="ogz_id" value="{{ $tbl_dataset[0]->ogz_id }}">
