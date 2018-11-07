@@ -136,7 +136,7 @@
             </div>
 
             <div class="col-md-12">
-                <hr />
+                <hr style="margin-bottom: 10px;margin-top: 10px;" />
             </div>
 
             <div class="col-md-6">
