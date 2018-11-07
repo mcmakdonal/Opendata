@@ -135,7 +135,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6" style="margin-top: 10px;">
                 <div class="form-group">
                     <label for="" class="control-label">หมวดหมู่ : </label>
                     <select class="form-control use-select2" name="cat_id" id="cat_id" required>
@@ -146,7 +146,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6" style="margin-top: 10px;">
                 <div class="form-group">
                     <label for="" class="control-label">สถานะ : </label>
                     <select class="form-control use-select2" name="dts_status" id="dts_status">
