@@ -29,6 +29,7 @@ function get_dts_data(page = 1) {
         },
         success: function (result) {
             var str = '';
+            $("table.ogz-dts tbody").html(str);
             $.each(result.data, function (index, value) {
                 var status = (value.dts_status == "pb") ? "สาธารณะ" : "ส่วนตัว";
                 var label = (value.dts_status == "pb") ? "primary" : "danger";

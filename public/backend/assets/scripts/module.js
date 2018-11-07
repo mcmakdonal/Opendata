@@ -56,6 +56,7 @@ function get_data(page = 1) {
         },
         success: function (result) {
             var str = '';
+            $("#result-data").html(str);
             $.each(result.data, function (index, value) {
                 str += '<div class="col-md-12 featured-responsive"><div class="list-group"><a href="' + full_url + '/dataset/page/' + value.dts_url + '" class="list-group-item list-group-item-action box_data">';
                 str += '<h4 style="float: right;color: #8e2e70;font-size:16px">' + value.cat_title + '</h4>';
