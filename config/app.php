@@ -162,7 +162,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Yajra\Oci8\Oci8ServiceProvider::class,
 
     ],
 
