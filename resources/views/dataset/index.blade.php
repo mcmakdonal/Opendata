@@ -98,7 +98,7 @@
                     </div>
                     <div class="col-md-5 col-xs-5" style="padding-left:0px;padding-right: 20px;">
                         <div class="input-group my-colorpicker2 colorpicker-element box_select_search">
-                            <select class="form-control use-select2 search-data form_style" id="order" >
+                            <select class="form-control use-select2 search-data form_style" id="dts-order" >
                                 <option value="">การเรียกดู</option>
                                 <option value="view">ความนิยม</option>
                                 <option value="txt">ตัวอักษร</option>

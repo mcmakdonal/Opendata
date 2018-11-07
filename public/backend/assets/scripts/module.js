@@ -15,7 +15,7 @@ function get_data(page = 1) {
     var license = ($(".license.menu-active").attr('data-id') === undefined) ? "" : $(".license.menu-active").attr('data-id');
     var categories = ($(".categories.menu-active").attr('data-id') === undefined) ? "" : $(".categories.menu-active").attr('data-id');
     var title = $("#title").val().trim();
-    var order = $("#order").val().trim();
+    var order = $("#dts-order").val().trim();
     var data = {
         'organization': organization,
         'format': format,

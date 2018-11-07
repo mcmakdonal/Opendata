@@ -11,8 +11,12 @@ $pagination_ogz.twbsPagination(defaultOpts);
 
 function get_dts_data(page = 1) {
     var organization = ($("#organization_id").val() == "") ? "" : $("#organization_id").val();
+    var order = $("#dts-order").val().trim();
+    var title = $("#title").val().trim();
     var data = {
         'organization': organization,
+        'title': title,
+        'order': order,
         'page': page
     };
     $.ajax({
