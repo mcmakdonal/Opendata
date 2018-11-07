@@ -130,7 +130,7 @@
                             @php (Cookie::get('m_ogz') == $v->ogz_id)? $ogz_title = $v->ogz_title : "" @endphp
                         @endforeach
                         <input type="text" class="form-control" id="" name="" value="{{ $ogz_title }}" placeholder="" readonly>
-                        <input type="hidden" class="form-control" id="ogz_id" name="ogz_id" value="{{ $tbl_dataset[0]->ogz_id }}">
+                        <input type="hidden" class="form-control" id="ogz_id" name="ogz_id" value="{{ Cookie::get('m_ogz') }}">
                     @endif
                 </div>
             </div>
