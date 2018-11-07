@@ -95,7 +95,7 @@ class Customlib extends ServiceProvider
             $matchThese[] = ['tbl_dataset.dts_status', '=', "pb"];
         }
 
-        $select = ['tbl_dataset.dts_id', 'tbl_dataset.dts_title', 'tbl_dataset.dts_url', 'tbl_dataset.dts_status', 'tbl_dataset.dts_description', 'tbl_dataset.dts_res_point', 'tbl_categories.cat_title'];
+        $select = ['tbl_dataset.dts_id', 'tbl_dataset.dts_title', 'tbl_dataset.dts_url', 'tbl_dataset.dts_status', 'tbl_dataset.dts_description', 'tbl_dataset.dts_res_point', 'tbl_categories.cat_title','tbl_dataset.dts_view','tbl_dataset.update_date'];
 
         $count = DB::table('tbl_dataset')
             ->select('tbl_dataset.dts_id')
