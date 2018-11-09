@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="cat_title" class="control-label">ชื่อหมวดหมู่ : </label>
+                            <label for="cat_title" class="control-label">ชื่อหมวดหมู่ <span class="must-input">*</span> : </label>
                             <input type="text" class="form-control" name="cat_title" value="" placeholder="" required>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="cat_title" class="control-label">ชื่อหมวดหมู่ : </label>
+                            <label for="cat_title" class="control-label">ชื่อหมวดหมู่ <span class="must-input">*</span> : </label>
                             <input type="text" class="form-control" id="cat_title" name="cat_title" value="" placeholder="ชื่อหมวดหมู่" required>
                         </div>
                     </div>

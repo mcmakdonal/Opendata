@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="file" class="control-label">เลือกชนิดของ ทรัพยากร : </label>
+                        <label for="file" class="control-label">เลือกชนิดของ ทรัพยากร <span class="must-input">*</span> : </label>
                         <select class="form-control use-select2" id="file_type" name="file_type">
                             <option value="f">File Upload</option>
                             <option value="w">Web URL</option>
@@ -37,28 +37,28 @@
 
                 <div class="col-md-12" id="div-file">
                     <div class="form-group">
-                        <label for="file" class="control-label">ไฟล์ : </label>
+                        <label for="file" class="control-label">ไฟล์ <span class="must-input">*</span> : </label>
                         <input class="form-control" type="file" name="file" id="file" onchange="read_filename(this)" required>
                     </div>
                 </div>
 
                 <div class="col-md-12" id="div-web" style="display: none;">
                     <div class="form-group">
-                        <label for="file" class="control-label">เว็บลิงก์ : </label>
+                        <label for="file" class="control-label">เว็บลิงก์ <span class="must-input">*</span> : </label>
                         <input class="form-control" type="url" name="file" id="file" placeholder="Web URL" disabled>
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="file_name" class="control-label">ชื่อไฟล์ : </label>
+                        <label for="file_name" class="control-label">ชื่อไฟล์ <span class="must-input">*</span> : </label>
                         <input type="text" class="form-control" id="file_name" name="file_name" value="" placeholder="ชื่อไฟล์" required>
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="file_desc" class="control-label">รายละเอียด : </label>
+                        <label for="file_desc" class="control-label">รายละเอียด <span class="must-input">*</span> : </label>
                         <textarea class="form-control" id="file_desc" name="file_desc" rows="3" style="resize : none;" required></textarea>
                     </div>
                 </div>

@@ -13,21 +13,21 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="first_name" class="control-label">ชื่อ : </label>
+                        <label for="first_name" class="control-label">ชื่อ <span class="must-input">*</span> : </label>
                         <input type="text" class="form-control" id="first_name" name="first_name" value="" placeholder="" required>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="last_name" class="control-label">นามสกุล : </label>
+                        <label for="last_name" class="control-label">นามสกุล <span class="must-input">*</span> : </label>
                         <input type="text" class="form-control" id="last_name" name="last_name" value="" placeholder="" required>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="description" class="control-label">รายละเอียด : </label>
+                        <label for="description" class="control-label">รายละเอียด <span class="must-input">*</span> : </label>
                         <textarea class="form-control" name="description" id="description" style="resize: none;" placeholder=""></textarea>
                     </div>
                 </div>

@@ -2894,3 +2894,7 @@ label {
 .btn:hover {
     color: #ca91f2 !important;
 }
+
+.must-input {
+    color: red;
+}

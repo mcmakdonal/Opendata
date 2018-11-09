@@ -19,14 +19,14 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="title" class="control-label">ชื่อ {{ Define::OGZ }} : </label>
+                <label for="title" class="control-label">ชื่อ {{ Define::OGZ }} <span class="must-input">*</span> : </label>
                 <input type="text" class="form-control" id="ogz_title" name="ogz_title" value="" placeholder="ชื่อ {{ Define::OGZ }}" required>
             </div>
         </div>
 
         <div class="col-md-12 hidden">
             <div class="form-group">
-                <label for="URL" class="control-label">ลิงก์ถาวร : </label>
+                <label for="URL" class="control-label">ลิงก์ถาวร <span class="must-input">*</span> : </label>
                 <div class="input-group">
                     <span class="input-group-addon">/organization/page/</span>
                     <input type="text" name="ogz_url" id="ogz_url" class="form-control" value="{{ $uniq }}" placeholder="my-organization">
@@ -43,14 +43,14 @@
 
         <div class="col-md-12">
             <div class="form-group">
-                <label for="Image" class="control-label">รูปภาพ : </label>
+                <label for="Image" class="control-label">รูปภาพ <span class="must-input">*</span> : </label>
                 <input class="form-control" type="file" name="ogz_image" id="ogz_image" required>
             </div>
         </div>
 
         <div class="col-md-12">
             <div class="form-group">
-                <label for="" class="control-label">สถานะ : </label>
+                <label for="" class="control-label">สถานะ <span class="must-input">*</span> : </label>
                 <select class="form-control use-select2" name="ogz_status" id="ogz_status">
                     <option value="pb">สาธารณะ</option>
                     <option value="pv">ส่วนตัว</option>

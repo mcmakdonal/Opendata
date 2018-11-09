@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group required">
-                            <label for="admin_type" class="control-label">บทบาท : </label>
+                            <label for="admin_type" class="control-label">บทบาท <span class="must-input">*</span> : </label>
                             <select class="form-control" name="admin_type" id="admin_type" onchange="change_admin();">
                                 <option value="A">ผู้ดูแลระบบ</option>
                                 <option value="O">ผู้ดูแล{{ Define::OGZ }}</option>
@@ -35,7 +35,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group required">
-                            <label for="admin_ogz" class="control-label">หน่วยงาน : </label>
+                            <label for="admin_ogz" class="control-label">{{ Define::OGZ }} <span class="must-input">*</span> : </label>
                             <select class="form-control" name="admin_ogz" id="admin_ogz">
                                 <option value="0">เลือก {{ Define::OGZ }}</option>
                                 @foreach($ogz as $k => $v)
@@ -47,21 +47,21 @@
 
                     <div class="col-md-6">
                         <div class="form-group required">
-                            <label for="first_name" class="control-label">ชื่อ : </label>
+                            <label for="first_name" class="control-label">ชื่อ <span class="must-input">*</span> : </label>
                             <input type="text" class="form-control" id="first_name" name="first_name" value="" placeholder="ชื่อ" required>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group required">
-                            <label for="last_name" class="control-label">นามสกุล : </label>
+                            <label for="last_name" class="control-label">นามสกุล <span class="must-input">*</span> : </label>
                             <input type="text" class="form-control" id="last_name" name="last_name" value="" placeholder="นามสกุล" required>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group required">
-                            <label for="username" class="control-label">ชื่อผู้ใช้งานระบบ : </label>
+                            <label for="username" class="control-label">ชื่อผู้ใช้งานระบบ <span class="must-input">*</span> : </label>
                             <input type="text" class="form-control" id="username" name="username" value="" placeholder="ชื่อผู้ใช้งานระบบ" required>
                             <span class="label label-danger" style="display:none;">ชื่อผู้ใช้งานระบบนี้ถูกใช้ไปแล้ว</span>
                         </div>
@@ -69,7 +69,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group required">
-                            <label for="password" class="control-label">รหัสผ่าน : </label>
+                            <label for="password" class="control-label">รหัสผ่าน <span class="must-input">*</span> : </label>
                             <input type="password" class="form-control" id="password" name="password" value="" placeholder="รหัสผ่าน" required>
                         </div>
                     </div>
