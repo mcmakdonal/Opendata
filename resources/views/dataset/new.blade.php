@@ -68,7 +68,7 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="dts_contact_name" class="control-label">ชื่อผู้ใช้ข้อมูล : </label>
+                    <label for="dts_contact_name" class="control-label">ชื่อผู้ให้ข้อมูล : </label>
                     <input type="text" class="form-control" id="dts_contact_name" name="dts_contact_name" value="" placeholder="ชื่อผู้ใช้ข้อมูล" required>
                 </div>
             </div>
