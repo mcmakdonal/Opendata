@@ -25,21 +25,21 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="ep_title" class="control-label">ชื่อ {{ Define::DTS }} : </label>
+                                <label for="ep_title" class="control-label">ชื่อ {{ Define::DTS }} <span class="must-input">*</span> : </label>
                             <input type="text" class="form-control" id="ep_title" name="ep_title" value="{{ $content[0]->ep_title }}" placeholder="ชื่อ {{ Define::DTS }}" required>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="ep_scope_geo" class="control-label">ขอบเขตภูมิศาสตร์ : </label>
+                                <label for="ep_scope_geo" class="control-label">ขอบเขตภูมิศาสตร์ <span class="must-input">*</span> : </label>
                                 <input type="text" class="form-control" id="ep_scope_geo" name="ep_scope_geo" value="{{ $content[0]->ep_scope_geo }}" placeholder="ขอบเขตภูมิศาสตร์" required>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="ep_view" class="control-label">Database : </label>
+                                <label for="ep_view" class="control-label">Database <span class="must-input">*</span> : </label>
                                 <select class="form-control use-select2" name="ep_view" id="ep_view" required>
                                     @foreach($view->data as $k => $v)
                                         <option value="{{ $v->view }}" {{ ($content[0]->ep_view == $v->view)? "selected" : "" }} >{{ $v->view }}</option>
@@ -50,7 +50,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="" class="control-label">{{ Define::OGZ }} : </label>
+                                <label for="" class="control-label">{{ Define::OGZ }} <span class="must-input">*</span> : </label>
                                 <select class="form-control use-select2" name="ogz_id" id="ogz_id" required>
                                     @foreach($get_ogz as $k => $v)
                                         <option value="{{ $v->ogz_id }}" {{ ($content[0]->ogz_id == $v->ogz_id)? "selected" : "" }} >{{ $v->ogz_title }}</option>
@@ -61,7 +61,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="" class="control-label">หมวดหมู่ : </label>
+                                <label for="" class="control-label">หมวดหมู่ <span class="must-input">*</span> : </label>
                                 <select class="form-control use-select2" name="cat_id" id="cat_id" required>
                                     @foreach($get_cat as $k => $v)
                                         <option value="{{ $v->cat_id }}" {{ ($content[0]->cat_id == $v->cat_id)? "selected" : "" }} >{{ $v->cat_title }}</option>
@@ -72,7 +72,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="ep_status" class="control-label">สถานะ : </label>
+                                <label for="ep_status" class="control-label">สถานะ <span class="must-input">*</span> : </label>
                                 <select class="form-control use-select2" name="ep_status" id="ep_status" required>
                                     <option value="pb" {{ ($content[0]->ep_status == "pb")? "selected" : "" }} >สาธารณะ</option>
                                     <option value="pv" {{ ($content[0]->ep_status == "pv")? "selected" : "" }} >ส่วนตัว</option>
@@ -82,7 +82,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="lcs_id" class="control-label">การอนุญาต : </label>
+                                <label for="lcs_id" class="control-label">การอนุญาต <span class="must-input">*</span> : </label>
                                 <select class="form-control use-select2" name="lcs_id" id="lcs_id" required>
                                     @foreach($get_lcs as $k => $v)
                                         <option value="{{ $v->lcs_id }}" {{ ($content[0]->lcs_id == $v->lcs_id)? "selected" : "" }} >{{ $v->license }}</option>
@@ -93,7 +93,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="ep_file" class="control-label">ชนิตไฟล์ : </label>
+                                <label for="ep_file" class="control-label">ชนิตไฟล์ <span class="must-input">*</span> : </label>
                                 @php
                                     $file_arr = explode(",",$content[0]->ep_file);
                                     unset($file_arr[count($file_arr) - 1]);
@@ -110,21 +110,21 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="ep_contact_name" class="control-label">ชื่อผู้ใช้ข้อมูล : </label>
+                                <label for="ep_contact_name" class="control-label">ชื่อผู้ใช้ข้อมูล <span class="must-input">*</span> : </label>
                                 <input type="text" class="form-control" id="ep_contact_name" name="ep_contact_name" value="{{ $content[0]->ep_contact_name }}" placeholder="ชื่อผู้ใช้ข้อมูล" required>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="ep_contact_email" class="control-label">อีเมลผู้ให้ข้อมูล : </label>
+                                <label for="ep_contact_email" class="control-label">อีเมลผู้ให้ข้อมูล <span class="must-input">*</span> : </label>
                                 <input type="email" class="form-control" id="ep_contact_email" name="ep_contact_email" value="{{ $content[0]->ep_contact_email }}" placeholder="อีเมลผู้ให้ข้อมูล" required>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="ep_description" class="control-label">รายละเอียด : </label>
+                                <label for="ep_description" class="control-label">รายละเอียด <span class="must-input">*</span> : </label>
                                 <textarea class="form-control" id="ep_description" name="ep_description" rows="4" style="resize : none;">{{ $content[0]->ep_description }}</textarea>
                             </div>
                         </div>
@@ -132,7 +132,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="ep_tag" class="control-label">ป้ายกำกับ : </label>
+                                <label for="ep_tag" class="control-label">ป้ายกำกับ <span class="must-input">*</span> : </label>
                                 <input type="text" class="form-control tag-input" id="ep_tag" name="ep_tag" value="{{ $content[0]->ep_tag }}" placeholder="ป้ายกำกับ">
                             </div>
                         </div>

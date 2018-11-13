@@ -18,7 +18,7 @@ class DatamanagementController extends Controller
 
     public function index()
     {
-        $tbl_exportdata = DB::table('tbl_exportdata')->select('*')->get()->toArray();
+        $tbl_exportdata = DB::table('tbl_exportdata')->select('*')->paginate(10);
         return view('datamanagement.index', [
             'title' => 'บริหารจัดการข้อมูล',
             'header' => 'บริหารจัดการข้อมูล',

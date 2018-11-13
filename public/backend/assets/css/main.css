@@ -2898,3 +2898,15 @@ label {
 .must-input {
     color: red;
 }
+
+.block-pagi {
+    padding: 0px 0px 50px 0px;
+}
+
+.fr {
+    float: right;
+}
+
+.fl {
+    float: left;
+}

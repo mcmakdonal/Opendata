@@ -12,17 +12,17 @@
                         <?= link_to('/administrator/create', $title = 'เพิ่ม ผู้ดูแลระบบ', ['class' => 'btn btn-primary'], $secure = null); ?>
                     </div>
                 </div>
-                <table class="table table-bordered datatable">
+                <table class="table table-bordered non-datatable">
                     <thead>
-                    <tr>
-                        <th style="width: 5%;">#</th>
-                        <th>ชื่อ</th>
-                        <th>นามสกุล</th>
-                        <th>ชื่อผู้ใช้งาน</th>
-                        <th>บทบาท</th>
-                        <th class="text-center" style="width: 5%;">แก้ไข</th>
-                        <th class="text-center" style="width: 5%;">ลบ</th>
-                    </tr>
+                        <tr>
+                            <th style="width: 3%;">#</th>
+                            <th>ชื่อ</th>
+                            <th>นามสกุล</th>
+                            <th>ชื่อผู้ใช้งาน</th>
+                            <th>บทบาท</th>
+                            <th class="text-center" style="width: 5%;">แก้ไข</th>
+                            <th class="text-center" style="width: 5%;">ลบ</th>
+                        </tr>
                     </thead>
                     <tbody>
                         @foreach ($administrator as $k => $v)
@@ -46,6 +46,8 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="block-pagi">
+                    {{ $administrator->links("pagination::pagination-default") }}
                 </div>
             </div>
         </div>

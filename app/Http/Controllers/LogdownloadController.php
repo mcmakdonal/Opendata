@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Libs\Customlib;
+use Illuminate\Support\Facades\DB;
 
 class LogdownloadController extends Controller
 {
@@ -13,7 +14,10 @@ class LogdownloadController extends Controller
 
     public function index()
     {
-        $log = Customlib::log_download();
+        $log = DB::table('tbl_userdownload')
+        ->select('tbl_userdownload.*', 'file_name')
+        ->join('tbl_resource', 'tbl_resource.res_id', '=', 'tbl_userdownload.res_id')
+        ->paginate(10);
         return view('log.index', [
             'title' => 'ประวัติดาวน์โหลด',
             'header' => 'ประวัติดาวน์โหลด',

@@ -360,20 +360,20 @@ class Customlib extends ServiceProvider
         }
     }
 
-    public static function log_download($log_id = "", $search = "")
-    {
-        $matchThese = [];
-        if ($search != "") {
-            $matchThese[] = ['tbl_dataset.dts_status', '=', "pb"];
-        }
-        $tbl_userdownload = DB::table('tbl_userdownload')
-            ->select('tbl_userdownload.*', 'file_name')
-            ->join('tbl_resource', 'tbl_resource.res_id', '=', 'tbl_userdownload.res_id')
-            ->where($matchThese)
-            ->get()
-            ->toArray();
-        return $tbl_userdownload;
-    }
+    // public static function log_download($log_id = "", $search = "")
+    // {
+    //     $matchThese = [];
+    //     if ($search != "") {
+    //         $matchThese[] = ['tbl_dataset.dts_status', '=', "pb"];
+    //     }
+    //     $tbl_userdownload = DB::table('tbl_userdownload')
+    //         ->select('tbl_userdownload.*', 'file_name')
+    //         ->join('tbl_resource', 'tbl_resource.res_id', '=', 'tbl_userdownload.res_id')
+    //         ->where($matchThese)
+    //         ->get()
+    //         ->toArray();
+    //     return $tbl_userdownload;
+    // }
 
     public static function is_login($permission = "A", $admin_ogz = 0)
     {

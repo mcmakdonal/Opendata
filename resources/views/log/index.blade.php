@@ -7,10 +7,10 @@
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" style="">
             <div class="panel panel-primary box_gradient" style="padding-top:10px;padding-bottom: 10px;">
-                <table class="table table-bordered datatable">
+                <table class="table table-bordered non-datatable">
                     <thead>
                     <tr>
-                        <th style="width: 5%;">#</th>
+                        <th style="width: 3%;">#</th>
                         <th>ชื่อไฟล์</th>
                         <th>ดาวน์โหลด โดย</th>
                         <th>วันที่ ดาวน์โหลด</th>
@@ -31,6 +31,8 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="block-pagi">
+                    {{ $log->links("pagination::pagination-default") }}
                 </div>
             </div>
         </div>

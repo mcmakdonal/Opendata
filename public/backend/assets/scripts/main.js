@@ -19,7 +19,16 @@ $(document).ready(function ($) {
             "infoFiltered": "(กรองจากทั้งหมด _MAX_)",
             "search": "ค้นหา : ",
         }
+    });
 
+    $('.non-datatable').DataTable({
+        "searching": false,
+        "ordering": false,
+        "info": false,
+        "paging": false,
+        "language": {
+            "zeroRecords": "ไม่พบข้อมูลที่ตรงกัน",
+        }
     });
 
     $('.tag-input').tagsInput({
@@ -618,7 +627,7 @@ $(".show-log-desc").click(function (e) {
 function change_admin() {
     var admin_type = $("#admin_type").val();
     if (admin_type == "A") {
-        $("#admin_ogz").attr("disabled","disabled");
+        $("#admin_ogz").attr("disabled", "disabled");
     } else {
         $("#admin_ogz").removeAttr("disabled");
     }

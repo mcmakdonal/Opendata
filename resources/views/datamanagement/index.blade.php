@@ -12,10 +12,10 @@
                         <?= link_to('/datamanagement/create', $title = 'เพิ่ม บริหารจัดการข้อมูล', ['class' => 'btn btn-primary'], $secure = null); ?>
                     </div>
                 </div>
-                <table class="table table-bordered datatable">
+                <table class="table table-bordered non-datatable">
                     <thead>
                     <tr>
-                        <th style="width: 5%;">#</th>
+                        <th style="width: 3%;">#</th>
                         <th>หัวข้อ</th>
                         <th>ผู้ให้ข้อมูล</th>
                         <th>Database View</th>
@@ -42,6 +42,8 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="block-pagi">
+                    {{ $content->links("pagination::pagination-default") }}
                 </div>
             </div>
         </div>

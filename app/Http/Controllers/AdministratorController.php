@@ -21,7 +21,7 @@ class AdministratorController extends Controller
      */
     public function index()
     {
-        $administrator = DB::table('tbl_administrator')->select('*')->where('admin_id', '!=', 1)->get()->toArray();
+        $administrator = DB::table('tbl_administrator')->select('*')->where('admin_id', '!=', 1)->paginate(10);
         return view('administrator.index', [
             'title' => 'ผู้ดูแลระบบ',
             'header' => 'ผู้ดูแลระบบ',
