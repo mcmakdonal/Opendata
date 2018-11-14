@@ -39,7 +39,11 @@ function get_data(page = 1) {
         $("#title_dataset").html(organization_name + ' > ' + categories_name);
     }
 
-    update_filter(data);
+    var check_filter = ($("#unfilter").length > 0) ? $("#unfilter").val() : "";
+    if (check_filter == "") {
+        update_filter(data);
+        $("#unfilter").val("hide");
+    }
 
     $.ajax({
         headers: {
@@ -102,45 +106,49 @@ function get_data(page = 1) {
 }
 
 function update_filter(data) {
-    $.ajax({
-        headers: {
-            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                "content"
-            )
-        },
-        url: full_url + "/filter-cat",
-        method: "post",
-        data: data,
-        success: function (obj) {
-            $("a.organization li span").html("(0)");
-            for (i = 0; i < obj['data'].length; i++) {
-                $("a[data-id=" + obj['data'][i]['ogz_id'] + "].organization li span").html("(" + obj['data'][i]['sum'] + ")");
-            };
-        },
-        error(xhr, status, error) {
-            // swal("Fail !", error + " Status : " + status, "error");
-        }
-    });
+    if ($("a.organization li").length > 0) {
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                    "content"
+                )
+            },
+            url: full_url + "/filter-cat",
+            method: "post",
+            data: data,
+            success: function (obj) {
+                $("a.organization li span").html("(0)");
+                for (i = 0; i < obj['data'].length; i++) {
+                    $("a[data-id=" + obj['data'][i]['ogz_id'] + "].organization li span").html("(" + obj['data'][i]['sum'] + ")");
+                };
+            },
+            error(xhr, status, error) {
+                // swal("Fail !", error + " Status : " + status, "error");
+            }
+        });
+    }
 
-    $.ajax({
-        headers: {
-            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                "content"
-            )
-        },
-        url: full_url + "/filter-ogz",
-        method: "post",
-        data: data,
-        success: function (obj) {
-            $("a.categories li span").html("(0)");
-            for (i = 0; i < obj['data'].length; i++) {
-                $("a[data-id=" + obj['data'][i]['cat_id'] + "].categories li span").html("(" + obj['data'][i]['sum'] + ")");
-            };
-        },
-        error(xhr, status, error) {
-            // swal("Fail !", error + " Status : " + status, "error");
-        }
-    });
+    if ($("a.categories li").length > 0) {
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                    "content"
+                )
+            },
+            url: full_url + "/filter-ogz",
+            method: "post",
+            data: data,
+            success: function (obj) {
+                $("a.categories li span").html("(0)");
+                for (i = 0; i < obj['data'].length; i++) {
+                    $("a[data-id=" + obj['data'][i]['cat_id'] + "].categories li span").html("(" + obj['data'][i]['sum'] + ")");
+                };
+            },
+            error(xhr, status, error) {
+                // swal("Fail !", error + " Status : " + status, "error");
+            }
+        });
+    }
 
 }
 
@@ -182,7 +190,7 @@ function pagi_init(totalPages, startPage) {
 
         // callback function
         onPageClick: function (event, page) {
-            console.log(page);
+            // console.log(page);
             get_data(page);
         },
 

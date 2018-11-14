@@ -110,7 +110,7 @@
                             <table class="table table-bordered ogz-dts">
                                 <thead>
                                     <tr>
-                                        <th style="width: 5%;">#</th>
+                                        <th style="width: 3%;">#</th>
                                         <th><button type="button" class="btn btn-block" onclick="set_status_dts('pb')"><i class="fa fa-eye" aria-hidden="true"></i> ทำให้เป็น สาธารณะ </button></th>
                                         <th><button type="button" class="btn btn-block" onclick="set_status_dts('pv')"><i class="fa fa-eye-slash" aria-hidden="true"></i> ทำให้เป็น ส่วนตัว </button></th>
                                         <th><button type="button" class="btn btn-block btn-danger" onclick="set_status_dts('del')"><i class="fa fa-chain-broken" aria-hidden="true"></i> ลบ </button></th>

@@ -41,6 +41,7 @@
                     </div>
                     <div class="hidden">
                         <a href="javascript:void(0)" class="list-group-item organization search-data menu-active" data-id="{{ $ogz_id }}" ></a>
+                        <input type="hidden" value="" id="unfilter">
                     </div>
                 </div>
 

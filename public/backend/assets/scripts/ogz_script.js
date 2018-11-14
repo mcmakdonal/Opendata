@@ -11,12 +11,12 @@ $pagination_ogz.twbsPagination(defaultOpts);
 
 function get_dts_data(page = 1) {
     var organization = ($(".organization.menu-active").attr('data-id') === undefined) ? "" : $(".organization.menu-active").attr('data-id');
-    var order = $("#dts-order").val().trim();
-    var title = $("#title").val().trim();
+    // var order = $("#dts-order").val().trim();
+    // var title = $("#title").val().trim();
     var data = {
         'organization': organization,
-        'title': title,
-        'order': order,
+        // 'title': title,
+        // 'order': order,
         'page': page
     };
     $.ajax({
