@@ -41,8 +41,8 @@
                             <div class="form-group">
                                 <label for="ep_view" class="control-label">Database <span class="must-input">*</span> : </label>
                                 <select class="form-control use-select2" name="ep_view" id="ep_view" required>
-                                    @foreach($view->data as $k => $v)
-                                        <option value="{{ $v->view }}" {{ ($content[0]->ep_view == $v->view)? "selected" : "" }} >{{ $v->view }}</option>
+                                    @foreach($view as $k => $v)
+                                        <option value="{{ $v->view_name }}" {{ ($content[0]->ep_view == $v->view_name)? "selected" : "" }} >{{ $v->view_name }}</option>
                                     @endforeach
                                 </select>
                             </div>

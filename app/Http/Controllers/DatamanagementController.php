@@ -32,7 +32,8 @@ class DatamanagementController extends Controller
         $get_lcs = Customlib::get_lcs();
         $get_cat = Customlib::get_cat();
         $get_frequent = Customlib::frequent();
-        $view = Customlib::my_curl("http://oae-social.demotoday.net:3000/getview", "3000");
+        // $view = Customlib::my_curl("http://oae-social.demotoday.net:3000/getview", "3000");
+        $view = DB::select('select view_name from user_views');
 
         return view('datamanagement.create', [
             'title' => 'สร้าง บริหารจัดการข้อมูล',
@@ -109,7 +110,8 @@ class DatamanagementController extends Controller
         $get_lcs = Customlib::get_lcs();
         $get_cat = Customlib::get_cat();
         $get_frequent = Customlib::frequent();
-        $view = Customlib::my_curl("http://oae-social.demotoday.net:3000/getview", "3000");
+        // $view = Customlib::my_curl("http://oae-social.demotoday.net:3000/getview", "3000");
+        $view = DB::select('select view_name from user_views');
         $tbl_exportdata = DB::table('tbl_exportdata')->where('ep_id', $id)->get()->toArray();
 
         return view('datamanagement.edit', [

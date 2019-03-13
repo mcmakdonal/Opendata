@@ -1,3 +1,9 @@
+<style>
+    .select2-selection__rendered {
+        line-height: 25px !important;
+    }
+</style>
+
 @extends('master.layout') 
 @section('title', $title ) 
 @section('header', $header ) 
@@ -35,8 +41,8 @@
                         <div class="form-group">
                             <label for="ep_view" class="control-label">Database <span class="must-input">*</span> : </label>
                             <select class="form-control use-select2" name="ep_view" id="ep_view" required>
-                                    @foreach($view->data as $k => $v)
-                                        <option value="{{ $v->view }}">{{ $v->view }}</option>
+                                    @foreach($view as $k => $v)
+                                        <option value="{{ $v->view_name }}">{{ $v->view_name }}</option>
                                     @endforeach
                                 </select>
                         </div>
@@ -140,6 +146,6 @@
         </div>
     </div>
     </div>
-</div>
+    </div>
 </section>
 @endsection
