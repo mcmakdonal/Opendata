@@ -221,16 +221,27 @@ function beautiful_star() {
         var arr = $(".star").html();
         var star = parseInt(arr);
         var str = 'คะแนนการเปิดเผย : ';
-        for (var i = 1; i <= star; i++) {
-            str += '<i class="fa fa-star" aria-hidden="true"></i>';
-            str += '&nbsp;';
+        var max = 5;
+        var s = "";
+        var n = ""
+        for (var i = 1; i <= max; i++) {
+            if (i <= star) {
+                s += '<i class="fa fa-star" aria-hidden="true" style="color: orange !important"></i>';
+                s += '&nbsp;';
+            } else {
+                n += '<i class="fa fa-star-o" aria-hidden="true"></i>';
+                n += '&nbsp;';
+            }
         }
+
+        var f = str + n + s;
+
         $(".star").css({
             'float': 'right',
             'font-size': '15px',
             'padding': '5px'
         });
-        $(".star").html(str);
+        $(".star").html(f);
     }
 }
 
